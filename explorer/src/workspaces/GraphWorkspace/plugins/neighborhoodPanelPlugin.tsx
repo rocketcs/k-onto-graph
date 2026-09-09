@@ -1,4 +1,6 @@
+import { t, locale } from "../../../i18n";
 import type { CSSProperties } from "react";
+import { exploreTerm } from "../../../exploreLocale";
 
 import type { GraphPlugin } from "./types";
 
@@ -14,9 +16,9 @@ function maxWeightBetween(graphRef: any, sourceId: string, targetId: string): nu
 }
 
 function formatNeighborMeta(neighbor: { nodeType: string; degree: number; weight: number }) {
-  const parts = [neighbor.nodeType, `degree ${neighbor.degree}`];
+  const parts = [exploreTerm(neighbor.nodeType), t("degree {0}", {0: neighbor.degree})];
   if (neighbor.weight > 0) {
-    parts.push(`weight ${neighbor.weight.toFixed(2)}`);
+    parts.push(t("weight {0}", {0: neighbor.weight.toFixed(2)}));
   }
   return parts.join(" · ");
 }
@@ -29,8 +31,8 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
   toolbarItems: (context) => [
     {
       id: "neighborhood-toggle",
-      label: "Neighbors",
-      title: "Toggle neighborhood panel",
+      label: t("Neighbors"),
+      title: t("Toggle neighborhood panel"),
       active: context.isPanelOpen(NEIGHBORHOOD_PANEL_ID),
       order: 30,
       onClick: () => context.dispatchAction({ type: "togglePanel", panelId: NEIGHBORHOOD_PANEL_ID }),
@@ -46,13 +48,13 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
     if (!selected) {
       return {
         id: NEIGHBORHOOD_PANEL_ID,
-        title: "Neighborhood",
+        title: t("Neighborhood"),
         placement: "bottom",
         order: 20,
         defaultOpen: false,
         preferredWidth: 360,
         preferredHeight: 260,
-        content: <div style={emptyTextStyle}>Select a node to inspect its local neighborhood.</div>,
+        content: <div style={emptyTextStyle}>{t("Select a node to inspect its local neighborhood.")}</div>,
       };
     }
 
@@ -91,7 +93,7 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
 
     return {
       id: NEIGHBORHOOD_PANEL_ID,
-      title: "Neighborhood",
+      title: t("Neighborhood"),
       placement: "bottom",
       order: 20,
       defaultOpen: false,
@@ -101,7 +103,7 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
         <div style={panelBodyStyle}>
           <div style={panelEyebrowStyle}>{selected.label}</div>
           <div style={summaryStyle}>
-            {selected.neighborCount.toLocaleString()} direct neighbors in the full graph
+            {selected.neighborCount.toLocaleString(locale)} {t("direct neighbors in the full graph")}
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button
@@ -110,7 +112,7 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
               disabled={!selected.canCollapseNeighborhood || selected.isNeighborhoodCollapsed}
               style={controlButtonStyle}
             >
-              Collapse Neighborhood
+              {t("Collapse Neighborhood")}
             </button>
             <button
               type="button"
@@ -118,17 +120,17 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
               disabled={!selected.isNeighborhoodCollapsed}
               style={controlButtonStyle}
             >
-              Expand Neighborhood
+              {t("Expand Neighborhood")}
             </button>
           </div>
           {hiddenNeighborCount > 0 ? (
             <div style={summaryStyle}>
-              {hiddenNeighborCount.toLocaleString()} lower-priority neighbors are collapsed in the current view.
+              {hiddenNeighborCount.toLocaleString(locale)} {t("lower-priority neighbors are collapsed in the current view.")}
             </div>
           ) : null}
           {aggregatedEdgeCount > 0 ? (
             <div style={summaryStyle}>
-              {aggregatedEdgeCount.toLocaleString()} aggregated structural bundle{aggregatedEdgeCount === 1 ? "" : "s"} visible.
+              {aggregatedEdgeCount.toLocaleString(locale)} {t("aggregated structural bundles")} {t("visible.")}
             </div>
           ) : null}
           {neighbors.length ? (
@@ -155,7 +157,7 @@ export const neighborhoodPanelPlugin: GraphPlugin = {
               ))}
             </div>
           ) : (
-            <div style={emptyTextStyle}>No direct neighbors are available for this node.</div>
+            <div style={emptyTextStyle}>{t("No direct neighbors are available for this node.")}</div>
           )}
         </div>
       ),

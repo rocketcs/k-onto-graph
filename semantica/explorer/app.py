@@ -110,7 +110,12 @@ def create_app(
         app.state.agent_memory = agent_memory
         app.state.markdown_resources = markdown_resources
         install_mutation_bridge(app, active_session)
-        yield
+        from .routes.pipelines import start_pipeline_service, stop_pipeline_service
+        start_pipeline_service(app)
+        try:
+            yield
+        finally:
+            await stop_pipeline_service(app)
 
     app = FastAPI(
         title="Semantica Knowledge Explorer",
@@ -171,6 +176,8 @@ def create_app(
     from .routes.vocabulary import router as vocabulary_router
 
     _auth = [Depends(require_auth)]
+    from .routes.pipelines import router as pipeline_router
+    app.include_router(pipeline_router, dependencies=_auth)
     app.include_router(graph_router, dependencies=_auth)
     app.include_router(analytics_router, dependencies=_auth)
     app.include_router(decisions_router, dependencies=_auth)

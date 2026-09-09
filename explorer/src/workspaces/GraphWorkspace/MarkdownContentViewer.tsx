@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import {
   useEffect,
   useId,
@@ -208,7 +209,11 @@ export function MarkdownContentViewer({
 
   const renderedMarkdown = useMemo(
     () => (
-      <ReactMarkdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
+      <ReactMarkdown
+        remarkPlugins={REMARK_PLUGINS}
+        remarkRehypeOptions={{ footnoteLabel: t("Footnotes"), footnoteBackLabel: t("Back to reference") }}
+        components={MARKDOWN_COMPONENTS}
+      >
         {previewContent}
       </ReactMarkdown>
     ),
@@ -249,7 +254,7 @@ export function MarkdownContentViewer({
   return (
     <div className={className} style={viewerContainerStyle}>
       <div style={viewerHeaderStyle}>
-        <div style={{ display: "flex", gap: 4 }} role="tablist" aria-label="Content view mode">
+        <div style={{ display: "flex", gap: 4 }} role="tablist" aria-label={t("Content view mode")}>
           <button
             type="button"
             role="tab"
@@ -263,7 +268,7 @@ export function MarkdownContentViewer({
             style={{ ...tabBtnStyle, ...(activeMode === "preview" ? activeTabBtnStyle : {}) }}
           >
             <Eye size={12} style={{ marginRight: 5 }} aria-hidden="true" />
-            Preview
+            {t("Preview")}
           </button>
           <button
             type="button"
@@ -278,22 +283,22 @@ export function MarkdownContentViewer({
             style={{ ...tabBtnStyle, ...(activeMode === "source" ? activeTabBtnStyle : {}) }}
           >
             <Code2 size={12} style={{ marginRight: 5 }} aria-hidden="true" />
-            Source
+            {t("Source")}
           </button>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
           {hasContent && (
-            <button type="button" onClick={() => void handleCopy()} style={copyBtnStyle} title="Copy raw content">
+            <button type="button" onClick={() => void handleCopy()} style={copyBtnStyle} title={t("Copy raw content")}>
               {copied ? (
                 <>
                   <Check size={12} color="#3fb950" style={{ marginRight: 4 }} aria-hidden="true" />
-                  <span style={{ color: "#3fb950", fontSize: 11 }}>Copied</span>
+                  <span style={{ color: "#3fb950", fontSize: 11 }}>{t("Copied")}</span>
                 </>
               ) : (
                 <>
                   <Copy size={12} style={{ marginRight: 4 }} aria-hidden="true" />
-                  <span style={{ fontSize: 11 }}>Copy</span>
+                  <span style={{ fontSize: 11 }}>{t("Copy")}</span>
                 </>
               )}
             </button>
@@ -301,26 +306,26 @@ export function MarkdownContentViewer({
           {resource && !editing && !loading ? (
             <button type="button" onClick={() => void handleEdit()} style={copyBtnStyle}>
               <Pencil size={12} style={{ marginRight: 4 }} aria-hidden="true" />
-              Edit
+              {t("Edit")}
             </button>
           ) : null}
           {loading ? (
             <button type="button" disabled style={{ ...copyBtnStyle, opacity: 0.65 }}>
               <Loader2 size={12} className="animate-spin" style={{ marginRight: 4 }} aria-hidden="true" />
-              Loading…
+              {t("Loading…")}
             </button>
           ) : null}
           {editing ? (
             <>
               <button type="button" onClick={handleCancel} disabled={saving} style={copyBtnStyle}>
                 <X size={12} style={{ marginRight: 4 }} aria-hidden="true" />
-                Cancel
+                {t("Cancel")}
               </button>
               <button
                 type="button"
                 onClick={() => void handleApply()}
                 disabled={saving || !dirty}
-                title={!dirty ? "Make a change before applying" : undefined}
+                title={!dirty ? t("Make a change before applying") : undefined}
                 style={{ ...saveBtnStyle, opacity: saving || !dirty ? 0.55 : 1 }}
               >
                 {saving ? (
@@ -328,7 +333,7 @@ export function MarkdownContentViewer({
                 ) : (
                   <Check size={12} style={{ marginRight: 4 }} aria-hidden="true" />
                 )}
-                {saving ? "Applying…" : "Apply"}
+                {saving ? t("Applying…") : t("Apply")}
               </button>
             </>
           ) : null}
@@ -341,7 +346,7 @@ export function MarkdownContentViewer({
           {error.kind === "conflict" ? (
             <button type="button" onClick={() => void editor.reloadLatest()} style={errorActionStyle}>
               <RefreshCw size={12} style={{ marginRight: 4 }} aria-hidden="true" />
-              Reload latest
+              {t("Reload latest")}
             </button>
           ) : null}
         </div>
@@ -365,7 +370,7 @@ export function MarkdownContentViewer({
       >
         {activeMode === "source" && editing ? (
           <textarea
-            aria-label="Markdown source"
+            aria-label={t("Markdown source")}
             aria-describedby={error ? "markdown-editor-error" : undefined}
             aria-invalid={error?.kind === "validation" || undefined}
             value={session?.draft ?? ""}
@@ -375,7 +380,7 @@ export function MarkdownContentViewer({
             style={editorStyle}
           />
         ) : !hasContent ? (
-          <div style={emptyTextStyle}>No content available for this node.</div>
+          <div style={emptyTextStyle}>{t("No content available for this node.")}</div>
         ) : activeMode === "source" ? (
           <pre style={sourcePreStyle}>
             <code style={sourceCodeStyle}>{rawContent}</code>
@@ -440,9 +445,9 @@ const MARKDOWN_COMPONENTS: Components = {
     );
   },
   img: ({ src, alt }) => (
-    <span style={imageBadgeStyle} title={src || "Image"}>
+    <span style={imageBadgeStyle} title={src || t("Image")}>
       <ImageIcon size={12} style={{ marginRight: 5 }} />
-      <span>Image: {alt || src || "unlabeled"}</span>
+      <span>{t("Image:")} {alt || src || t("unlabeled")}</span>
     </span>
   ),
   h1: ({ children }) => <h1 style={h1Style}>{children}</h1>,

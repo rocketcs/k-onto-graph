@@ -33,6 +33,7 @@ from ..utils.exceptions import ProcessingError, ValidationError
 from ..utils.logging import get_logger
 from ..utils.progress_tracker import get_progress_tracker
 from .pipeline_builder import PipelineBuilder
+from copy import deepcopy
 
 
 @dataclass
@@ -288,12 +289,12 @@ class PipelineTemplateManager:
             for step_config in template.steps:
                 step_name = step_config["name"]
                 step_type = step_config["type"]
-                config = step_config.get("config", {})
-                dependencies = step_config.get("dependencies", [])
+                config = deepcopy(step_config.get("config", {}))
+                dependencies = list(step_config.get("dependencies", []))
 
                 # Apply overrides
                 if step_name in overrides:
-                    config.update(overrides[step_name])
+                    config.update(deepcopy(overrides[step_name]))
 
                 builder.add_step(
                     step_name, step_type, dependencies=dependencies, **config
@@ -303,7 +304,7 @@ class PipelineTemplateManager:
             self.progress_tracker.update_tracking(
                 tracking_id, message="Setting pipeline configuration..."
             )
-            pipeline_config = template.config.copy()
+            pipeline_config = deepcopy(template.config)
             pipeline_config.update(overrides.get("pipeline_config", {}))
 
             for key, value in pipeline_config.items():

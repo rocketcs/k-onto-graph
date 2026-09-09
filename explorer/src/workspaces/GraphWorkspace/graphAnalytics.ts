@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import type Graph from "graphology";
 import louvain from "graphology-communities-louvain";
 import { dijkstra } from "graphology-shortest-path";
@@ -237,7 +238,7 @@ function buildCommunitySummaries(
         dominantSemanticGroup,
         color: data.color,
         anchorNodeId: data.anchorNodeId,
-        anchorLabel: data.anchorNodeId ? getNodeLabel(graphRef, data.anchorNodeId) : "Community anchor",
+        anchorLabel: data.anchorNodeId ? getNodeLabel(graphRef, data.anchorNodeId) : t("Community anchors"),
         prominence: data.prominence,
       };
     })
@@ -439,7 +440,7 @@ function buildOverviewBackboneSnapshot(
   if (visibleNodeIds.size === 0) {
     return {
       ready: false,
-      reason: "No visible nodes are available for overview backbone selection.",
+      reason: t("No visible nodes are available for overview backbone selection."),
       edgeIds: [],
     };
   }
@@ -569,8 +570,8 @@ function buildOverviewBackboneSnapshot(
   return {
     ready: edgeIds.length > 0,
     reason: edgeIds.length > 0
-      ? "Ready"
-      : "No overview backbone edges met the current visibility thresholds.",
+      ? t("Ready")
+      : t("No overview backbone edges met the current visibility thresholds."),
     edgeIds,
   };
 }
@@ -582,7 +583,7 @@ function buildDirectedPathSnapshot(
   if (interactionState.activePath.length < 2) {
     return {
       ready: false,
-      reason: "Trace a path to compare it against local strict directed shortest pathfinding.",
+      reason: t("Trace a path to compare it against local strict directed shortest pathfinding."),
       sourceId: interactionState.selectedNodeId || null,
       targetId: null,
       path: [],
@@ -596,7 +597,7 @@ function buildDirectedPathSnapshot(
   if (!sourceId || !targetId || !graphRef.hasNode(sourceId) || !graphRef.hasNode(targetId)) {
     return {
       ready: false,
-      reason: "Active path endpoints are not available in the current graph view.",
+      reason: t("Active path endpoints are not available in the current graph view."),
       sourceId,
       targetId,
       path: [],
@@ -610,8 +611,8 @@ function buildDirectedPathSnapshot(
     return {
       ready: path.length > 1,
       reason: path.length > 1
-        ? "Ready"
-        : "No strict directed shortest path found in the current graph view.",
+        ? t("Ready")
+        : t("No strict directed shortest path found in the current graph view."),
       sourceId,
       targetId,
       path,
@@ -622,7 +623,7 @@ function buildDirectedPathSnapshot(
     console.error("[GraphAnalytics] directed pathfinding failed", error);
     return {
       ready: false,
-      reason: "Directed pathfinding failed for the current graph snapshot.",
+      reason: t("Directed pathfinding failed for the current graph snapshot."),
       sourceId,
       targetId,
       path: [],
@@ -660,10 +661,10 @@ export function buildGraphAnalyticsSnapshot(params: {
     communities: {
       ready: communitySummaries.length > 0,
       reason: communitySummaries.length > 0
-        ? "Ready"
+        ? t("Ready")
         : base.communitiesByNode.size > 0
-          ? "No visible communities in the current graph context."
-          : "Community detection has not produced summaries yet.",
+          ? t("No visible communities in the current graph context.")
+          : t("Community detection has not produced summaries yet."),
       count: base.communityCount,
       modularity: base.modularity,
       summaries: communitySummaries,
@@ -672,16 +673,16 @@ export function buildGraphAnalyticsSnapshot(params: {
       ready: centralitySummaries.length > 0,
       reason: centralitySummaries.length > 0
         ? base.betweennessReady
-          ? "Ready"
-          : "Ready (degree-biased while betweenness is bounded for large graphs)."
-        : "Centrality ranking is waiting for graph data.",
+          ? t("Ready")
+          : t("Ready (degree-biased while betweenness is bounded for large graphs).")
+        : t("Centrality ranking is waiting for graph data."),
       topNodes: centralitySummaries,
     },
     semanticRegions: {
       ready: semanticRegionSummaries.length > 0,
       reason: semanticRegionSummaries.length > 0
-        ? "Ready"
-        : "No semantic regions are visible in the current graph context.",
+        ? t("Ready")
+        : t("No semantic regions are visible in the current graph context."),
       summaries: semanticRegionSummaries,
     },
     overviewBackbone,

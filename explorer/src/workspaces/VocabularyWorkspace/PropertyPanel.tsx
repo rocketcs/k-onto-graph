@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 /**
  * src/workspaces/VocabularyWorkspace/PropertyPanel.tsx
  *
@@ -23,8 +24,8 @@ export function PropertyPanel({ concept }: PropertyPanelProps) {
           strokeLinejoin="round" style={{ marginBottom: 16, opacity: 0.4 }}>
           <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
         </svg>
-        <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>No concept selected</p>
-        <p style={{ fontSize: 13 }}>Click a concept in the tree to view its properties.</p>
+        <p style={{ fontSize: 15, fontWeight: 500, marginBottom: 4 }}>{t("No concept selected")}</p>
+        <p style={{ fontSize: 13 }}>{t("Click a concept in the tree to view its properties.")}</p>
       </div>
     );
   }
@@ -39,7 +40,7 @@ export function PropertyPanel({ concept }: PropertyPanelProps) {
             background: '#d2a8ff', boxShadow: '0 0 8px rgba(210,168,255,0.6)',
           }} />
           <span style={{ color: '#d2a8ff', fontSize: 12, fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-            SKOS Concept
+            {t("SKOS Concept")}
           </span>
         </div>
         <h2 style={{ margin: 0, color: '#fff', fontSize: 22, fontWeight: 700, wordBreak: 'break-word' }}>
@@ -66,7 +67,7 @@ export function PropertyPanel({ concept }: PropertyPanelProps) {
             color: '#8b949e', fontSize: 12, textTransform: 'uppercase',
             letterSpacing: '0.08em', marginBottom: 10,
           }}>
-            Alternative Labels
+            {t("Alternative Labels")}
           </h4>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
             {concept.alt_labels.map((lbl, i) => (
@@ -91,7 +92,7 @@ export function PropertyPanel({ concept }: PropertyPanelProps) {
           color: '#8b949e', fontSize: 12, textTransform: 'uppercase',
           letterSpacing: '0.08em', marginBottom: 10,
         }}>
-          Narrower Concepts
+          {t("Narrower Concepts")}
         </h4>
         {concept.children && concept.children.length > 0 ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
@@ -107,7 +108,7 @@ export function PropertyPanel({ concept }: PropertyPanelProps) {
           </div>
         ) : (
           <p style={{ margin: 0, color: '#484f58', fontStyle: 'italic', fontSize: 13 }}>
-            Leaf concept — no narrower concepts.
+            {t("Leaf concept — no narrower concepts.")}
           </p>
         )}
       </section>

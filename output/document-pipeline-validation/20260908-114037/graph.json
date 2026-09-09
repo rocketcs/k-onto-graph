@@ -1,0 +1,398 @@
+{
+  "graph_id": "8a377690-ee86-41ca-8bfd-e262519e5f48",
+  "nodes": [
+    {
+      "id": "循上医疗",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "卫星诊所",
+      "type": "机构",
+      "properties": {
+        "content": "卫星诊所",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "区域医疗中心",
+      "type": "机构",
+      "properties": {
+        "content": "区域医疗中心",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿主题综合医院",
+      "type": "机构",
+      "properties": {
+        "content": "长寿主题综合医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医院",
+      "type": "机构",
+      "properties": {
+        "content": "国际医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "迪拜分院",
+      "type": "机构",
+      "properties": {
+        "content": "迪拜分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "南宁分院",
+      "type": "机构",
+      "properties": {
+        "content": "南宁分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "永生岛",
+      "type": "项目",
+      "properties": {
+        "content": "永生岛",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿医学",
+      "type": "学科",
+      "properties": {
+        "content": "长寿医学",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "慢病逆转",
+      "type": "学科",
+      "properties": {
+        "content": "慢病逆转",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "肿瘤癌症",
+      "type": "学科",
+      "properties": {
+        "content": "肿瘤癌症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "疑难重症",
+      "type": "学科",
+      "properties": {
+        "content": "疑难重症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "跨境救援",
+      "type": "学科",
+      "properties": {
+        "content": "跨境救援",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "伦敦大学玛丽女王学院",
+      "type": "机构",
+      "properties": {
+        "content": "伦敦大学玛丽女王学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "英国皇家全科医师学院",
+      "type": "机构",
+      "properties": {
+        "content": "英国皇家全科医师学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "海南",
+      "type": "地点",
+      "properties": {
+        "content": "海南",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿医学硕士项目",
+      "type": "项目",
+      "properties": {
+        "content": "长寿医学硕士项目",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "全科医师培训",
+      "type": "项目",
+      "properties": {
+        "content": "全科医师培训",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医学院",
+      "type": "机构",
+      "properties": {
+        "content": "国际医学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "deedef2c-0991-574d-8ec6-5e881d86b7eb",
+      "familyId": "deedef2c-0991-574d-8ec6-5e881d86b7eb",
+      "source_id": "循上医疗",
+      "target_id": "卫星诊所",
+      "type": "计划布局",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "计划在全国布局2000+家卫星诊所",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "6e1bcf4c-e565-5d48-a84c-11a993781836",
+      "familyId": "6e1bcf4c-e565-5d48-a84c-11a993781836",
+      "source_id": "循上医疗",
+      "target_id": "区域医疗中心",
+      "type": "计划建设",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "在直辖市及省会城市建设30+家区域医疗中心",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "b1060963-bfab-5ecb-a1c1-9d6fc60ae7fa",
+      "familyId": "b1060963-bfab-5ecb-a1c1-9d6fc60ae7fa",
+      "source_id": "循上医疗",
+      "target_id": "长寿主题综合医院",
+      "type": "计划建设",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "e5ff4aea-b749-524e-8494-51d2f256e949",
+      "familyId": "e5ff4aea-b749-524e-8494-51d2f256e949",
+      "source_id": "循上医疗",
+      "target_id": "国际医院",
+      "type": "布局",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "布局2家国际医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "198dc8ce-3889-596d-866b-4db54d4d3337",
+      "familyId": "198dc8ce-3889-596d-866b-4db54d4d3337",
+      "source_id": "迪拜分院",
+      "target_id": "国际医院",
+      "type": "属于",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "迪拜分院已投入运营",
+        "status": "已运营",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "4d3f2961-4fa4-5725-b688-369ebd739c9a",
+      "familyId": "4d3f2961-4fa4-5725-b688-369ebd739c9a",
+      "source_id": "南宁分院",
+      "target_id": "国际医院",
+      "type": "属于",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "南宁分院项目启动建设中",
+        "status": "建设中",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "6e627e14-3836-5ff5-96da-b2b933b3b356",
+      "familyId": "6e627e14-3836-5ff5-96da-b2b933b3b356",
+      "source_id": "循上医疗",
+      "target_id": "永生岛",
+      "type": "规划",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "规划“永生岛”项目",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "515f2155-9aa9-5a51-99b7-7ea2ebfdae6a",
+      "familyId": "515f2155-9aa9-5a51-99b7-7ea2ebfdae6a",
+      "source_id": "循上医疗",
+      "target_id": "长寿医学",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "循上医疗重点发展5大前沿领域",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "388bb045-9528-57b3-b0fc-90f1b5825ce2",
+      "familyId": "388bb045-9528-57b3-b0fc-90f1b5825ce2",
+      "source_id": "循上医疗",
+      "target_id": "慢病逆转",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "循上医疗重点发展5大前沿领域",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "ce91fd32-bae8-5aeb-9b94-de3ed30221b8",
+      "familyId": "ce91fd32-bae8-5aeb-9b94-de3ed30221b8",
+      "source_id": "循上医疗",
+      "target_id": "肿瘤癌症",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "循上医疗重点发展5大前沿领域",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "caf8e7ef-4259-54d7-b37b-4bc0f8a1b5a7",
+      "familyId": "caf8e7ef-4259-54d7-b37b-4bc0f8a1b5a7",
+      "source_id": "循上医疗",
+      "target_id": "疑难重症",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "循上医疗重点发展5大前沿领域",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "130f2365-c459-5479-8134-33a3b4413b76",
+      "familyId": "130f2365-c459-5479-8134-33a3b4413b76",
+      "source_id": "循上医疗",
+      "target_id": "跨境救援",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "循上医疗重点发展5大前沿领域",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "b7bc0542-601d-5543-ba6e-9184a55d1d6c",
+      "familyId": "b7bc0542-601d-5543-ba6e-9184a55d1d6c",
+      "source_id": "循上医疗",
+      "target_id": "伦敦大学玛丽女王学院",
+      "type": "合作",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "9182ccaa-47af-5f7c-ae2c-95cdbcc36803",
+      "familyId": "9182ccaa-47af-5f7c-ae2c-95cdbcc36803",
+      "source_id": "循上医疗",
+      "target_id": "伦敦大学玛丽女王学院",
+      "type": "合作开设",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+        "status": "已运营",
+        "chunk": 2,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "07661dc2-baf6-54cb-b1a2-9e20ca2a9e2c",
+      "familyId": "07661dc2-baf6-54cb-b1a2-9e20ca2a9e2c",
+      "source_id": "循上医疗",
+      "target_id": "英国皇家全科医师学院",
+      "type": "合作提供培训",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+        "status": "已运营",
+        "chunk": 2,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "fc42db22-50e3-5ca9-83e7-c4df8e020715",
+      "familyId": "fc42db22-50e3-5ca9-83e7-c4df8e020715",
+      "source_id": "循上医疗",
+      "target_id": "海南",
+      "type": "计划设立",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院",
+        "status": "规划",
+        "chunk": 2,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "5780b5b0-6b07-59ba-a6c1-6164e5ea7bd8",
+      "familyId": "5780b5b0-6b07-59ba-a6c1-6164e5ea7bd8",
+      "source_id": "循上医疗",
+      "target_id": "国际医学院",
+      "type": "计划设立",
+      "weight": 1.0,
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院",
+        "status": "规划",
+        "chunk": 2,
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    }
+  ],
+  "links": []
+}

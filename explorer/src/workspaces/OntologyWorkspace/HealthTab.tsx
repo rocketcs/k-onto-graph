@@ -1,3 +1,6 @@
+import { displayText, errorText } from "../../i18n";
+import { t as tr } from "../../i18n";
+import { healthText } from './healthLocale';
 import { useCallback, useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 import { Download, HeartPulse, Loader2, Wrench } from "lucide-react";
@@ -25,7 +28,7 @@ export function HealthTab({ onFixInEditor }: HealthTabProps) {
       })
       .catch((err) => {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : "Failed to load ontology registry.");
+        setError(err instanceof Error ? err.message : tr("Failed to load ontology registry."));
       });
     return () => {
       cancelled = true;
@@ -75,62 +78,61 @@ export function HealthTab({ onFixInEditor }: HealthTabProps) {
     <div style={pageStyle}>
       <section style={heroStyle}>
         <div>
-          <div style={kickerStyle}><HeartPulse size={14} /> Ontology Health</div>
-          <h2 style={titleStyle}>Quality and governance signals</h2>
+          <div style={kickerStyle}><HeartPulse size={14} /> {tr("Ontology Health")}</div>
+          <h2 style={titleStyle}>{tr("Quality and governance signals")}</h2>
           <p style={textStyle}>
-            Score completeness, consistency, SHACL readiness, alignment coverage,
-            and documentation quality for the selected ontology.
+            {tr("Score completeness, consistency, SHACL readiness, alignment coverage, and documentation quality for the selected ontology.")}
           </p>
         </div>
         <div style={selectorShellStyle}>
-          <label style={labelStyle}>Ontology</label>
+          <label style={labelStyle}>{tr("Ontology")}</label>
           <select style={inputStyle} value={selectedUri} onChange={(event) => setSelectedUri(event.target.value)}>
             {registry.map((entry) => <option key={entry.uri} value={entry.uri}>{entry.name}</option>)}
           </select>
         </div>
       </section>
 
-      {error ? <div style={errorStyle}>{error}</div> : null}
+      {error ? <div style={errorStyle}>{errorText(String(error))}</div> : null}
 
       {loading ? (
-        <div style={loadingStyle}><Loader2 size={18} className="ws-spin" /> Computing health dashboard...</div>
+        <div style={loadingStyle}><Loader2 size={18} className="ws-spin" /> {tr("Computing health dashboard...")}</div>
       ) : health ? (
         <>
           <section style={{ ...scoreGridStyle, gridTemplateColumns: `220px repeat(${health.dimensions.length}, minmax(180px, 1fr))` }}>
             <div style={scoreCardStyle}>
               <span style={scoreValueStyle}>{Math.round(health.total_score)}</span>
-              <span style={mutedStyle}>Total health score</span>
-              <button style={secondaryButtonStyle} onClick={exportReport}><Download size={14} /> Export report</button>
+              <span style={mutedStyle}>{tr("Total health score")}</span>
+              <button style={secondaryButtonStyle} onClick={exportReport}><Download size={14} /> {tr("Export report")}</button>
             </div>
             {health.dimensions.map((dimension) => (
               <div key={dimension.key} style={dimensionCardStyle}>
                 <div style={dimensionHeadStyle}>
-                  <span style={{ color: "#ebf3ff", fontWeight: 900 }}>{dimension.label}</span>
-                  <span style={statusBadgeStyle(dimension.status)}>{dimension.status}</span>
+                  <span style={{ color: "#ebf3ff", fontWeight: 900 }}>{displayText(String(dimension.label))}</span>
+                  <span style={statusBadgeStyle(dimension.status)}>{displayText(String(dimension.status))}</span>
                 </div>
                 <div style={barTrackStyle}>
                   <div style={{ ...barFillStyle, width: `${dimension.score}%`, background: dimensionColor(dimension.score, dimension.status) }} />
                 </div>
                 <div style={dimensionFootStyle}>
                   <span>{Math.round(dimension.score)} / 100</span>
-                  <span>{dimension.detail}</span>
+                  <span title={dimension.detail}>{healthText(dimension.detail)}</span>
                 </div>
               </div>
             ))}
           </section>
 
           <section style={cardStyle}>
-            <h3 style={sectionTitleStyle}>Actionable issues</h3>
+            <h3 style={sectionTitleStyle}>{tr("Actionable issues")}</h3>
             <div style={issueListStyle}>
               {health.issues.map((issue) => (
                 <IssueRow key={issue.id} issue={issue} onFixInEditor={onFixInEditor} />
               ))}
-              {!health.issues.length ? <p style={mutedStyle}>No actionable issues reported for this ontology.</p> : null}
+              {!health.issues.length ? <p style={mutedStyle}>{tr("No actionable issues reported for this ontology.")}</p> : null}
             </div>
           </section>
         </>
       ) : (
-        <div style={emptyStyle}>Select an ontology to compute health signals.</div>
+        <div style={emptyStyle}>{tr("Select an ontology to compute health signals.")}</div>
       )}
     </div>
   );
@@ -141,15 +143,15 @@ function IssueRow({ issue, onFixInEditor }: { issue: HealthIssue; onFixInEditor?
     <div style={issueRowStyle}>
       <div style={severityDotStyle(issue.severity)} />
       <div>
-        <div style={{ color: "#ebf3ff", fontWeight: 800 }}>{issue.entity_label || issue.category}</div>
-        <div style={{ color: "#8fa8c6", fontSize: 13, lineHeight: 1.45 }}>{issue.message}</div>
+        <div style={{ color: "#ebf3ff", fontWeight: 800 }}>{displayText(String(issue.entity_label || issue.category))}</div>
+        <div style={{ color: "#8fa8c6", fontSize: 13, lineHeight: 1.45 }}>{healthText(issue.message)}</div>
         {issue.entity_uri ? <div style={monoStyle}>{issue.entity_uri}</div> : null}
       </div>
-      <span style={categoryStyle}>{issue.category}</span>
+      <span style={categoryStyle}>{displayText(String(issue.category))}</span>
       {issue.entity_uri ? (
         <button style={smallButtonStyle} onClick={() => onFixInEditor?.(issue.entity_uri || "")}>
           <Wrench size={13} />
-          Fix in Editor
+          {tr("Fix in Editor")}
         </button>
       ) : (
         <div />
@@ -189,7 +191,7 @@ const heroStyle: CSSProperties = { display: "flex", justifyContent: "space-betwe
 const kickerStyle: CSSProperties = { display: "inline-flex", gap: 8, alignItems: "center", color: "#9ee8d7", fontSize: 11, fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" };
 const titleStyle: CSSProperties = { margin: "8px 0", color: "#ebf3ff", fontSize: 26, letterSpacing: "-0.04em" };
 const textStyle: CSSProperties = { margin: 0, color: "#8fa8c6", lineHeight: 1.6, maxWidth: 620 };
-const selectorShellStyle: CSSProperties = { minWidth: 320 };
+const selectorShellStyle: CSSProperties = { minWidth: 0, width: "100%", maxWidth: 320, flexShrink: 0 };
 const labelStyle: CSSProperties = { display: "block", color: "#6a7f97", fontSize: 11, fontWeight: 800, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.08em" };
 const inputStyle: CSSProperties = { width: "100%", boxSizing: "border-box", border: "1px solid rgba(127,208,255,0.14)", borderRadius: 12, padding: "10px 12px", background: "rgba(3,9,18,0.8)", color: "#ebf3ff" };
 const scoreGridStyle: CSSProperties = { display: "grid", gridTemplateColumns: "220px repeat(5, minmax(180px, 1fr))", gap: 12 };

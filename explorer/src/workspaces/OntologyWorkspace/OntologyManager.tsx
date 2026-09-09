@@ -1,3 +1,5 @@
+import { displayText, locale } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useState } from "react";
 import {
   AlertCircle,
@@ -136,7 +138,7 @@ function RegistryRow({
 
   const handleRemove = async (ev: React.MouseEvent) => {
     ev.stopPropagation();
-    if (!window.confirm(`Remove "${entry.name}" from the registry?`)) return;
+    if (!window.confirm(tr("Remove \"{0}\" from the registry?", {0: entry.name}))) return;
     setBusyRemove(true);
     await onRemove(entry.uri);
     setBusyRemove(false);
@@ -159,10 +161,10 @@ function RegistryRow({
       <div style={rowMainStyle}>
         <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
           <span style={rowNameStyle}>{entry.name}</span>
-          <StatusBadge status={entry.status} />
+          <StatusBadge status={displayText(String(entry.status))} />
           <FormatBadge format={entry.format} />
           {!entry.enabled && (
-            <span style={disabledBadgeStyle}>Disabled</span>
+            <span style={disabledBadgeStyle}>{tr("Disabled")}</span>
           )}
         </div>
         <div style={rowUriStyle}>{entry.uri}</div>
@@ -181,14 +183,14 @@ function RegistryRow({
       </div>
 
       <div style={rowStatsStyle}>
-        <Stat value={entry.class_count} label="Classes" />
-        <Stat value={entry.concept_count} label="Concepts" />
-        <Stat value={entry.property_count} label="Props" />
+        <Stat value={entry.class_count} label={tr("Classes")} />
+        <Stat value={entry.concept_count} label={tr("Concepts")} />
+        <Stat value={entry.property_count} label={tr("Props")} />
       </div>
 
       <div style={rowActionsStyle}>
         <button
-          title={entry.enabled ? "Disable" : "Enable"}
+          title={entry.enabled ? tr("Disable") : tr("Enable")}
           onClick={handleToggle}
           disabled={busyToggle}
           style={actionBtnStyle}
@@ -204,7 +206,7 @@ function RegistryRow({
 
         {entry.source_url && (
           <button
-            title="Re-fetch from source URL"
+            title={tr("Re-fetch from source URL")}
             onClick={handleRefresh}
             disabled={busyRefresh}
             style={actionBtnStyle}
@@ -218,7 +220,7 @@ function RegistryRow({
         )}
 
         <button
-          title="Remove from registry"
+          title={tr("Remove from registry")}
           onClick={handleRemove}
           disabled={busyRemove}
           style={{ ...actionBtnStyle, color: "#ff9daf" }}
@@ -270,10 +272,10 @@ export function OntologyManager() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setEntries(data);
-      if (res.status === 207) flashMsg("err", data.message || "Warning: Partial success loading registry.");
+      if (res.status === 207) flashMsg("err", data.message || tr("Warning: Partial success loading registry."));
     } catch {
       setEntries([]);
-      flashMsg("err", "Failed to load ontology registry");
+      flashMsg("err", tr("Failed to load ontology registry"));
     } finally {
       setLoading(false);
     }
@@ -290,11 +292,11 @@ export function OntologyManager() {
         const data = await res.json();
         if (ignore) return;
         setEntries(data);
-        if (res.status === 207) flashMsg("err", data.message || "Warning: Partial success loading registry.");
+        if (res.status === 207) flashMsg("err", data.message || tr("Warning: Partial success loading registry."));
       } catch {
         if (!ignore) {
           setEntries([]);
-          flashMsg("err", "Failed to load ontology registry");
+          flashMsg("err", tr("Failed to load ontology registry"));
         }
       } finally {
         if (!ignore) setLoading(false);
@@ -309,13 +311,13 @@ export function OntologyManager() {
       const res = await fetch(`/api/ontology/${encodeURIComponent(uri)}/toggle`, {
         method: "PATCH",
       });
-      if (!res.ok) throw new Error("Toggle failed");
+      if (!res.ok) throw new Error(tr("Toggle failed"));
       const data = await res.json();
       setEntries((prev) =>
         prev.map((e) => (e.uri === uri ? { ...e, enabled: data.enabled } : e))
       );
     } catch {
-      flashMsg("err", "Could not toggle ontology");
+      flashMsg("err", tr("Could not toggle ontology"));
     }
   }, []);
 
@@ -324,11 +326,11 @@ export function OntologyManager() {
       const res = await fetch(`/api/ontology/${encodeURIComponent(uri)}/refresh`, {
         method: "POST",
       });
-      if (!res.ok) throw new Error("Refresh failed");
-      flashMsg("ok", "Ontology refreshed");
+      if (!res.ok) throw new Error(tr("Refresh failed"));
+      flashMsg("ok", tr("Ontology refreshed"));
       fetchRegistry();
     } catch {
-      flashMsg("err", "Refresh failed — check source URL");
+      flashMsg("err", tr("Refresh failed — check source URL"));
     }
   }, [fetchRegistry]);
 
@@ -337,12 +339,12 @@ export function OntologyManager() {
       const res = await fetch(`/api/ontology/${encodeURIComponent(uri)}`, {
         method: "DELETE",
       });
-      if (!res.ok) throw new Error("Remove failed");
+      if (!res.ok) throw new Error(tr("Remove failed"));
       setEntries((prev) => prev.filter((e) => e.uri !== uri));
       if (selectedEntry?.uri === uri) setSelectedEntry(null);
-      flashMsg("ok", "Removed from registry");
+      flashMsg("ok", tr("Removed from registry"));
     } catch {
-      flashMsg("err", "Could not remove ontology");
+      flashMsg("err", tr("Could not remove ontology"));
     }
   }, [selectedEntry]);
 
@@ -383,7 +385,7 @@ export function OntologyManager() {
             <input
               value={searchQ}
               onChange={(e) => setSearchQ(e.target.value)}
-              placeholder="Search ontologies by name, URI, or namespace…"
+              placeholder={tr("Search ontologies by name, URI, or namespace…")}
               style={searchInputStyle}
             />
           </div>
@@ -398,7 +400,7 @@ export function OntologyManager() {
                   ...(statusFilter === f ? filterPillActive : filterPillIdle),
                 }}
               >
-                {f === "all" ? "All" : f.toUpperCase()}
+                {displayText(String(f === "all" ? "All" : f.toUpperCase()))}
               </button>
             ))}
           </div>
@@ -412,14 +414,14 @@ export function OntologyManager() {
               }}
             >
               <Search size={13} />
-              Entity Search
+              {tr("Entity Search")}
             </button>
             <button
               onClick={() => setShowLoader(true)}
               style={primaryToolBtnStyle}
             >
               <Plus size={13} />
-              Load Ontology
+              {tr("Load Ontology")}
             </button>
           </div>
         </div>
@@ -455,23 +457,23 @@ export function OntologyManager() {
             {loading ? (
               <div style={centerStyle}>
                 <Loader2 size={22} color="#4aa3ff" style={{ animation: "spin 1s linear infinite" }} />
-                <span style={{ color: "#8fa8c6", fontSize: 13, marginTop: 10 }}>Loading registry…</span>
+                <span style={{ color: "#8fa8c6", fontSize: 13, marginTop: 10 }}>{tr("Loading registry…")}</span>
               </div>
             ) : filteredEntries.length === 0 ? (
               <div style={emptyStateStyle}>
                 <BookMarked size={36} color="rgba(74,163,255,0.18)" />
                 <div style={{ color: "#8fa8c6", fontSize: 14, fontWeight: 600, marginTop: 14 }}>
-                  {searchQ ? "No ontologies match your search" : "No ontologies loaded yet"}
+                  {searchQ ? tr("No ontologies match your search") : tr("No ontologies loaded yet")}
                 </div>
                 <div style={{ color: "#6a7f97", fontSize: 12, marginTop: 6, textAlign: "center", maxWidth: 300, lineHeight: 1.6 }}>
                   {searchQ
-                    ? "Try a different search term or clear the filter."
-                    : <>Import from a URL, upload a file, or create a new ontology to get started. Click <strong style={{ color: "#7fd0ff" }}>Load Ontology</strong> above.</>}
+                    ? tr("Try a different search term or clear the filter.")
+                    : <>{tr("Import from a URL, upload a file, or create a new ontology to get started. Click")} <strong style={{ color: "#7fd0ff" }}>{tr("Load Ontology")}</strong> {tr("above.")}</>}
                 </div>
                 {!searchQ && (
                   <button onClick={() => setShowLoader(true)} style={{ ...primaryToolBtnStyle, marginTop: 18 }}>
                     <Plus size={13} />
-                    Load Ontology
+                    {tr("Load Ontology")}
                   </button>
                 )}
               </div>
@@ -479,7 +481,7 @@ export function OntologyManager() {
               <div style={listStyle}>
                 <div style={listHeaderStyle}>
                   <span style={listHeaderTextStyle}>
-                    {filteredEntries.length} ontolog{filteredEntries.length === 1 ? "y" : "ies"}
+                    {filteredEntries.length} {tr("ontolog")}{locale === "zh-CN" ? "" : filteredEntries.length === 1 ? "y" : "ies"}
                   </span>
                 </div>
                 {filteredEntries.map((entry) => (
@@ -501,7 +503,7 @@ export function OntologyManager() {
           {rightPanel === "search" && (
             <div style={rightPanelStyle}>
               <div style={rightPanelHeaderStyle}>
-                <span style={rightPanelTitleStyle}>Entity Search</span>
+                <span style={rightPanelTitleStyle}>{tr("Entity Search")}</span>
                 <button onClick={() => setRightPanel("none")} style={closePanelBtnStyle}>×</button>
               </div>
               <OntologySearch />
@@ -519,7 +521,7 @@ export function OntologyManager() {
                       style={browseBtnStyle}
                     >
                       <BookOpen size={12} />
-                      Browse SKOS
+                      {tr("Browse SKOS")}
                     </button>
                   )}
                   <button onClick={() => setSelectedEntry(null)} style={closePanelBtnStyle}>×</button>
@@ -532,14 +534,14 @@ export function OntologyManager() {
                   </span>
                 </DetailSection>
                 {selectedEntry.description && (
-                  <DetailSection label="Description">
+                  <DetailSection label={tr("Description")}>
                     <span style={{ color: "#c6d4e3", fontSize: 13, lineHeight: 1.6 }}>
-                      {selectedEntry.description}
+                      {displayText(String(selectedEntry.description))}
                     </span>
                   </DetailSection>
                 )}
                 {selectedEntry.source_url && (
-                  <DetailSection label="Source URL">
+                  <DetailSection label={tr("Source URL")}>
                     <a
                       href={selectedEntry.source_url}
                       target="_blank"
@@ -551,24 +553,24 @@ export function OntologyManager() {
                   </DetailSection>
                 )}
                 {selectedEntry.version && (
-                  <DetailSection label="Version">
+                  <DetailSection label={tr("Version")}>
                     <span style={{ color: "#c6d4e3", fontSize: 12 }}>{selectedEntry.version}</span>
                   </DetailSection>
                 )}
                 {selectedEntry.loaded_at && (
-                  <DetailSection label="Loaded at">
+                  <DetailSection label={tr("Loaded at")}>
                     <span style={{ color: "#c6d4e3", fontSize: 12 }}>
                       {new Date(selectedEntry.loaded_at).toLocaleString()}
                     </span>
                   </DetailSection>
                 )}
                 <div style={statRowStyle}>
-                  <StatBlock value={selectedEntry.class_count} label="Classes" color="#d2a8ff" />
-                  <StatBlock value={selectedEntry.concept_count} label="Concepts" color="#9ee8d7" />
-                  <StatBlock value={selectedEntry.property_count} label="Properties" color="#f2b66d" />
+                  <StatBlock value={selectedEntry.class_count} label={tr("Classes")} color="#d2a8ff" />
+                  <StatBlock value={selectedEntry.concept_count} label={tr("Concepts")} color="#9ee8d7" />
+                  <StatBlock value={selectedEntry.property_count} label={tr("Properties")} color="#f2b66d" />
                 </div>
                 {selectedEntry.tags.length > 0 && (
-                  <DetailSection label="Tags">
+                  <DetailSection label={tr("Tags")}>
                     <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                       {selectedEntry.tags.map((tag) => (
                         <span key={tag} style={tagChipStyle}>{tag}</span>
@@ -583,11 +585,11 @@ export function OntologyManager() {
           {rightPanel === "skos" && selectedEntry && (
             <div style={rightPanelStyle}>
               <div style={rightPanelHeaderStyle}>
-                <span style={rightPanelTitleStyle}>SKOS — {selectedEntry.name}</span>
+                <span style={rightPanelTitleStyle}>{tr("SKOS —")} {selectedEntry.name}</span>
                 <div style={{ display: "flex", gap: 6 }}>
                   <button onClick={() => setRightPanel("none")} style={browseBtnStyle}>
                     <Layers size={12} />
-                    Registry Detail
+                    {tr("Registry Detail")}
                   </button>
                   <button onClick={() => setRightPanel("none")} style={closePanelBtnStyle}>×</button>
                 </div>

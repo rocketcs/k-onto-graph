@@ -77,7 +77,14 @@ async def lifespan(app: FastAPI):
         app.state.agent_memory = None
         app.state.markdown_resources = None
 
-    yield
+    if EXPLORER_AVAILABLE:
+        from .explorer.routes.pipelines import start_pipeline_service, stop_pipeline_service
+        start_pipeline_service(app)
+    try:
+        yield
+    finally:
+        if EXPLORER_AVAILABLE:
+            await stop_pipeline_service(app)
 
     logging.info("Shutting down Semantica API...")
     if getattr(app.state, "session", None) and hasattr(app.state.session.graph, "close"):
@@ -192,6 +199,8 @@ if EXPLORER_AVAILABLE:
         )
 
         _auth = [Depends(require_auth)]
+        from .explorer.routes.pipelines import router as pipeline_router
+        app.include_router(pipeline_router, dependencies=_auth)
         app.include_router(analytics.router, dependencies=_auth)
         app.include_router(annotations.router, dependencies=_auth)
         app.include_router(decisions.router, dependencies=_auth)

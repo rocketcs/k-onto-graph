@@ -1,3 +1,4 @@
+import { t, locale } from "../../../i18n";
 import type { CSSProperties } from "react";
 
 import type { GraphPlugin } from "./types";
@@ -6,7 +7,7 @@ const TEMPORAL_PANEL_ID = "temporal-panel";
 
 function formatTemporalLabel(value: Date | null) {
   if (!value) {
-    return "No time selected";
+    return t("No time selected");
   }
   return `${value.getFullYear()}/${String(value.getMonth() + 1).padStart(2, "0")}`;
 }
@@ -19,8 +20,8 @@ export const temporalOverlayPlugin: GraphPlugin = {
   toolbarItems: (context) => [
     {
       id: "temporal-toggle",
-      label: "Temporal",
-      title: "Toggle temporal context panel",
+      label: t("temporal"),
+      title: t("Toggle temporal context panel"),
       active: context.isPanelOpen(TEMPORAL_PANEL_ID),
       order: 40,
       onClick: () => context.dispatchAction({ type: "togglePanel", panelId: TEMPORAL_PANEL_ID }),
@@ -58,10 +59,10 @@ export const temporalOverlayPlugin: GraphPlugin = {
             pointerEvents: "none",
           }}
         >
-          <span style={{ color: "#7fc6ff", fontWeight: 700 }}>Temporal</span>
+          <span style={{ color: "#7fc6ff", fontWeight: 700 }}>{t("temporal")}</span>
           <span>{label}</span>
           {typeof temporal.activeNodeCount === "number" ? (
-            <span style={{ color: "#8ea4be" }}>{temporal.activeNodeCount.toLocaleString()} active</span>
+            <span style={{ color: "#8ea4be" }}>{temporal.activeNodeCount.toLocaleString(locale)} {t("active")}</span>
           ) : null}
         </div>
       ),
@@ -75,7 +76,7 @@ export const temporalOverlayPlugin: GraphPlugin = {
     const temporal = context.getTemporalState();
     return {
       id: TEMPORAL_PANEL_ID,
-      title: "Temporal Context",
+      title: t("Temporal Context"),
       placement: "bottom",
       order: 30,
       defaultOpen: false,
@@ -83,21 +84,21 @@ export const temporalOverlayPlugin: GraphPlugin = {
       preferredHeight: 220,
       content: (
         <div style={panelBodyStyle}>
-          <div style={panelEyebrowStyle}>Current scrubber state</div>
+          <div style={panelEyebrowStyle}>{t("Current scrubber state")}</div>
           <div style={detailRowStyle}>
-            <span style={detailLabelStyle}>Current</span>
+            <span style={detailLabelStyle}>{t("Current time")}</span>
             <span style={detailValueStyle}>{formatTemporalLabel(temporal?.currentTime ?? null)}</span>
           </div>
           <div style={detailRowStyle}>
-            <span style={detailLabelStyle}>Bounds</span>
+            <span style={detailLabelStyle}>{t("Bounds")}</span>
             <span style={detailValueStyle}>
               {(temporal?.minDate ?? "1970")} → {(temporal?.maxDate ?? "2030")}
             </span>
           </div>
           <div style={detailRowStyle}>
-            <span style={detailLabelStyle}>Active nodes</span>
+            <span style={detailLabelStyle}>{t("Active nodes")}</span>
             <span style={detailValueStyle}>
-              {typeof temporal?.activeNodeCount === "number" ? temporal.activeNodeCount.toLocaleString() : "All"}
+              {typeof temporal?.activeNodeCount === "number" ? temporal.activeNodeCount.toLocaleString(locale) : t("All")}
             </span>
           </div>
         </div>

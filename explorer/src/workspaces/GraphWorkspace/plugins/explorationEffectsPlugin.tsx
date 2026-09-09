@@ -1,4 +1,6 @@
+import { t, locale } from "../../../i18n";
 import type { CSSProperties } from "react";
+import { exploreTerm } from "../../../exploreLocale";
 
 import type {
   GraphDiagnosticsSnapshot,
@@ -18,28 +20,28 @@ type EffectRowConfig = {
 const EFFECT_ROWS: EffectRowConfig[] = [
   {
     key: "pathPulseEnabled",
-    label: "Path Pulse",
-    description: "Animated pulse on the active selected path.",
+    label: t("Path Pulse"),
+    description: t("Animated pulse on the active selected path."),
   },
   {
     key: "pathFlowEnabled",
-    label: "Path Flow",
-    description: "Directional flow accents along the active selected path.",
+    label: t("Path Flow"),
+    description: t("Directional flow accents along the active selected path."),
   },
   {
     key: "lensEnabled",
-    label: "Neighborhood Lens",
-    description: "Local emphasis around the hovered or selected node.",
+    label: t("Neighborhood Lens"),
+    description: t("Local emphasis around the hovered or selected node."),
   },
   {
     key: "edgeLabelsEnabled",
-    label: "Edge Labels",
-    description: "Draw the relationship type on graph edges. Off restores label-free edges on dense graphs.",
+    label: t("Edge Labels"),
+    description: t("Draw the relationship type on graph edges. Off restores label-free edges on dense graphs."),
   },
   {
     key: "legendEnabled",
-    label: "Semantic Legend",
-    description: "Compact semantic group legend for graph orientation.",
+    label: t("Semantic legend"),
+    description: t("Compact semantic group legend for graph orientation."),
   },
 ];
 
@@ -104,7 +106,7 @@ function EffectToggleRow({
         <div style={rowMetaStyle}>{renderAvailabilityText(availability)}</div>
       </div>
       <button type="button" onClick={onToggle} style={checked ? toggleButtonActiveStyle : toggleButtonStyle}>
-        {checked ? "On" : "Off"}
+        {checked ? t("On") : t("Off")}
       </button>
     </div>
   );
@@ -118,8 +120,8 @@ export const explorationEffectsPlugin: GraphPlugin = {
   toolbarItems: (context) => [
     {
       id: "effects-toggle",
-      label: "Effects",
-      title: "Open exploration effects controls",
+      label: t("Effects"),
+      title: t("Open exploration effects controls"),
       active: context.isPanelOpen(EFFECTS_PANEL_ID),
       order: 18,
       onClick: () => context.dispatchAction({ type: "togglePanel", panelId: EFFECTS_PANEL_ID }),
@@ -137,7 +139,7 @@ export const explorationEffectsPlugin: GraphPlugin = {
 
     return {
       id: EFFECTS_PANEL_ID,
-      title: "Effects",
+      title: t("Effects"),
       placement: "bottom",
       order: 8,
       defaultOpen: false,
@@ -145,10 +147,10 @@ export const explorationEffectsPlugin: GraphPlugin = {
       preferredHeight: 320,
       content: (
         <div style={panelBodyStyle}>
-          <div style={panelEyebrowStyle}>Exploration effects</div>
+          <div style={panelEyebrowStyle}>{t("Exploration effects")}</div>
 
           <div style={sectionStyle}>
-            <div style={sectionTitleStyle}>Path and focus</div>
+            <div style={sectionTitleStyle}>{t("Path and focus")}</div>
             {EFFECT_ROWS.map((row) => (
               <EffectToggleRow
                 key={row.key}
@@ -161,7 +163,7 @@ export const explorationEffectsPlugin: GraphPlugin = {
                     : undefined) ?? {
                     enabled: effectsState[row.key],
                     available: false,
-                    reason: "Waiting for graph runtime",
+                    reason: t("Waiting for graph runtime"),
                   }
                 }
                 onToggle={() => context.dispatchAction({ type: "toggleEffect", effect: row.key })}
@@ -171,7 +173,7 @@ export const explorationEffectsPlugin: GraphPlugin = {
 
           {effectsState.legendEnabled ? (
             <div style={sectionStyle}>
-              <div style={sectionTitleStyle}>Semantic legend</div>
+              <div style={sectionTitleStyle}>{t("Semantic legend")}</div>
               {legendItems.length ? (
                 <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                   {legendItems.map((item) => (
@@ -184,37 +186,37 @@ export const explorationEffectsPlugin: GraphPlugin = {
                         }}
                       />
                       <div style={{ minWidth: 0, flex: 1 }}>
-                        <div style={rowTitleStyle}>{item.group}</div>
-                        <div style={rowMetaStyle}>{item.count.toLocaleString()} nodes</div>
+                        <div style={rowTitleStyle}>{exploreTerm(item.group)}</div>
+                        <div style={rowMetaStyle}>{item.count.toLocaleString(locale)} {t("nodes")}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div style={emptyTextStyle}>Legend data will populate when graph metadata is available.</div>
+                <div style={emptyTextStyle}>{t("Legend will populate when the graph metadata is available.")}</div>
               )}
             </div>
           ) : null}
 
           {import.meta.env.DEV ? (
             <div style={sectionStyle}>
-              <div style={sectionTitleStyle}>Diagnostics</div>
+              <div style={sectionTitleStyle}>{t("Diagnostics")}</div>
               <EffectToggleRow
-                label="Dev Diagnostics"
-                description="Inspect plugin, interaction, and effect gating state."
+                label={t("Dev Diagnostics")}
+                description={t("Inspect plugin, interaction, and effect gating state.")}
                 checked={effectsState.diagnosticsEnabled}
                 availability={
                   availability?.diagnostics ?? {
                     enabled: effectsState.diagnosticsEnabled,
                     available: false,
-                    reason: "Waiting for graph runtime",
+                    reason: t("Waiting for graph runtime"),
                   }
                 }
                 onToggle={() => context.dispatchAction({ type: "toggleEffect", effect: "diagnosticsEnabled" })}
               />
               {effectsState.diagnosticsEnabled && diagnosticsSnapshot ? (
                 <details style={detailsStyle}>
-                  <summary style={summaryStyle}>Runtime snapshot</summary>
+                  <summary style={summaryStyle}>{t("Runtime snapshot")}</summary>
                   <pre style={diagnosticsPreStyle}>
                     {JSON.stringify(diagnosticsSnapshot, null, 2)}
                   </pre>

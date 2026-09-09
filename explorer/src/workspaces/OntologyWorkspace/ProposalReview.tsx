@@ -1,3 +1,5 @@
+import { displayText } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useState } from "react";
 import {
   GitMerge,
@@ -46,16 +48,16 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
     // Generate diff from impact analysis
     if (prop.impact_analysis) {
       if (prop.impact_analysis.class_adds > 0) {
-        changes.push({ type: "added", element: `Classes (${prop.impact_analysis.class_adds})` });
+        changes.push({ type: "added", element: tr("Classes ({0})", {0: prop.impact_analysis.class_adds}) });
       }
       if (prop.impact_analysis.class_removals > 0) {
-        changes.push({ type: "removed", element: `Classes (${prop.impact_analysis.class_removals})` });
+        changes.push({ type: "removed", element: tr("Classes ({0})", {0: prop.impact_analysis.class_removals}) });
       }
       if (prop.impact_analysis.property_changes > 0) {
-        changes.push({ type: "modified", element: `Properties (${prop.impact_analysis.property_changes})` });
+        changes.push({ type: "modified", element: tr("Properties ({0})", {0: prop.impact_analysis.property_changes}) });
       }
       if (prop.impact_analysis.restriction_changes > 0) {
-        changes.push({ type: "modified", element: `Restrictions (${prop.impact_analysis.restriction_changes})` });
+        changes.push({ type: "modified", element: tr("Restrictions ({0})", {0: prop.impact_analysis.restriction_changes}) });
       }
     }
 
@@ -71,7 +73,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         generateDiff(data);
       }
     } catch (error) {
-      console.error("Failed to load proposal:", error);
+      console.error(tr("Failed to load proposal:"), error);
     }
   }, [proposalId, generateDiff]);
 
@@ -88,7 +90,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
           }
         }
       } catch (error) {
-        console.error("Failed to load proposal:", error);
+        console.error(tr("Failed to load proposal:"), error);
       }
     }
     void fetchInitial();
@@ -112,8 +114,8 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         loadProposal();
       }
     } catch (error) {
-      console.error("Failed to add comment:", error);
-      alert("Failed to add comment");
+      console.error(tr("Failed to add comment:"), error);
+      alert(tr("Failed to add comment"));
     }
   }, [selectedElement, commentText, proposal, loadProposal]);
 
@@ -124,12 +126,12 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         method: "POST",
       });
       if (response.ok) {
-        alert("Proposal approved");
+        alert(tr("Proposal approved"));
         loadProposal();
       }
     } catch (error) {
-      console.error("Failed to approve proposal:", error);
-      alert("Failed to approve proposal");
+      console.error(tr("Failed to approve proposal:"), error);
+      alert(tr("Failed to approve proposal"));
     }
   }, [proposal, loadProposal]);
 
@@ -140,12 +142,12 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         method: "POST",
       });
       if (response.ok) {
-        alert("Proposal rejected");
+        alert(tr("Proposal rejected"));
         loadProposal();
       }
     } catch (error) {
-      console.error("Failed to reject proposal:", error);
-      alert("Failed to reject proposal");
+      console.error(tr("Failed to reject proposal:"), error);
+      alert(tr("Failed to reject proposal"));
     }
   }, [proposal, loadProposal]);
 
@@ -156,12 +158,12 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         method: "POST",
       });
       if (response.ok) {
-        alert("Proposal published");
+        alert(tr("Proposal published"));
         loadProposal();
       }
     } catch (error) {
-      console.error("Failed to publish proposal:", error);
-      alert("Failed to publish proposal");
+      console.error(tr("Failed to publish proposal:"), error);
+      alert(tr("Failed to publish proposal"));
     }
   }, [proposal, loadProposal]);
 
@@ -286,7 +288,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
   if (!proposal) {
     return (
       <div style={containerStyle}>
-        <div style={{ color: "#8fa8c6", fontSize: "14px" }}>Loading proposal...</div>
+        <div style={{ color: "#8fa8c6", fontSize: "14px" }}>{tr("Loading proposal...")}</div>
       </div>
     );
   }
@@ -308,18 +310,18 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
             <>
               <button style={buttonStyle} onClick={approveProposal}>
                 <CheckCircle size={12} />
-                Approve
+                {tr("Approve")}
               </button>
               <button style={buttonStyle} onClick={rejectProposal}>
                 <XCircle size={12} />
-                Reject
+                {tr("Reject")}
               </button>
             </>
           )}
           {proposal.state === "approved" && (
             <button style={buttonStyle} onClick={publishProposal}>
               <Send size={12} />
-              Publish
+              {tr("Publish")}
             </button>
           )}
         </div>
@@ -329,10 +331,10 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         <div style={diffPanelStyle}>
           <h2 style={{ margin: "0 0 16px", color: "#ebf3ff", fontSize: "14px", fontWeight: "600" }}>
             <GitMerge size={16} style={{ marginRight: "8px", verticalAlign: "middle" }} />
-            Diff Viewer
+            {tr("Diff Viewer")}
           </h2>
           {diff.length === 0 ? (
-            <div style={{ color: "#8fa8c6", fontSize: "13px" }}>No changes detected</div>
+            <div style={{ color: "#8fa8c6", fontSize: "13px" }}>{tr("No changes detected")}</div>
           ) : (
             diff.map((change, index) => (
               <div
@@ -349,7 +351,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
                     {change.element}
                   </div>
                   <div style={{ color: "#8fa8c6", fontSize: "11px" }}>
-                    {change.type}
+                    {displayText(String(change.type))}
                   </div>
                 </div>
               </div>
@@ -358,7 +360,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
 
           <div style={{ marginTop: "20px", paddingTop: "16px", borderTop: "1px solid rgba(140, 192, 255, 0.12)" }}>
             <h3 style={{ margin: "0 0 12px", color: "#ebf3ff", fontSize: "13px", fontWeight: "600" }}>
-              Impact Analysis
+              {tr("Impact Analysis")}
             </h3>
             <pre style={{ background: "rgba(3, 9, 18, 0.8)", padding: "12px", borderRadius: "6px", color: "#ebf3ff", fontSize: "12px", overflow: "auto" }}>
               {JSON.stringify(proposal.impact_analysis, null, 2)}
@@ -367,7 +369,7 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
 
           <div style={{ marginTop: "16px" }}>
             <h3 style={{ margin: "0 0 12px", color: "#ebf3ff", fontSize: "13px", fontWeight: "600" }}>
-              SHACL Validation
+              {tr("SHACL Validation")}
             </h3>
             <pre style={{ background: "rgba(3, 9, 18, 0.8)", padding: "12px", borderRadius: "6px", color: "#ebf3ff", fontSize: "12px", overflow: "auto" }}>
               {JSON.stringify(proposal.shacl_validation, null, 2)}
@@ -378,11 +380,11 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
         <div style={commentsPanelStyle}>
           <h2 style={{ margin: "0 0 16px", color: "#ebf3ff", fontSize: "14px", fontWeight: "600" }}>
             <MessageSquare size={16} style={{ marginRight: "8px", verticalAlign: "middle" }} />
-            Comments ({proposal.comments.length})
+            {tr("Comments (")}{proposal.comments.length})
           </h2>
           <div style={{ flex: 1, overflow: "auto", marginBottom: "12px" }}>
             {proposal.comments.length === 0 ? (
-              <div style={{ color: "#8fa8c6", fontSize: "13px" }}>No comments yet</div>
+              <div style={{ color: "#8fa8c6", fontSize: "13px" }}>{tr("No comments yet")}</div>
             ) : (
               proposal.comments.map((comment) => (
                 <div
@@ -411,14 +413,14 @@ export function ProposalReview({ proposalId }: { proposalId: string }) {
           {selectedElement && (
             <div>
               <textarea
-                placeholder="Add a comment..."
+                placeholder={tr("Add a comment...")}
                 value={commentText}
                 onChange={(e) => setCommentText(e.target.value)}
                 style={textareaStyle}
               />
               <button style={buttonStyle} onClick={addComment} disabled={!commentText}>
                 <Send size={12} />
-                Add Comment
+                {tr("Add Comment")}
               </button>
             </div>
           )}

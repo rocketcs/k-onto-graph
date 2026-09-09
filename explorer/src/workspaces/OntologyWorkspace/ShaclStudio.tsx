@@ -1,3 +1,5 @@
+import { displayText, errorText } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import Editor, { type Monaco } from "@monaco-editor/react";
@@ -35,7 +37,7 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
       })
       .catch((err) => {
         if (cancelled) return;
-        setError(err instanceof Error ? err.message : "Failed to load ontology registry.");
+        setError(err instanceof Error ? err.message : tr("Failed to load ontology registry."));
       });
     return () => {
       cancelled = true;
@@ -92,7 +94,7 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
       setShapes(shapeData.shapes);
       setValidation(null);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not generate SHACL.");
+      setError(err instanceof Error ? err.message : tr("Could not generate SHACL."));
     } finally {
       setLoading(false);
     }
@@ -127,7 +129,7 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
     try {
       setValidation(await validateShacl(selectedUri, shacl));
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not validate SHACL.");
+      setError(err instanceof Error ? err.message : tr("Could not validate SHACL."));
     } finally {
       setLoading(false);
     }
@@ -136,7 +138,7 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
   const groupedShapes = useMemo(() => {
     const groups = new Map<string, ShaclShapeSummary[]>();
     for (const shape of shapes) {
-      const key = shape.target_class || "Untargeted shapes";
+      const key = shape.target_class || tr("Untargeted shapes");
       groups.set(key, [...(groups.get(key) || []), shape]);
     }
     return Array.from(groups.entries());
@@ -193,31 +195,30 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
     <div style={pageStyle}>
       <section style={heroStyle}>
         <div>
-          <div style={kickerStyle}><Shield size={14} /> SHACL Studio</div>
-          <h2 style={titleStyle}>Generate, edit, and validate shapes</h2>
+          <div style={kickerStyle}><Shield size={14} /> {tr("SHACL Studio")}</div>
+          <h2 style={titleStyle}>{tr("Generate, edit, and validate shapes")}</h2>
           <p style={textStyle}>
-            Create strict SHACL Turtle from ontology structure, inspect shape targets,
-            run validation, and jump from violations back into the graph.
+            {tr("Create strict SHACL Turtle from ontology structure, inspect shape targets, run validation, and jump from violations back into the graph.")}
           </p>
         </div>
         <div style={selectorShellStyle}>
-          <label style={labelStyle}>Ontology</label>
+          <label style={labelStyle}>{tr("Ontology")}</label>
           <select style={inputStyle} value={selectedUri} onChange={(event) => setSelectedUri(event.target.value)}>
             {registry.map((entry) => <option key={entry.uri} value={entry.uri}>{entry.name}</option>)}
           </select>
         </div>
       </section>
 
-      {error ? <div style={errorStyle}>{error}</div> : null}
+      {error ? <div style={errorStyle}>{errorText(String(error))}</div> : null}
 
       <div style={gridStyle}>
         <section style={cardStyle}>
           <div style={panelHeaderStyle}>
-            <h3 style={sectionTitleStyle}>Shape library</h3>
+            <h3 style={sectionTitleStyle}>{tr("Shape library")}</h3>
             <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-              <span style={countBadgeStyle}>{shapes.length} shapes</span>
+              <span style={countBadgeStyle}>{shapes.length} {tr("shapes")}</span>
               {selectedShapeId ? (
-                <button style={smallButtonStyle} onClick={handleShowAllShapes}>View all</button>
+                <button style={smallButtonStyle} onClick={handleShowAllShapes}>{tr("View all")}</button>
               ) : null}
             </div>
           </div>
@@ -239,13 +240,13 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
                         width: "100%",
                       }}
                       onClick={() => handleSelectShape(shape.id)}
-                      title="Click to load this shape into the editor"
+                      title={tr("Click to load this shape into the editor")}
                     >
                       <FileCode2 size={14} color={isSelected ? "#7ce7d3" : "#9ee8d7"} />
                       <div>
                         <div style={{ color: "#ebf3ff", fontWeight: 800 }}>{shape.id}</div>
                         <div style={mutedStyle}>
-                          {shape.constraint_count} constraints
+                          {shape.constraint_count} {tr("constraints")}
                           {shape.constraints.length ? ` · ${shape.constraints.join(", ")}` : ""}
                         </div>
                       </div>
@@ -255,25 +256,26 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
                 })}
               </div>
             ))}
-            {!shapes.length ? <p style={mutedStyle}>No shapes generated yet.</p> : null}
+            {!shapes.length ? <p style={mutedStyle}>{tr("No shapes generated yet.")}</p> : null}
           </div>
         </section>
 
         <section style={editorShellStyle}>
           <div style={panelHeaderStyle}>
             <h3 style={sectionTitleStyle}>
-              {selectedShapeId ? selectedShapeId : "Turtle shape editor"}
+              {selectedShapeId ? selectedShapeId : tr("Turtle shape editor")}
             </h3>
             <div style={{ display: "flex", gap: 8 }}>
-              <button style={secondaryButtonStyle} disabled={loading} onClick={handleGenerate}><Wand2 size={14} /> Generate strict</button>
+              <button style={secondaryButtonStyle} disabled={loading} onClick={handleGenerate}><Wand2 size={14} /> {tr("Generate strict")}</button>
               <button style={primaryButtonStyle} disabled={loading || !shacl.trim()} onClick={handleValidate}>
                 {loading ? <Loader2 size={14} className="ws-spin" /> : <Play size={14} />}
-                Validate
+                {tr("Validate")}
               </button>
             </div>
           </div>
           <div style={editorFrameStyle}>
             <Editor
+              loading={tr("Loading editor…")}
               height="100%"
               language="turtle"
               theme="shacl-dark"
@@ -294,35 +296,35 @@ export function ShaclStudio({ onJumpToNode }: ShaclStudioProps) {
 
       <section style={cardStyle}>
         <div style={panelHeaderStyle}>
-          <h3 style={sectionTitleStyle}>Validation report</h3>
-          {validation ? <span style={validationBadgeStyle(validation.status, validation.conforms)}>{validation.status}{validation.conforms ? " · conforms" : ""}</span> : null}
+          <h3 style={sectionTitleStyle}>{tr("Validation report")}</h3>
+          {validation ? <span style={validationBadgeStyle(validation.status, validation.conforms)}>{displayText(String(validation.status))}{validation.conforms ? " · conforms" : ""}</span> : null}
         </div>
         {validation ? (
           <>
-            <p style={textStyle}>{validation.message}</p>
+            <p style={textStyle}>{displayText(String(validation.message))}</p>
             <div style={shapeListStyle}>
               {validation.violations.map((violation, index) => {
                 const nodeId = violation.focus_node || violation.node;
                 return (
                   <div key={`${violation.node}-${violation.path}-${index}`} style={violationRowStyle}>
                     <div>
-                      <div style={{ color: "#ebf3ff", fontWeight: 800 }}>{violation.message}</div>
-                      <div style={mutedStyle}>{violation.severity} {violation.path ? `· ${violation.path}` : ""}</div>
+                      <div style={{ color: "#ebf3ff", fontWeight: 800 }}>{displayText(String(violation.message))}</div>
+                      <div style={mutedStyle}>{displayText(String(violation.severity))} {violation.path ? `· ${violation.path}` : ""}</div>
                       {nodeId ? <div style={monoStyle}>{nodeId}</div> : null}
                     </div>
                     {nodeId ? (
                       <button style={smallButtonStyle} onClick={() => onJumpToNode?.(nodeId)}>
-                        Jump to Node
+                        {tr("Jump to Node")}
                       </button>
                     ) : null}
                   </div>
                 );
               })}
-              {!validation.violations.length ? <p style={mutedStyle}>No validation violations returned.</p> : null}
+              {!validation.violations.length ? <p style={mutedStyle}>{tr("No validation violations returned.")}</p> : null}
             </div>
           </>
         ) : (
-          <p style={mutedStyle}>Generate or edit SHACL Turtle, then run validation.</p>
+          <p style={mutedStyle}>{tr("Generate or edit SHACL Turtle, then run validation.")}</p>
         )}
       </section>
     </div>
@@ -339,7 +341,7 @@ const heroStyle: CSSProperties = { display: "flex", justifyContent: "space-betwe
 const kickerStyle: CSSProperties = { display: "inline-flex", gap: 8, alignItems: "center", color: "#9ee8d7", fontSize: 11, fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" };
 const titleStyle: CSSProperties = { margin: "8px 0", color: "#ebf3ff", fontSize: 26, letterSpacing: "-0.04em" };
 const textStyle: CSSProperties = { margin: 0, color: "#8fa8c6", lineHeight: 1.6, maxWidth: 680 };
-const selectorShellStyle: CSSProperties = { minWidth: 320 };
+const selectorShellStyle: CSSProperties = { minWidth: 0, width: "100%", maxWidth: 320, flexShrink: 0 };
 const labelStyle: CSSProperties = { display: "block", color: "#6a7f97", fontSize: 11, fontWeight: 800, margin: "0 0 6px", textTransform: "uppercase", letterSpacing: "0.08em" };
 const inputStyle: CSSProperties = { width: "100%", boxSizing: "border-box", border: "1px solid rgba(127,208,255,0.14)", borderRadius: 12, padding: "10px 12px", background: "rgba(3,9,18,0.8)", color: "#ebf3ff" };
 const gridStyle: CSSProperties = { display: "grid", gridTemplateColumns: "360px minmax(0, 1fr)", gap: 16, minHeight: 560 };

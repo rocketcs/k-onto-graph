@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import type {
   MarkdownEditorError,
   MarkdownResourceRef,
@@ -59,7 +60,11 @@ async function responseError(response: Response): Promise<MarkdownClientError> {
         : "save";
   return new MarkdownClientError({
     kind,
-    message: detail.message || `Markdown request failed (${response.status}).`,
+    message: kind === "conflict"
+      ? t("Content was updated by another operation. Your draft was kept. Reload the latest version before editing.")
+      : kind === "validation"
+        ? t("Validation failed{0}. Check the Markdown content.", {0: detail.field ? `（${detail.field}）` : ""})
+        : t("Markdown request failed (status {0}). Your draft was kept.", {0: response.status}),
     field: detail.field,
     currentRevision: detail.current_revision,
   });
@@ -76,7 +81,7 @@ async function request<T>(input: RequestInfo | URL, init?: RequestInit): Promise
     if (error instanceof MarkdownClientError) throw error;
     throw new MarkdownClientError({
       kind: "network",
-      message: "The Markdown service could not be reached. Your draft was kept.",
+      message: t("The Markdown service could not be reached. Your draft was kept."),
     });
   }
 }

@@ -1,0 +1,53 @@
+[
+  {
+    "elapsed": 0.0,
+    "steps": {
+      "parse": "running",
+      "split": "pending",
+      "extract": "pending",
+      "merge": "pending",
+      "validate": "pending",
+      "store": "pending"
+    },
+    "progress": {
+      "total_steps": 6,
+      "completed_steps": 0,
+      "progress_percentage": 0.0,
+      "status": "running"
+    }
+  },
+  {
+    "elapsed": 0.105,
+    "steps": {
+      "parse": "completed",
+      "split": "completed",
+      "extract": "running",
+      "merge": "pending",
+      "validate": "pending",
+      "store": "pending"
+    },
+    "progress": {
+      "total_steps": 6,
+      "completed_steps": 2,
+      "progress_percentage": 33.33333333333333,
+      "status": "running"
+    }
+  },
+  {
+    "elapsed": 6.559,
+    "steps": {
+      "parse": "completed",
+      "split": "completed",
+      "extract": "completed",
+      "merge": "completed",
+      "validate": "completed",
+      "store": "completed"
+    },
+    "progress": {
+      "total_steps": 6,
+      "completed_steps": 6,
+      "progress_percentage": 100.0,
+      "status": "completed"
+    }
+  }
+]

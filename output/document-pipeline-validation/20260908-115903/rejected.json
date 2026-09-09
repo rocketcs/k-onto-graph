@@ -1,0 +1,106 @@
+[
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗集团",
+      "target": "循上医疗",
+      "type": "包含机构",
+      "evidence": "循上医疗集团介绍循上医疗循上医疗（SuperiorMed Healthcare）是集临床、科研及教学为一体的综合性国际医疗集团",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "长寿主题的综合医院",
+      "type": "规划建设",
+      "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+      "status": "规划",
+      "quantity_text": "6家",
+      "year_text": null
+    },
+    "reason": "target_missing_from_evidence"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "长寿医学",
+      "type": "重点发展",
+      "evidence": "循上医疗重点发展5大前沿领域长寿医学Longevity Medicine Forever Fit 120 Years Young 长寿医学助力健康活力120岁",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "慢病逆转",
+      "type": "重点发展",
+      "evidence": "循上医疗重点发展5大前沿领域慢病逆转Precision Medicine To Reveal The Root of Every Cause 致力为所有医疗病症寻找源头",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "肿瘤癌症",
+      "type": "重点发展",
+      "evidence": "循上医疗重点发展5大前沿领域肿瘤癌症Innovative Oncology A Better Future，Without Cancer 创造一个无惧癌症的未来世界",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "疑难重症",
+      "type": "重点发展",
+      "evidence": "循上医疗重点发展5大前沿领域疑难重症 Complex Diseases Where Disciplines Converge, Miracles Emerge 多学科联合诊疗破解疑难困局",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "跨境救援",
+      "type": "重点发展",
+      "evidence": "循上医疗重点发展5大前沿领域跨境救援 Cross-border SOS Beyond Borders，Beyond Hope 极速跨越边界守护生命希望线",
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "verbatim_evidence_required"
+  },
+  {
+    "kind": "relationship",
+    "record": {
+      "source": "循上医疗",
+      "target": "健康寿命提升至120岁",
+      "type": "发展目标",
+      "evidence": "依托尖端医疗技术，致力于将人类健康寿命提升至120岁，推动医疗健康服务向更高维度发展。",
+      "status": "目标",
+      "quantity_text": null,
+      "year_text": null
+    },
+    "reason": "valid_endpoints_required"
+  }
+]

@@ -1,0 +1,461 @@
+{
+  "nodes": [
+    {
+      "id": "循上医疗集团",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗集团",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "循上医疗",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "卫星诊所",
+      "type": "设施类型",
+      "properties": {
+        "content": "卫星诊所",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "区域医疗中心",
+      "type": "设施类型",
+      "properties": {
+        "content": "区域医疗中心",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿主题的综合医院",
+      "type": "设施类型",
+      "properties": {
+        "content": "长寿主题的综合医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医院",
+      "type": "设施类型",
+      "properties": {
+        "content": "国际医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "永生岛",
+      "type": "设施类型",
+      "properties": {
+        "content": "永生岛",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿医学",
+      "type": "学科",
+      "properties": {
+        "content": "长寿医学",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "慢病逆转",
+      "type": "学科",
+      "properties": {
+        "content": "慢病逆转",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "肿瘤癌症",
+      "type": "学科",
+      "properties": {
+        "content": "肿瘤癌症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "疑难重症",
+      "type": "学科",
+      "properties": {
+        "content": "疑难重症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "跨境救援",
+      "type": "学科",
+      "properties": {
+        "content": "跨境救援",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "伦敦大学玛丽女王学院",
+      "type": "机构",
+      "properties": {
+        "content": "伦敦大学玛丽女王学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "肿瘤医学和长寿医学硕士项目",
+      "type": "项目",
+      "properties": {
+        "content": "肿瘤医学和长寿医学硕士项目",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "英国皇家全科医师学院",
+      "type": "机构",
+      "properties": {
+        "content": "英国皇家全科医师学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "全科医师培训",
+      "type": "项目",
+      "properties": {
+        "content": "全科医师培训",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医学院",
+      "type": "机构",
+      "properties": {
+        "content": "国际医学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "海南",
+      "type": "地点",
+      "properties": {
+        "content": "海南",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "迪拜分院",
+      "type": "机构",
+      "properties": {
+        "content": "迪拜分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "南宁分院",
+      "type": "机构",
+      "properties": {
+        "content": "南宁分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "北京",
+      "type": "地点",
+      "properties": {
+        "content": "北京",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "上海",
+      "type": "地点",
+      "properties": {
+        "content": "上海",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "广州",
+      "type": "地点",
+      "properties": {
+        "content": "广州",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "成都",
+      "type": "地点",
+      "properties": {
+        "content": "成都",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "武汉",
+      "type": "地点",
+      "properties": {
+        "content": "武汉",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "循上医疗",
+      "target_id": "卫星诊所",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "计划在全国布局2000+家卫星诊所，确保客户在5公里范围内即可获取卫星诊所的基础医疗服务，形成高效便捷的初级全科诊疗网络。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "2000+家",
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "区域医疗中心",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "在直辖市及省会城市建设30+家区域医疗中心，每家机构面积2000-5000平方米，配置全专联合诊疗、免疫、生化及影像检查、日间手术等综合服务能力，辐射区域医疗需求，提升诊疗质量与效率。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "30+家",
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "国际医院",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "2家",
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "永生岛",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "规划“永生岛”项目，聚焦再生医学、生命科技等前沿领域，探索延长寿命但又同时提升生命质量的突破性解决方案，形成医疗科研与临床转化的创新高地。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "伦敦大学玛丽女王学院",
+      "type": "合作",
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "肿瘤医学和长寿医学硕士项目",
+      "type": "开设项目",
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "英国皇家全科医师学院",
+      "type": "合作",
+      "properties": {
+        "evidence": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "全科医师培训",
+      "type": "开设项目",
+      "properties": {
+        "evidence": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "国际医学院",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": "2028年",
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "国际医学院",
+      "target_id": "海南",
+      "type": "位于",
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": "2028年",
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "迪拜分院",
+      "target_id": "国际医院",
+      "type": "包含机构",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。",
+        "status": "已运营",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "南宁分院",
+      "target_id": "国际医院",
+      "type": "包含机构",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。",
+        "status": "建设中",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "长寿主题的综合医院",
+      "target_id": "北京",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "长寿主题的综合医院",
+      "target_id": "上海",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "长寿主题的综合医院",
+      "target_id": "广州",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "长寿主题的综合医院",
+      "target_id": "成都",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    },
+    {
+      "source_id": "长寿主题的综合医院",
+      "target_id": "武汉",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "template_version": "1.0.0",
+        "rules_version": "1.0.0"
+      }
+    }
+  ]
+}

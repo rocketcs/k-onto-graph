@@ -1,3 +1,6 @@
+import { displayText, errorText } from "../../i18n";
+import { exploreTerm } from "../../exploreLocale";
+import { t as tr } from "../../i18n";
 /**
  * src/workspaces/ManageWorkspace/KGOverviewTab.tsx
  *
@@ -32,7 +35,7 @@ function TypeBar({ label, count, total, color }: { label: string; count: number;
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "5px 0" }}>
       <div style={{ width: 120, flexShrink: 0, color: "#c6d4e3", fontSize: 12, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} title={label}>
-        {label}
+        {exploreTerm(label)}
       </div>
       <div style={{ flex: 1, height: 6, borderRadius: 999, background: "rgba(255,255,255,0.06)", overflow: "hidden" }}>
         <div
@@ -81,20 +84,20 @@ export function KGOverviewTab() {
         fetch("/api/graph/nodes?limit=500"),
       ]);
 
-      if (!statsRes.ok) throw new Error(`Stats fetch failed (${statsRes.status})`);
-      if (!nodesRes.ok) throw new Error(`Nodes fetch failed (${nodesRes.status})`);
+      if (!statsRes.ok) throw new Error(tr("Request failed (HTTP {0}).", {0: statsRes.status}));
+      if (!nodesRes.ok) throw new Error(tr("Request failed (HTTP {0}).", {0: nodesRes.status}));
 
       const statsData: KGStats = await statsRes.json();
       setStats(statsData);
       if (statsRes.status === 207) {
-        setError((statsData as any).message || "Warning: Partial success loading stats.");
+        setError((statsData as any).message || tr("Warning: Partial success loading stats."));
       }
 
       const nodesData: NodeListResponse = await nodesRes.json();
       const nodes = nodesData.nodes ?? [];
       setNodeTypeMap(buildTypeMap(nodes, "type"));
       if (nodesRes.status === 207) {
-        const nodesMessage = (nodesData as any).message || "Warning: Partial success loading nodes.";
+        const nodesMessage = (nodesData as any).message || tr("Warning: Partial success loading nodes.");
         setError((prev) => (prev ? `${prev} ${nodesMessage}` : nodesMessage));
       }
 
@@ -115,7 +118,7 @@ export function KGOverviewTab() {
         setTopNodes(sorted);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to load graph overview. Ensure the server is running.");
+      setError(err instanceof Error ? err.message : tr("Failed to load graph overview. Ensure the server is running."));
     } finally {
       setLoading(false);
     }
@@ -134,14 +137,14 @@ export function KGOverviewTab() {
           fetch("/api/graph/nodes?limit=500"),
         ]);
 
-        if (!statsRes.ok) throw new Error(`Stats fetch failed (${statsRes.status})`);
-        if (!nodesRes.ok) throw new Error(`Nodes fetch failed (${nodesRes.status})`);
+        if (!statsRes.ok) throw new Error(tr("Request failed (HTTP {0}).", {0: statsRes.status}));
+        if (!nodesRes.ok) throw new Error(tr("Request failed (HTTP {0}).", {0: nodesRes.status}));
 
         const statsData: KGStats = await statsRes.json();
         if (!ignore) {
           setStats(statsData);
           if (statsRes.status === 207) {
-            setError((statsData as { message?: string }).message || "Warning: Partial success loading stats.");
+            setError((statsData as { message?: string }).message || tr("Warning: Partial success loading stats."));
           }
         }
 
@@ -150,7 +153,7 @@ export function KGOverviewTab() {
         if (!ignore) {
           setNodeTypeMap(buildTypeMap(nodes, "type"));
           if (nodesRes.status === 207) {
-            const nodesMessage = (nodesData as { message?: string }).message || "Warning: Partial success loading nodes.";
+            const nodesMessage = (nodesData as { message?: string }).message || tr("Warning: Partial success loading nodes.");
             setError((prev) => (prev ? `${prev} ${nodesMessage}` : nodesMessage));
           }
         }
@@ -172,7 +175,7 @@ export function KGOverviewTab() {
           if (!ignore) setTopNodes(sorted);
         }
       } catch (err) {
-        if (!ignore) setError(err instanceof Error ? err.message : "Failed to load graph overview. Ensure the server is running.");
+        if (!ignore) setError(err instanceof Error ? err.message : tr("Failed to load graph overview. Ensure the server is running."));
       } finally {
         if (!ignore) setLoading(false);
       }
@@ -190,16 +193,16 @@ export function KGOverviewTab() {
   const totalEdges = stats?.edge_count ?? 0;
 
   const statCards = [
-    { label: "Nodes",   value: totalNodes.toLocaleString(), color: "var(--ws-accent)",  sub: `${nodeTypeEntries.length} types` },
-    { label: "Edges",   value: totalEdges.toLocaleString(), color: "var(--ws-green)",   sub: `${edgeTypeEntries.length} rel. types` },
-    { label: "Density", value: totalNodes > 1 ? ((totalEdges / (totalNodes * (totalNodes - 1))) * 100).toFixed(3) + "%" : "—", color: "var(--ws-purple)", sub: "graph density" },
+    { label: tr("Nodes"),   value: totalNodes.toLocaleString(), color: "var(--ws-accent)",  sub: tr("{0} types", {0: nodeTypeEntries.length}) },
+    { label: tr("Edges"),   value: totalEdges.toLocaleString(), color: "var(--ws-green)",   sub: tr("{0} rel. types", {0: edgeTypeEntries.length}) },
+    { label: tr("Density"), value: totalNodes > 1 ? ((totalEdges / (totalNodes * (totalNodes - 1))) * 100).toFixed(3) + "%" : "—", color: "var(--ws-purple)", sub: tr("graph density") },
   ];
 
   return (
     <div className="ws-page">
       {error ? (
         <div style={{ margin: "16px 22px 0 22px", padding: 12, borderRadius: 14, color: "#ffb4c2", background: "rgba(255,157,175,0.1)", border: "1px solid rgba(255,157,175,0.18)" }}>
-          {error}
+          {errorText(String(error))}
         </div>
       ) : null}
 
@@ -210,13 +213,13 @@ export function KGOverviewTab() {
             <Network size={16} />
           </div>
           <div>
-            <div style={{ color: "var(--ws-text)", fontSize: 15, fontWeight: 700, lineHeight: 1 }}>KG Overview</div>
-            <div className="ws-body" style={{ fontSize: 11, marginTop: 2 }}>Node/edge counts, type distributions, and top connected nodes</div>
+            <div style={{ color: "var(--ws-text)", fontSize: 15, fontWeight: 700, lineHeight: 1 }}>{tr("KG Overview")}</div>
+            <div className="ws-body" style={{ fontSize: 11, marginTop: 2 }}>{tr("Node/edge counts, type distributions, and top connected nodes")}</div>
           </div>
         </div>
         <button className="ws-btn ws-btn--ghost" onClick={() => void fetchOverview()} disabled={loading} style={{ padding: "6px 12px" }}>
           {loading ? <Loader2 size={13} className="ws-spin" /> : <RefreshCw size={13} />}
-          Refresh
+          {tr("Refresh")}
         </button>
       </div>
 
@@ -237,13 +240,13 @@ export function KGOverviewTab() {
         {/* Type breakdowns */}
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
           <div className="ws-card" style={{ padding: "16px 18px", gap: 8, display: "flex", flexDirection: "column" }}>
-            <div className="ws-eyebrow" style={{ marginBottom: 4 }}>Node Type Breakdown</div>
+            <div className="ws-eyebrow" style={{ marginBottom: 4 }}>{tr("Node Type Breakdown")}</div>
             {loading ? (
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {[80, 65, 45, 35, 25].map((w, i) => <div key={i} className="ws-skeleton" style={{ height: 10, width: `${w}%` }} />)}
               </div>
             ) : nodeTypeEntries.length === 0 ? (
-              <div className="ws-body" style={{ fontSize: 12 }}>No data — load the graph first.</div>
+              <div className="ws-body" style={{ fontSize: 12 }}>{tr("No data — load the graph first.")}</div>
             ) : (
               nodeTypeEntries.slice(0, 8).map(([type, count], i) => (
                 <TypeBar key={type} label={type} count={count} total={totalNodes || 1} color={NODE_COLORS[i % NODE_COLORS.length]} />
@@ -252,13 +255,13 @@ export function KGOverviewTab() {
           </div>
 
           <div className="ws-card" style={{ padding: "16px 18px", gap: 8, display: "flex", flexDirection: "column" }}>
-            <div className="ws-eyebrow" style={{ marginBottom: 4 }}>Edge Type Breakdown</div>
+            <div className="ws-eyebrow" style={{ marginBottom: 4 }}>{tr("Edge Type Breakdown")}</div>
             {loading ? (
               <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
                 {[70, 55, 48, 30, 20].map((w, i) => <div key={i} className="ws-skeleton" style={{ height: 10, width: `${w}%` }} />)}
               </div>
             ) : edgeTypeEntries.length === 0 ? (
-              <div className="ws-body" style={{ fontSize: 12 }}>Edge type breakdown requires the stats endpoint to return edge_types.</div>
+              <div className="ws-body" style={{ fontSize: 12 }}>{tr("Edge type breakdown requires the stats endpoint to return edge_types.")}</div>
             ) : (
               edgeTypeEntries.slice(0, 8).map(([type, count], i) => (
                 <TypeBar key={type} label={type} count={count} total={totalEdges || 1} color={EDGE_COLORS[i % EDGE_COLORS.length]} />
@@ -270,14 +273,14 @@ export function KGOverviewTab() {
         {/* Top connected nodes */}
         {topNodes.length > 0 && (
           <div className="ws-card" style={{ padding: "16px 18px" }}>
-            <div className="ws-eyebrow" style={{ marginBottom: 12 }}>Top Connected Nodes (by degree)</div>
+            <div className="ws-eyebrow" style={{ marginBottom: 12 }}>{tr("Top Connected Nodes (by degree)")}</div>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: 8 }}>
               {topNodes.map(({ node, neighborCount }, rank) => (
                 <div key={node.id} style={{ display: "flex", alignItems: "center", gap: 10, padding: "9px 12px", borderRadius: "var(--ws-radius-sm)", background: "rgba(0,0,0,0.18)", border: "1px solid var(--ws-border)" }}>
                   <div style={{ color: "var(--ws-text-dim)", fontSize: 11, fontWeight: 700, minWidth: 22 }}>#{rank + 1}</div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ color: "var(--ws-text)", fontSize: 12, fontWeight: 600, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{node.content || node.id}</div>
-                    <div className="ws-eyebrow" style={{ marginTop: 2, fontSize: 9 }}>{node.type}</div>
+                    <div className="ws-eyebrow" style={{ marginTop: 2, fontSize: 9 }}>{displayText(String(node.type))}</div>
                   </div>
                   <span className="ws-pill ws-pill--accent" style={{ fontSize: 10 }}>{neighborCount}</span>
                 </div>

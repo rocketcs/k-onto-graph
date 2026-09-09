@@ -1,3 +1,5 @@
+import { displayText, errorText, locale } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useState, useEffect, useMemo, useRef } from "react";
 import { Scale, Search, ArrowRight, Info } from "lucide-react";
 
@@ -15,7 +17,7 @@ function OutcomeBadge({ outcome }: { outcome: OutcomeKind }) {
   const c = outcomeColor(outcome);
   return (
     <span style={{ display: "inline-block", padding: "2px 8px", borderRadius: 999, fontSize: 10, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", color: c.color, background: c.bg, border: `1px solid ${c.border}` }}>
-      {outcome || "unknown"}
+      {displayText(outcome || "unknown")}
     </span>
   );
 }
@@ -36,10 +38,10 @@ function ChainNode({ step, index }: { step: ChainStep; index: number }) {
     <div style={{ padding: "14px 16px", borderRadius: "var(--ws-radius)", background: "var(--ws-surface)", border: `1px solid ${accent}28`, borderLeft: `3px solid ${accent}`, position: "relative" }}>
       {step.type && (
         <div style={{ fontFamily: "monospace", fontSize: 10, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: accent, marginBottom: 5 }}>
-          {step.type}
+          {displayText(String(step.type))}
         </div>
       )}
-      <div style={{ color: "var(--ws-text)", fontSize: 13, fontWeight: 600 }}>{step.content || step.id}</div>
+      <div style={{ color: "var(--ws-text)", fontSize: 13, fontWeight: 600 }}>{displayText(step.content || step.id)}</div>
       {step.id && step.id !== step.content && (
         <div style={{ fontFamily: "monospace", fontSize: 10, color: "var(--ws-text-dim)", marginTop: 3 }}>{step.id}</div>
       )}
@@ -69,8 +71,8 @@ function CausalFlow({ chain, loading }: { chain: ChainStep[]; loading: boolean }
   if (!chain.length) return (
     <div className="ws-empty">
       <div className="ws-empty-icon"><Info size={28} /></div>
-      <div className="ws-empty-title">No chain steps</div>
-      <div className="ws-empty-body">No causal chain steps were found for this decision.</div>
+      <div className="ws-empty-title">{tr("No chain steps")}</div>
+      <div className="ws-empty-body">{tr("No causal chain steps were found for this decision.")}</div>
     </div>
   );
   return (
@@ -78,7 +80,7 @@ function CausalFlow({ chain, loading }: { chain: ChainStep[]; loading: boolean }
       {chain.map((step, i) => (
         <div key={`${step.id}-${i}`}>
           <ChainNode step={step} index={i} />
-          {i < chain.length - 1 && <RelEdge label={chain[i + 1]?.relationship || "→"} />}
+          {i < chain.length - 1 && <RelEdge label={displayText(chain[i + 1]?.relationship || "→")} />}
         </div>
       ))}
     </div>
@@ -105,7 +107,7 @@ export function DecisionWorkspace() {
       .then(async (r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const data = await r.json();
-        if (r.status === 207) setError(data.message || "Warning: Partial success loading decisions.");
+        if (r.status === 207) setError(data.message || tr("Warning: Partial success loading decisions."));
         return data;
       })
       .then((data) => {
@@ -115,7 +117,7 @@ export function DecisionWorkspace() {
       })
       .catch((e) => {
         if (e?.name !== "AbortError") {
-          setError(e instanceof Error ? e.message : "Failed to load decisions.");
+          setError(e instanceof Error ? e.message : tr("Failed to load decisions."));
         }
       })
       .finally(() => {
@@ -142,7 +144,7 @@ export function DecisionWorkspace() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       if (res.status === 207 && !ctrl.signal.aborted) {
-        setError(data.message || "Warning: Partial success loading chain.");
+        setError(data.message || tr("Warning: Partial success loading chain."));
       }
       if (!ctrl.signal.aborted) setChain(data.chain || []);
     } catch (e) {
@@ -173,7 +175,7 @@ export function DecisionWorkspace() {
             <div style={{ width: 30, height: 30, borderRadius: 9, background: "var(--ws-accent-soft)", border: "1px solid var(--ws-border-strong)", display: "grid", placeItems: "center", color: "var(--ws-accent)", flexShrink: 0 }}>
               <Scale size={15} />
             </div>
-            <div style={{ color: "var(--ws-text)", fontSize: 14, fontWeight: 700 }}>Decisions</div>
+            <div style={{ color: "var(--ws-text)", fontSize: 14, fontWeight: 700 }}>{tr("Decisions")}</div>
             {decisions.length > 0 && !listLoading && (
               <span className="ws-pill ws-pill--mono" style={{ marginLeft: "auto" }}>{decisions.length}</span>
             )}
@@ -183,7 +185,7 @@ export function DecisionWorkspace() {
             <input
               className="ws-input"
               type="text"
-              placeholder="Filter by ID, category, outcome…"
+              placeholder={tr("Filter by ID, category, outcome…")}
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               style={{ paddingLeft: 30, fontSize: 12 }}
@@ -198,8 +200,8 @@ export function DecisionWorkspace() {
             </div>
           ) : filtered.length === 0 ? (
             <div className="ws-empty" style={{ padding: "28px 12px" }}>
-              <div className="ws-empty-title">{decisions.length === 0 ? "No decisions" : "No matches"}</div>
-              <div className="ws-empty-body">{decisions.length === 0 ? "No decisions available in the graph." : "Adjust your filter."}</div>
+              <div className="ws-empty-title">{decisions.length === 0 ? tr("No decisions") : tr("No matches")}</div>
+              <div className="ws-empty-body">{decisions.length === 0 ? tr("No decisions available in the graph.") : tr("Adjust your filter.")}</div>
             </div>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
@@ -215,7 +217,7 @@ export function DecisionWorkspace() {
                       {d.decision_id}
                     </div>
                     <div style={{ display: "flex", alignItems: "center", gap: 5, flexWrap: "wrap" }}>
-                      {d.category && <span style={{ fontSize: 10, color: "var(--ws-text-dim)" }}>{d.category}</span>}
+                      {d.category && <span style={{ fontSize: 10, color: "var(--ws-text-dim)" }}>{displayText(String(d.category))}</span>}
                       {d.outcome && <OutcomeBadge outcome={d.outcome} />}
                     </div>
                   </button>
@@ -232,7 +234,7 @@ export function DecisionWorkspace() {
 
         {error ? (
           <div style={{ padding: 12, borderRadius: 14, color: "#ffb4c2", background: "rgba(255,157,175,0.1)", border: "1px solid rgba(255,157,175,0.18)", margin: "16px 16px 0 16px", zIndex: 2, position: "relative" }}>
-            {error}
+            {errorText(String(error))}
           </div>
         ) : null}
 
@@ -242,13 +244,13 @@ export function DecisionWorkspace() {
             <div style={{ marginBottom: 28 }}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12, flexWrap: "wrap", marginBottom: 10 }}>
                 <div>
-                  <div className="ws-eyebrow" style={{ marginBottom: 6 }}>Decision Record</div>
+                  <div className="ws-eyebrow" style={{ marginBottom: 6 }}>{tr("Decision Record")}</div>
                   <h2 className="ws-title">{selected.decision_id}</h2>
                 </div>
                 {selected.outcome && <OutcomeBadge outcome={selected.outcome} />}
               </div>
               {selected.category && (
-                <span className="ws-pill ws-pill--mono">{selected.category}</span>
+                <span className="ws-pill ws-pill--mono">{displayText(selected.category)}</span>
               )}
             </div>
 
@@ -256,9 +258,9 @@ export function DecisionWorkspace() {
             <div className="ws-card" style={{ padding: 22 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 20 }}>
                 <div style={{ width: 8, height: 8, borderRadius: 999, background: "linear-gradient(135deg, var(--ws-accent), var(--ws-amber))", boxShadow: "0 0 10px rgba(74,163,255,0.4)" }} />
-                <div style={{ color: "var(--ws-text)", fontSize: 14, fontWeight: 700 }}>Causal Chain</div>
+                <div style={{ color: "var(--ws-text)", fontSize: 14, fontWeight: 700 }}>{tr("Causal Chain")}</div>
                 {chain.length > 0 && !chainLoading && (
-                  <span className="ws-pill ws-pill--accent" style={{ marginLeft: "auto" }}>{chain.length} step{chain.length !== 1 ? "s" : ""}</span>
+                  <span className="ws-pill ws-pill--accent" style={{ marginLeft: "auto" }}>{chain.length} {tr("step")}{locale === "en-US" && chain.length !== 1 ? "s" : ""}</span>
                 )}
               </div>
               <CausalFlow chain={chain} loading={chainLoading} />
@@ -268,8 +270,8 @@ export function DecisionWorkspace() {
           <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", zIndex: 1 }}>
             <div className="ws-empty">
               <div className="ws-empty-icon"><Scale size={32} /></div>
-              <div className="ws-empty-title">No decision selected</div>
-              <div className="ws-empty-body">Select a decision from the list to inspect its causal chain and metadata.</div>
+              <div className="ws-empty-title">{tr("No decision selected")}</div>
+              <div className="ws-empty-body">{tr("Select a decision from the list to inspect its causal chain and metadata.")}</div>
             </div>
           </div>
         )}

@@ -1,4 +1,6 @@
+import { t, locale } from "../../../i18n";
 import type { CSSProperties } from "react";
+import { exploreTerm } from "../../../exploreLocale";
 
 import { buildGraphColorLegend } from "../graphColorLegend";
 import type { GraphPlugin } from "./types";
@@ -14,8 +16,8 @@ export const legendPlugin: GraphPlugin = {
   toolbarItems: (context) => [
     {
       id: "legend-toggle",
-      label: "Legend",
-      title: "Toggle semantic legend",
+      label: t("Legend"),
+      title: t("Toggle semantic legend"),
       active: context.isPanelOpen(LEGEND_PANEL_ID),
       order: 20,
       onClick: () => context.dispatchAction({ type: "togglePanel", panelId: LEGEND_PANEL_ID }),
@@ -32,7 +34,7 @@ export const legendPlugin: GraphPlugin = {
 
     return {
       id: LEGEND_PANEL_ID,
-      title: "Legend",
+      title: t("Legend"),
       placement: "bottom",
       order: 10,
       defaultOpen: false,
@@ -40,7 +42,7 @@ export const legendPlugin: GraphPlugin = {
       preferredHeight: 220,
       content: (
         <div style={panelBodyStyle}>
-          <div style={panelEyebrowStyle}>Semantic groups</div>
+          <div style={panelEyebrowStyle}>{t("Semantic groups")}</div>
           {items.length ? (
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {items.map((item) => (
@@ -53,14 +55,14 @@ export const legendPlugin: GraphPlugin = {
                     }}
                   />
                   <div style={{ minWidth: 0, flex: 1 }}>
-                    <div style={rowTitleStyle}>{item.group}</div>
-                    <div style={rowMetaStyle}>{item.count.toLocaleString()} nodes</div>
+                    <div style={rowTitleStyle}>{exploreTerm(item.group)}</div>
+                    <div style={rowMetaStyle}>{item.count.toLocaleString(locale)} {t("nodes")}</div>
                   </div>
                 </div>
               ))}
             </div>
           ) : (
-            <div style={emptyTextStyle}>Legend will populate when the graph metadata is available.</div>
+            <div style={emptyTextStyle}>{t("Legend will populate when the graph metadata is available.")}</div>
           )}
         </div>
       ),

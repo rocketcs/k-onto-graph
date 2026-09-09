@@ -1,0 +1,80 @@
+Create a polished Chinese enterprise infographic, landscape 1536x1024, using gpt-image-2. The supplied image is a VISUAL STYLE REFERENCE only. Create a new explanatory diagram focused on the four knowledge enhancement modules, not the full architecture. White background, crisp navy headings, thin blue/teal/purple/orange outlines, pale section fills, elegant line icons, precise alignment, generous readability, no overlapping labels. Match the earlier extract explainer's clean professional architecture-diagram style. Chinese typography must be accurate. Use the correct Chinese term 溯源, not 朔源.
+
+Title: “知识增强：本体 · 推理 · 溯源 · 决策”
+Subtitle: “明确业务定义，形成推导依据，保留来源记录，支持有据决策”
+Small context ribbon: “已有知识图谱 → 知识增强 → 增强后的知识图谱 → 检索 / 分析 / 应用”
+
+Main composition: four equal-width vertical columns. Each has a colored icon, large Chinese module name and smaller English name, one plain-language purpose sentence, then three clearly aligned horizontal levels labeled 用户做什么 / 系统做什么 / 产出什么. These row labels must repeat within each column, not become confusing separate columns. Keep all copy concise and readable. Use navy/blue for ontology, teal for reasoning, purple for provenance, orange for decisions. The four columns are collaborating capabilities, not a rigid mandatory four-step execution order; avoid numbering them. Modest bidirectional arrows between adjacent modules may indicate coordination.
+
+COLUMN 1:
+“本体 Ontology”
+“定义知识的共同语言”
+“用户做什么”
+“确认概念、类别与上下级”
+“明确关系范围与数据约束”
+“系统做什么”
+“从数据、文本或模板构建定义”
+“生成结构与约束校验规则”
+“产出什么”
+“本体定义 · 类别层级”
+“关系规范 · 校验报告”
+
+COLUMN 2:
+“推理 Reasoning”
+“从已有事实推导新结论”
+“用户做什么”
+“提供业务规则与适用条件”
+“确认哪些结论可以采用”
+“系统做什么”
+“匹配事实与配置的规则”
+“执行推导并组织解释”
+“产出什么”
+“推导结果 · 规则依据”
+“推理路径 · 待确认结论”
+
+COLUMN 3:
+“溯源 Provenance”
+“说明知识从哪里来”
+“用户做什么”
+“提供来源标识与版本信息”
+“确定留痕范围与来源评级”
+“系统做什么”
+“关联知识、来源与处理活动”
+“按接入记录追踪变更链路”
+“产出什么”
+“来源记录 · 知识血缘”
+“处理历史 · 证据关联”
+
+COLUMN 4:
+“决策 Decisions”
+“确定采用什么并记录理由”
+“用户做什么”
+“设定冲突处理与采信标准”
+“确认需人工审批的事项”
+“系统做什么”
+“按策略处理冲突与候选结果”
+“记录选择、理由及上下文”
+“产出什么”
+“裁决结果 · 采信记录”
+“决策依据 · 待办事项”
+
+Beneath the four columns, use a thin shared purple band linked to provenance and visually spanning the whole main workflow:
+“溯源贯穿全程：定义、推导、裁决均可关联来源与处理记录”
+
+Lower worked-example full-width band, title “贯穿示例：一条员工信息如何被增强”
+Show a short source sentence at left: “人员名册 V2：张三是甲公司的工程师。”
+Then a four-part readable illustration aligned with the main columns:
+Ontology: “定义：工程师属于员工”
+Reasoning: “推导：张三是员工”
+Provenance: “关联：人员名册 V2 + 规则版本”
+Decisions: “采信：按已确认规则采用，并记录依据”
+Label it “配置后的业务流程示例”. Do not imply universal automatic OWL reasoning: the engineering-role inheritance example is an explicitly configured business rule.
+
+Bottom outcome ribbon with a small colorful graph icon:
+“最终产出：结构清晰、依据可查、便于审核与应用的增强知识图谱”
+Add a subtle dashed feedback arrow from the end to ontology/user definitions with label “业务反馈与版本迭代”.
+
+Small but legible footer:
+“各能力需按业务配置与接入；推导结果依赖事实和规则，溯源不等于事实认证，审批与待办需对接业务流程。”
+
+Truthfulness and design constraints: Clearly distinguish user input/actions, system processing, and deliverables. Present a configured business workflow, not an assertion that every module runs automatically. Do not claim fully implemented OWL consistency reasoning, guaranteed correctness, benchmark percentages, automatic approval interfaces, or exact source page positions by default. No code blocks, no complex JSON, no marketing superlatives. Keep the main visual customer-facing and approachable. Prefer clean visual hierarchy to excessive density. Output a single finished bitmap.

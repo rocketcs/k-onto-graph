@@ -1,3 +1,4 @@
+import { t as tr } from "../../i18n";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { UploadCloud, Download, FileJson, FileText, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
@@ -35,13 +36,13 @@ export function ImportExportWorkspace() {
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/import", { method: "POST", body: fd });
-      if (!res.ok) { const e = await res.json(); throw new Error(e.detail || "Import failed"); }
+      if (!res.ok) { const e = await res.json(); throw new Error(e.detail || tr("Import failed")); }
       const data = await res.json();
-      showToast("success", `Imported ${data.nodes_imported} nodes · ${data.edges_imported} edges`);
-      logEvent("import", `Imported ${data.nodes_imported} nodes · ${data.edges_imported} edges from ${file.name}`, { file: file.name });
+      showToast("success", tr("Imported {0} nodes · {1} edges", {0: data.nodes_imported, 1: data.edges_imported}));
+      logEvent("import", tr("Imported {0} nodes · {1} edges from {2}", {0: data.nodes_imported, 1: data.edges_imported, 2: file.name}), { file: file.name });
       setFile(null);
     } catch (e: unknown) {
-      showToast("error", e instanceof Error ? e.message : "Import failed");
+      showToast("error", e instanceof Error ? e.message : tr("Import failed"));
     } finally { setIsUploading(false); }
   }
 
@@ -53,7 +54,7 @@ export function ImportExportWorkspace() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ format: exportFormat }),
       });
-      if (!res.ok) { const e = await res.json(); throw new Error(e.detail || "Export failed"); }
+      if (!res.ok) { const e = await res.json(); throw new Error(e.detail || tr("Export failed")); }
       const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -63,10 +64,10 @@ export function ImportExportWorkspace() {
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast("success", `Export ready — semantica_export.${exportFormat}`);
-      logEvent("export", `Exported graph as ${exportFormat.toUpperCase()}`, { format: exportFormat });
+      showToast("success", tr("Export ready — semantica_export.{0}", {0: exportFormat}));
+      logEvent("export", tr("Exported graph as {0}", {0: exportFormat.toUpperCase()}), { format: exportFormat });
     } catch (e: unknown) {
-      showToast("error", e instanceof Error ? e.message : "Export failed");
+      showToast("error", e instanceof Error ? e.message : tr("Export failed"));
     } finally { setIsExporting(false); }
   }
 
@@ -79,8 +80,8 @@ export function ImportExportWorkspace() {
             <UploadCloud size={20} />
           </div>
           <div>
-            <h2 className="ws-title" style={{ fontSize: 18 }}>Import &amp; Export</h2>
-            <div className="ws-body" style={{ marginTop: 2 }}>Ingest new graph datasets or extract the current knowledge base.</div>
+            <h2 className="ws-title" style={{ fontSize: 18 }}>{tr("Import &amp; Export")}</h2>
+            <div className="ws-body" style={{ marginTop: 2 }}>{tr("Ingest new graph datasets or extract the current knowledge base.")}</div>
           </div>
         </div>
 
@@ -89,7 +90,7 @@ export function ImportExportWorkspace() {
           <div className="ws-card" style={{ padding: 24, display: "flex", flexDirection: "column", gap: 18 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <UploadCloud size={16} color="var(--ws-accent)" />
-              <div style={{ color: "var(--ws-text)", fontWeight: 700, fontSize: 14 }}>Import Entities &amp; Relations</div>
+              <div style={{ color: "var(--ws-text)", fontWeight: 700, fontSize: 14 }}>{tr("Import Entities &amp; Relations")}</div>
             </div>
 
             {/* Dropzone */}
@@ -114,14 +115,14 @@ export function ImportExportWorkspace() {
                 <>
                   {file.name.endsWith(".json") ? <FileJson size={40} color="#4cc38a" /> : <FileText size={40} color="#4cc38a" />}
                   <div style={{ color: "var(--ws-text)", fontWeight: 700 }}>{file.name}</div>
-                  <div className="ws-body" style={{ fontSize: 11 }}>{(file.size / 1024).toFixed(1)} KB — click to replace</div>
+                  <div className="ws-body" style={{ fontSize: 11 }}>{(file.size / 1024).toFixed(1)} {tr("KB — click to replace")}</div>
                 </>
               ) : (
                 <>
                   <UploadCloud size={36} color="var(--ws-accent)" style={{ opacity: 0.7 }} />
-                  <div style={{ color: "var(--ws-text)", fontWeight: 600 }}>Drag &amp; drop or click to browse</div>
+                  <div style={{ color: "var(--ws-text)", fontWeight: 600 }}>{tr("Drag &amp; drop or click to browse")}</div>
                   <div className="ws-pill ws-pill--mono">.json</div>
-                  <span style={{ color: "var(--ws-text-dim)", fontSize: 11 }}>or</span>
+                  <span style={{ color: "var(--ws-text-dim)", fontSize: 11 }}>{tr("or")}</span>
                   <div className="ws-pill ws-pill--mono">.csv</div>
                 </>
               )}
@@ -133,7 +134,7 @@ export function ImportExportWorkspace() {
               disabled={!file || isUploading}
               style={{ width: "100%", justifyContent: "center" }}
             >
-              {isUploading ? <><Loader2 size={15} className="ws-spin" />Uploading…</> : <><UploadCloud size={15} />Upload to Graph</>}
+              {isUploading ? <><Loader2 size={15} className="ws-spin" />{tr("Uploading…")}</> : <><UploadCloud size={15} />{tr("Upload to Graph")}</>}
             </button>
           </div>
 
@@ -141,11 +142,11 @@ export function ImportExportWorkspace() {
           <div className="ws-card" style={{ padding: 24, display: "flex", flexDirection: "column", gap: 18 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <Download size={16} color="var(--ws-purple)" />
-              <div style={{ color: "var(--ws-text)", fontWeight: 700, fontSize: 14 }}>Export Graph Snapshot</div>
+              <div style={{ color: "var(--ws-text)", fontWeight: 700, fontSize: 14 }}>{tr("Export Graph Snapshot")}</div>
             </div>
 
             <div>
-              <label className="ws-label">Format</label>
+              <label className="ws-label">{tr("Format")}</label>
               <div style={{ display: "flex", gap: 8 }}>
                 {(["json", "csv"] as const).map((fmt) => (
                   <button
@@ -162,11 +163,11 @@ export function ImportExportWorkspace() {
             </div>
 
             <div style={{ flex: 1, padding: "14px 16px", borderRadius: "var(--ws-radius-sm)", background: "rgba(0,0,0,0.22)", border: "1px solid var(--ws-border)" }}>
-              <div style={{ color: "var(--ws-text-muted)", fontWeight: 700, fontSize: 12, marginBottom: 6 }}>What's included</div>
+              <div style={{ color: "var(--ws-text-muted)", fontWeight: 700, fontSize: 12, marginBottom: 6 }}>{tr("What's included")}</div>
               <div className="ws-body" style={{ fontSize: 12 }}>
                 {exportFormat === "json"
-                  ? "Full graph snapshot: all node properties, edge weights, entity metadata and semantic groups in a standardized JSON payload."
-                  : "Flattened CSV: nodes and edges as rows. Complex nested properties are stringified. Best for spreadsheet analysis."}
+                  ? tr("Full graph snapshot: all node properties, edge weights, entity metadata and semantic groups in a standardized JSON payload.")
+                  : tr("Flattened CSV: nodes and edges as rows. Complex nested properties are stringified. Best for spreadsheet analysis.")}
               </div>
             </div>
 
@@ -176,7 +177,7 @@ export function ImportExportWorkspace() {
               disabled={isExporting}
               style={{ width: "100%", justifyContent: "center", background: "var(--ws-purple-soft)", borderColor: "rgba(192,132,252,0.3)", color: "#d8b4fe" }}
             >
-              {isExporting ? <><Loader2 size={15} className="ws-spin" />Preparing…</> : <><Download size={15} />Download Export</>}
+              {isExporting ? <><Loader2 size={15} className="ws-spin" />{tr("Preparing…")}</> : <><Download size={15} />{tr("Download Export")}</>}
             </button>
           </div>
         </div>

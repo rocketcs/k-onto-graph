@@ -1,3 +1,5 @@
+import { displayText } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useRef, useState } from "react";
 import {
   AlertCircle,
@@ -115,7 +117,7 @@ function PreviewCard({ preview }: { preview: OntologyPreview }) {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
         <CheckCircle2 size={16} color="#4cc38a" />
         <span style={{ color: "#4cc38a", fontSize: 12, fontWeight: 700 }}>
-          Preview ready
+          {tr("Preview ready")}
         </span>
         <Badge label={preview.format} color="#58a6ff" />
       </div>
@@ -123,16 +125,16 @@ function PreviewCard({ preview }: { preview: OntologyPreview }) {
       <div style={previewTitleStyle}>{preview.name}</div>
       {preview.description && (
         <div style={{ color: "#8fa8c6", fontSize: 12, marginTop: 6, lineHeight: 1.5 }}>
-          {preview.description}
+          {displayText(String(preview.description))}
         </div>
       )}
 
       <div style={previewGridStyle}>
-        <PreviewRow label="Namespace" value={preview.namespace || preview.uri} mono />
-        {preview.version && <PreviewRow label="Version" value={preview.version} />}
-        {preview.license && <PreviewRow label="License" value={preview.license} />}
+        <PreviewRow label={tr("Namespace")} value={preview.namespace || preview.uri} mono />
+        {preview.version && <PreviewRow label={tr("Version")} value={preview.version} />}
+        {preview.license && <PreviewRow label={tr("License")} value={preview.license} />}
         <PreviewRow
-          label="Estimated triples"
+          label={tr("Estimated triples")}
           value={preview.estimated_triples.toLocaleString()}
         />
       </div>
@@ -196,14 +198,14 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
         body: JSON.stringify({ url: url.trim(), format: format || undefined }),
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Unknown error" }));
-        throw new Error(err.detail || "Preview failed");
+        const err = await res.json().catch(() => ({ detail: tr("Unknown error") }));
+        throw new Error(err.detail || tr("Preview failed"));
       }
       setPreview(await res.json());
       setPreviewState("idle");
     } catch (e) {
       setPreviewState("error");
-      setErrorMsg(e instanceof Error ? e.message : "Could not fetch preview");
+      setErrorMsg(e instanceof Error ? e.message : tr("Could not fetch preview"));
     }
   };
 
@@ -223,8 +225,8 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
         }),
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Load failed" }));
-        throw new Error(err.detail || "Load failed");
+        const err = await res.json().catch(() => ({ detail: tr("Load failed") }));
+        throw new Error(err.detail || tr("Load failed"));
       }
       setLoadState("success");
       setTimeout(() => {
@@ -233,13 +235,13 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
       }, 1200);
     } catch (e) {
       setLoadState("error");
-      setErrorMsg(e instanceof Error ? e.message : "Load failed");
+      setErrorMsg(e instanceof Error ? e.message : tr("Load failed"));
     }
   };
 
   return (
     <div style={panelBodyStyle}>
-      <FieldGroup label="Ontology URL">
+      <FieldGroup label={tr("Ontology URL")}>
         <div style={{ display: "flex", gap: 8 }}>
           <input
             type="url"
@@ -260,7 +262,7 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
             {previewState === "loading" ? (
               <Loader2 size={13} style={{ animation: "spin 1s linear infinite" }} />
             ) : (
-              "Fetch Preview"
+              tr("Fetch Preview")
             )}
           </button>
         </div>
@@ -283,32 +285,32 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
           size={13}
           style={{ transform: showAdvanced ? "rotate(180deg)" : undefined, transition: "200ms" }}
         />
-        Advanced options
+        {tr("Advanced options")}
       </button>
 
       {showAdvanced && (
         <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-          <FieldGroup label="Format override">
+          <FieldGroup label={tr("Format override")}>
             <select
               value={format}
               onChange={(e) => setFormat(e.target.value)}
               style={selectStyle}
             >
-              <option value="">Auto-detect</option>
+              <option value="">{tr("Auto-detect")}</option>
               <option value="turtle">Turtle (.ttl)</option>
               <option value="xml">RDF/XML (.rdf, .owl)</option>
               <option value="nt">N-Triples (.nt)</option>
               <option value="json-ld">JSON-LD (.jsonld)</option>
             </select>
           </FieldGroup>
-          <FieldGroup label="Custom display name">
-            <Input value={customName} onChange={setCustomName} placeholder="Leave blank to use ontology title" />
+          <FieldGroup label={tr("Custom display name")}>
+            <Input value={customName} onChange={setCustomName} placeholder={tr("Leave blank to use ontology title")} />
           </FieldGroup>
-          <FieldGroup label="Description">
-            <Input value={description} onChange={setDescription} placeholder="Optional description" />
+          <FieldGroup label={tr("Description")}>
+            <Input value={description} onChange={setDescription} placeholder={tr("Optional description")} />
           </FieldGroup>
-          <FieldGroup label="Tags (comma-separated)">
-            <Input value={tags} onChange={setTags} placeholder="e.g. biology, upper-ontology" />
+          <FieldGroup label={tr("Tags (comma-separated)")}>
+            <Input value={tags} onChange={setTags} placeholder={tr("e.g. biology, upper-ontology")} />
           </FieldGroup>
         </div>
       )}
@@ -316,7 +318,7 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
       {loadState === "success" && (
         <div style={successBoxStyle}>
           <CheckCircle2 size={13} />
-          <span>Ontology loaded successfully</span>
+          <span>{tr("Ontology loaded successfully")}</span>
         </div>
       )}
 
@@ -336,12 +338,12 @@ function URLImportPanel({ onLoaded }: { onLoaded: () => void }) {
           {loadState === "loading" ? (
             <>
               <Loader2 size={13} style={{ animation: "spin 1s linear infinite" }} />
-              Loading…
+              {tr("Loading…")}
             </>
           ) : (
             <>
               <Globe size={13} />
-              Load Ontology
+              {tr("Load Ontology")}
             </>
           )}
         </button>
@@ -395,8 +397,8 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
         body: JSON.stringify({ content, ...(format ? { format } : {}) }),
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Load failed" }));
-        throw new Error(err.detail || "Load failed");
+        const err = await res.json().catch(() => ({ detail: tr("Load failed") }));
+        throw new Error(err.detail || tr("Load failed"));
       }
       setLoadState("success");
       setTimeout(() => {
@@ -405,7 +407,7 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
       }, 1200);
     } catch (e) {
       setLoadState("error");
-      setErrorMsg(e instanceof Error ? e.message : "Load failed");
+      setErrorMsg(e instanceof Error ? e.message : tr("Load failed"));
     }
   };
 
@@ -430,7 +432,7 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
         ) : (
           <>
             <div style={{ color: "#8fa8c6", fontSize: 13 }}>
-              Drop a file here or <span style={{ color: "#4aa3ff" }}>browse</span>
+              {tr("Drop a file here or")} <span style={{ color: "#4aa3ff" }}>{tr("browse")}</span>
             </div>
             <div style={{ color: "#5a7a9a", fontSize: 11 }}>
               .ttl · .rdf · .owl · .xml · .nt · .jsonld · .json · .n3
@@ -447,7 +449,7 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
       </div>
 
       {content && (
-        <FieldGroup label="Format">
+        <FieldGroup label={tr("Format")}>
           <select
             value={format}
             onChange={(e) => setFormat(e.target.value)}
@@ -464,7 +466,7 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
       {loadState === "success" && (
         <div style={successBoxStyle}>
           <CheckCircle2 size={13} />
-          <span>Ontology loaded successfully — {fileName}</span>
+          <span>{tr("Ontology loaded successfully —")} {fileName}</span>
         </div>
       )}
 
@@ -484,12 +486,12 @@ function FileUploadPanel({ onLoaded }: { onLoaded: () => void }) {
           {loadState === "loading" ? (
             <>
               <Loader2 size={13} style={{ animation: "spin 1s linear infinite" }} />
-              Loading…
+              {tr("Loading…")}
             </>
           ) : (
             <>
               <FileUp size={13} />
-              Load File
+              {tr("Load File")}
             </>
           )}
         </button>
@@ -531,8 +533,8 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
         }),
       });
       if (!res.ok) {
-        const err = await res.json().catch(() => ({ detail: "Create failed" }));
-        throw new Error(err.detail || "Create failed");
+        const err = await res.json().catch(() => ({ detail: tr("Create failed") }));
+        throw new Error(err.detail || tr("Create failed"));
       }
       setCreateState("success");
       setTimeout(() => {
@@ -541,7 +543,7 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
       }, 1200);
     } catch (e) {
       setCreateState("error");
-      setErrorMsg(e instanceof Error ? e.message : "Create failed");
+      setErrorMsg(e instanceof Error ? e.message : tr("Create failed"));
     }
   };
 
@@ -557,29 +559,29 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
               ...(createMode === m ? modeTabActive : modeTabIdle),
             }}
           >
-            {m === "scratch" ? "From Scratch" : m === "data" ? "From Data" : "From Text"}
+            {m === "scratch" ? tr("From Scratch") : m === "data" ? tr("From Data") : tr("From Text")}
           </button>
         ))}
       </div>
 
-      <FieldGroup label="Display Name *">
-        <Input value={name} onChange={setName} placeholder="My Ontology" />
+      <FieldGroup label={tr("Display Name *")}>
+        <Input value={name} onChange={setName} placeholder={tr("My Ontology")} />
       </FieldGroup>
 
-      <FieldGroup label="Namespace URI *">
+      <FieldGroup label={tr("Namespace URI *")}>
         <Input value={namespace} onChange={setNamespace} placeholder="https://example.org/onto/" />
       </FieldGroup>
 
-      <FieldGroup label="Description">
-        <Input value={description} onChange={setDescription} placeholder="Optional description" />
+      <FieldGroup label={tr("Description")}>
+        <Input value={description} onChange={setDescription} placeholder={tr("Optional description")} />
       </FieldGroup>
 
-      <FieldGroup label="Tags (comma-separated)">
-        <Input value={tags} onChange={setTags} placeholder="e.g. internal, draft" />
+      <FieldGroup label={tr("Tags (comma-separated)")}>
+        <Input value={tags} onChange={setTags} placeholder={tr("e.g. internal, draft")} />
       </FieldGroup>
 
       {createMode === "data" && (
-        <FieldGroup label="Sample Data (JSON or CSV)">
+        <FieldGroup label={tr("Sample Data (JSON or CSV)")}>
           <Textarea
             value={sampleData}
             onChange={setSampleData}
@@ -590,11 +592,11 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
       )}
 
       {createMode === "text" && (
-        <FieldGroup label="Schema Requirements (natural language)">
+        <FieldGroup label={tr("Schema Requirements (natural language)")}>
           <Textarea
             value={schemaText}
             onChange={setSchemaText}
-            placeholder="Describe the ontology you need. E.g.: I need an ontology for a hospital domain with patients, doctors, appointments, and medications."
+            placeholder={tr("Describe the ontology you need. E.g.: I need an ontology for a hospital domain with patients, doctors, appointments, and medications.")}
             rows={6}
           />
         </FieldGroup>
@@ -603,7 +605,7 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
       {createState === "success" && (
         <div style={successBoxStyle}>
           <CheckCircle2 size={13} />
-          <span>Ontology created and opened in the Registry</span>
+          <span>{tr("Ontology created and opened in the Registry")}</span>
         </div>
       )}
 
@@ -623,12 +625,12 @@ function CreateNewPanel({ onLoaded }: { onLoaded: () => void }) {
           {createState === "loading" ? (
             <>
               <Loader2 size={13} style={{ animation: "spin 1s linear infinite" }} />
-              Creating…
+              {tr("Creating…")}
             </>
           ) : (
             <>
               <Plus size={13} />
-              Create Ontology
+              {tr("Create Ontology")}
             </>
           )}
         </button>
@@ -649,9 +651,9 @@ export function OntologyLoader({ onLoaded, onClose }: LoaderProps) {
       <div style={modalStyle}>
         <div style={modalHeaderStyle}>
           <div>
-            <div style={{ color: "#ebf3ff", fontSize: 16, fontWeight: 800 }}>Load Ontology</div>
+            <div style={{ color: "#ebf3ff", fontSize: 16, fontWeight: 800 }}>{tr("Load Ontology")}</div>
             <div style={{ color: "#8fa8c6", fontSize: 12, marginTop: 2 }}>
-              Import from URL, upload a file, or create a new ontology
+              {tr("Import from URL, upload a file, or create a new ontology")}
             </div>
           </div>
           <button onClick={onClose} style={closeIconBtnStyle}>
@@ -670,11 +672,11 @@ export function OntologyLoader({ onLoaded, onClose }: LoaderProps) {
               }}
             >
               {m === "url" ? (
-                <><Globe size={12} /> URL Import</>
+                <><Globe size={12} /> {tr("URL Import")}</>
               ) : m === "file" ? (
-                <><FileUp size={12} /> File Upload</>
+                <><FileUp size={12} /> {tr("File Upload")}</>
               ) : (
-                <><Plus size={12} /> Create New</>
+                <><Plus size={12} /> {tr("Create New")}</>
               )}
             </button>
           ))}

@@ -39,6 +39,7 @@ from ..utils.exceptions import ProcessingError, ValidationError
 from ..utils.logging import get_logger
 from ..utils.progress_tracker import get_progress_tracker
 from .query_sanitize import sanitize_identifier
+import json
 
 # Optional Neo4j import
 try:
@@ -343,6 +344,25 @@ class Neo4jStore:
 
         return self._driver.session(database or self.database)
 
+    @staticmethod
+    def _coerce_props(properties: Dict[str, Any]) -> Dict[str, Any]:
+        """Coerce non-primitive property values to JSON strings.
+
+        Neo4j property values must be primitives or arrays of primitives;
+        dicts (and lists containing dicts) are rejected with a Statement
+        TypeError. Serialize those values so writes succeed, mirroring how
+        other backends accept arbitrary metadata.
+        """
+        out: Dict[str, Any] = {}
+        for key, value in properties.items():
+            if isinstance(value, dict) or (
+                isinstance(value, list) and any(isinstance(item, dict) for item in value)
+            ):
+                out[key] = json.dumps(value, default=str)
+            else:
+                out[key] = value
+        return out
+
     def create_node(
         self,
         labels: List[str],
@@ -371,7 +391,7 @@ class Neo4jStore:
             query = f"CREATE (n:{label_str} $props) RETURN id(n) as id, n"
 
             with self.get_session() as session:
-                result = session.run(query, {"props": properties})
+                result = session.run(query, {"props": self._coerce_props(properties)})
                 record = result.single()
 
                 if record:
@@ -428,7 +448,7 @@ class Neo4jStore:
                     label_str = ":".join(sanitize_identifier(l, "label") for l in labels) if labels else "Node"
                     query = f"CREATE (n:{label_str} $props) RETURN id(n) as id, n"
 
-                    result = session.run(query, {"props": properties})
+                    result = session.run(query, {"props": self._coerce_props(properties)})
                     record = result.single()
 
                     if record:
@@ -573,7 +593,7 @@ class Neo4jStore:
                 query = "MATCH (n) WHERE id(n) = $id SET n = $props RETURN id(n) as id, n, labels(n) as labels"
 
             with self.get_session() as session:
-                result = session.run(query, {"id": node_id, "props": properties})
+                result = session.run(query, {"id": node_id, "props": self._coerce_props(properties)})
                 record = result.single()
 
                 if record:
@@ -659,7 +679,7 @@ class Neo4jStore:
                 result = session.run(query, {
                     "start_id": start_node_id,
                     "end_id": end_node_id,
-                    "props": properties,
+                    "props": self._coerce_props(properties),
                 })
                 record = result.single()
 
@@ -817,7 +837,7 @@ class Neo4jStore:
 
         try:
             with self.get_session() as session:
-                result = session.run(query, parameters or {})
+                result = session.run(query, self._coerce_props(parameters or {}))
 
                 records = []
                 keys = []
@@ -829,11 +849,14 @@ class Neo4jStore:
                     row = {}
                     for key in keys:
                         value = record[key]
-                        # Convert Neo4j types to Python types
-                        if hasattr(value, "__iter__") and not isinstance(value, (str, dict)):
-                            row[key] = list(value)
-                        elif hasattr(value, "items"):
+                        # Convert Neo4j types to Python types. Ordered so that
+                        # Maps/Entities (Node, Relationship) hit the items()
+                        # branch first — they also implement __iter__, which
+                        # would otherwise turn them into lists of keys.
+                        if hasattr(value, "items"):
                             row[key] = dict(value)
+                        elif hasattr(value, "__iter__") and not isinstance(value, (str, dict)):
+                            row[key] = list(value)
                         else:
                             row[key] = value
                     records.append(row)

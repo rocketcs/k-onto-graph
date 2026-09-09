@@ -324,6 +324,11 @@ explorer-lite = [
   "streamlit>=1.25.0",
   "streamlit-agraph>=0.0.45"
 ]
+explorer-pipeline = [
+  "semantica[explorer,llm-deepseek]",
+  "openpyxl>=3.1.5",
+  "pypdf>=5.9.0; python_version >= '3.9'"
+]
 
 # Everything (cross-platform — gpu excluded; install semantica[gpu] separately on Linux)
 # NOTE: the ``crewai`` extra is intentionally NOT in ``all``: crewai hard-requires

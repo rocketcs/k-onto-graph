@@ -183,9 +183,9 @@ class GraphStoreConfig:
             "timeout": 30,
             "max_retries": 3,
             # Neo4j defaults
-            "neo4j_uri": "bolt://localhost:7687",
+            "neo4j_uri": "bolt://localhost:7690",
             "neo4j_user": "neo4j",
-            "neo4j_password": "password",
+            "neo4j_password": "semantica2026",
             "neo4j_database": "neo4j",
             "neo4j_encrypted": False,
             # FalkorDB defaults

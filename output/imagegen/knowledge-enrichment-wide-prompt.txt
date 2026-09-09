@@ -1,0 +1,41 @@
+Redesign the supplied Chinese infographic into a comfortable, spacious 16:9 landscape composition at 2048x1152. Generate a fresh layout, do not stretch or squeeze the reference bitmap. Preserve its subject, accurate Chinese wording and four-module explanation: 本体 Ontology, 推理 Reasoning, 溯源 Provenance, 决策 Decisions. Preserve the distinctions 用户做什么 / 系统做什么 / 产出什么 and the employee example. Use naturally proportioned Chinese sans-serif glyphs and circular icons: no condensed type, no horizontal compression, no oval circles. White background, navy title, restrained blue/teal/purple/orange accents and pale fills. Improve spacing, clear hierarchy and alignments; fit text without clipping or overlaps.
+
+Layout: 80px exterior margins. Compact title area using about 12% of height. Main four-column matrix using about 49% of height, with 32px gutters and 24px inner padding. The same three row levels align across columns. Use small unobtrusive row labels inside every column; no protruding labels obscuring cards. Module names 36px-equivalent and body 25px-equivalent at 2048px wide, normal aspect ratio, natural line spacing. No oversized title or heavy decorative blocks. Bottom example occupies about 18% with adequate gaps. Remaining area contains shared provenance statement, outcome sentence and legible footer. Omit the redundant top mini workflow to free space. Avoid excessive framing and dense decorative icons.
+
+Title: “知识增强：本体 · 推理 · 溯源 · 决策”
+Subtitle: “用户参与什么，系统处理什么，最终交付什么”
+
+Column 1 “本体 Ontology”, purpose “定义知识的共同语言”
+用户做什么: “确认概念与类别层级”; “明确关系范围与约束”
+系统做什么: “从数据、文本或模板构建定义”; “生成结构与约束校验规则”
+产出什么: “本体定义 · 类别层级”; “关系规范 · 校验报告”
+
+Column 2 “推理 Reasoning”, purpose “从已有事实推导新结论”
+用户做什么: “提供业务规则与适用条件”; “确认结论采纳标准”
+系统做什么: “匹配事实与配置规则”; “执行推导并组织解释”
+产出什么: “推导结果 · 规则依据”; “推理路径 · 待确认结论”
+
+Column 3 “溯源 Provenance”, purpose “说明知识从哪里来”
+用户做什么: “提供来源与版本信息”; “确定留痕范围与来源评级”
+系统做什么: “关联知识、来源与处理活动”; “按接入记录追踪变更链路”
+产出什么: “来源记录 · 知识血缘”; “处理历史 · 证据关联”
+
+Column 4 “决策 Decisions”, purpose “确定采用什么并记录理由”
+用户做什么: “设定冲突处理与采信标准”; “明确人工审批事项”
+系统做什么: “按策略处理冲突与候选结果”; “记录选择、理由及上下文”
+产出什么: “裁决结果 · 采信记录”; “决策依据 · 待办事项”
+
+Use a light full-width shared line below modules: “溯源贯穿全程：定义、推导、裁决均可关联来源与处理记录”. Do not use four serial arrows that imply a mandatory execution sequence.
+
+Example section heading “业务流程示例：一条员工信息如何被增强”
+Five well-spaced compact stations linked by arrows:
+“原始信息” / “人员名册 V2：张三是工程师”
+“本体定义” / “工程师属于员工”
+“规则推导” / “张三是员工”
+“来源关联” / “名册 V2 + 规则版本”
+“采信记录” / “按已确认规则采用，记录依据”
+
+Outcome statement: “最终产出：结构清晰、依据可查、便于审核与应用的增强知识图谱”
+Footer: “各能力需按业务配置与接入；推导依赖事实和规则，溯源不等于事实认证，审批与待办需对接业务流程。”
+
+Keep the tone professional and accessible. Do not add claims of guaranteed accuracy, automatic complete reasoning or already integrated approval workflows. Preserve every Chinese character accurately. The central requirement is comfortable visual proportions and breathing room, not more decoration. Produce one finished high-resolution 16:9 bitmap.

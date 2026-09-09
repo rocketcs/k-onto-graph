@@ -210,7 +210,10 @@ class ExecutionEngine:
 
                 # Update status
                 with self.pipeline_lock:
-                    if metrics["steps_failed"] == 0:
+                    stopped = self.pipeline_status.get(pipeline_id) == PipelineStatus.STOPPED
+                    if stopped:
+                        pass
+                    elif metrics["steps_failed"] == 0:
                         self.pipeline_status[pipeline_id] = PipelineStatus.COMPLETED
                     else:
                         self.pipeline_status[pipeline_id] = PipelineStatus.FAILED
@@ -218,7 +221,7 @@ class ExecutionEngine:
                 # Update progress tracking
                 self.progress_tracker.stop_tracking(
                     pipeline_tracking_id,
-                    status="completed" if metrics["steps_failed"] == 0 else "failed",
+                    status="completed" if metrics["steps_failed"] == 0 and not stopped else "failed",
                     message=f"Executed {metrics['steps_executed']} steps in {execution_time:.2f}s",
                 )
 
@@ -226,7 +229,7 @@ class ExecutionEngine:
                 self.progress_tracker.clear_pipeline_context(pipeline_id)
 
                 return ExecutionResult(
-                    success=metrics["steps_failed"] == 0,
+                    success=metrics["steps_failed"] == 0 and not stopped,
                     output=result,
                     metadata={
                         "pipeline_id": pipeline_id,

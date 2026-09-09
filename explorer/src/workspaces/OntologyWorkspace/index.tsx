@@ -1,3 +1,4 @@
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useState } from "react";
 import {
   BookMarked,
@@ -25,11 +26,11 @@ export type OntologyHubTab =
 const TAB_PARAM = "ontologyTab";
 
 const TABS: { id: OntologyHubTab; label: string; icon: typeof GitMerge }[] = [
-  { id: "registry", label: "Registry", icon: BookMarked },
-  { id: "editor", label: "Editor", icon: Sliders },
-  { id: "versions", label: "Versions", icon: Layers },
-  { id: "alignments", label: "Alignments", icon: GitMerge },
-  { id: "health", label: "Health", icon: HeartPulse },
+  { id: "registry", label: tr("Registry"), icon: BookMarked },
+  { id: "editor", label: tr("Editor"), icon: Sliders },
+  { id: "versions", label: tr("Versions"), icon: Layers },
+  { id: "alignments", label: tr("Alignments"), icon: GitMerge },
+  { id: "health", label: tr("Health"), icon: HeartPulse },
   { id: "shacl", label: "SHACL", icon: Shield },
 ];
 

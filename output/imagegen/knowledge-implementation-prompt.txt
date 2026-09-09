@@ -1,0 +1,42 @@
+Create a new Chinese technical explainer infographic at 2048x1152, true 16:9 landscape. Supplied image is style reference only. Explain HOW Semantica implements ontology, reasoning, provenance and decisions. Do not reproduce the user/system/output responsibility matrix. Use white background, naturally proportioned Chinese sans-serif text, navy headings, blue/teal/purple/orange functional accents, thin borders, pale fills, generous 60px margins, clear arrows and clean line icons. No stretched or condensed glyphs. Prioritize readable process steps over decoration.
+
+Title: “知识增强的实现机制”
+Subtitle: “本体建立结构 · 规则驱动推理 · 来源贯穿记录 · 策略支持裁决”
+
+Main composition: four spacious horizontal swimlanes stacked vertically. Each has a left colored module label with icon and four compact process stations connected left-to-right by arrows. Use identical tracks and spacing. 32px-equivalent headings, 23px-equivalent body. Each station has short bold heading and at most two short supporting lines. No dense paragraphs. Include small technical component names only in the left label where specified.
+
+BLUE LANE — “本体 Ontology”, small “OntologyEngine”:
+Station 1 “接收定义来源” / “实体与关系、业务文本” / “领域模板或外部本体”
+Station 2 “构建概念结构” / “按实体类型归类” / “归纳属性、关系与类别层级”
+Station 3 “形成标准表达” / “类、属性、domain / range” / “OWL 导出 · SHACL 生成”
+Station 4 “执行数据校验” / “pyshacl 检查类型与约束” / “产出本体定义与违规报告”
+Small note within lane “数据归纳与 LLM 生成是可选路径；校验需显式调用”.
+
+TEAL LANE — “推理 Reasoning”, small “Reasoner”:
+Station 1 “载入事实与规则” / “add_fact / add_rule”
+Station 2 “匹配条件” / “事实匹配规则前提” / “绑定变量”
+Station 3 “执行推导” / “前向链：事实推出结论” / “后向链：目标追查依据”
+Station 4 “返回推理结果” / “新增事实与推导依据” / “保留原始事实与推导的区别”
+Small example inside lane “规则示例：工程师(x) → 员工(x)”.
+
+PURPLE LANE — “溯源 Provenance”, small “ProvenanceManager”:
+Station 1 “传入来源信息” / “文档标识、版本、知识 ID”
+Station 2 “记录处理活动” / “关联来源、知识与执行者” / “保存时间与元数据”
+Station 3 “保存血缘关系” / “记录派生与处理链路” / “内存或 SQLite 存储”
+Station 4 “追踪与审计” / “查询来源及历史链路” / “导出 PROV 来源记录”
+Small note “按接入记录贯穿各环节，不是最后补做的一步”.
+
+ORANGE LANE — “决策 Decisions”, small “ConflictResolver + DecisionRecorder”:
+Station 1 “接收冲突与上下文” / “候选值、来源与业务策略”
+Station 2 “按策略选择” / “投票 / 来源可信度” / “时效性 / 置信度”
+Station 3 “记录裁决依据” / “保存结果、理由与关联实体” / “可对接人工审批记录”
+Station 4 “形成可追查决策” / “裁决结果与决策记录” / “由业务流程决定是否采纳”
+Small note “冲突处理与决策记录是独立组件，需要业务编排连接”.
+
+Bottom unframed outcome band with restrained small graph icon:
+“配置与编排 → 本体定义 + 推导结果 + 来源链路 + 决策记录 → 增强知识图谱”
+
+Legible footer:
+“实现边界：完整 OWL 一致性推理尚未接入本体验证器；推导依赖规则，溯源不等于事实认证。”
+
+Technical accuracy constraints: Four swimlanes show each module's internal mechanics, not a mandatory serial order across modules. Do not suggest ontology dictionaries automatically constrain extraction, all components auto-connect, all LLM-generated ontologies include SHACL validation, or decision records constitute an automatic approval UI. Domain/range OWL semantics are distinct from SHACL validation. Do not claim automatic factual truth, 100% accuracy, complete OWL reasoner implementation. The note about inference boundaries must be small but readable, not dominant. All quoted Chinese copy must be accurate, with no overlaps or truncation. The result should look spacious and pleasant like an enterprise architecture presentation, not a screenshot or cramped spreadsheet. Generate one finished bitmap.

@@ -82,7 +82,7 @@ test("real Explorer loading path hydrates and renders API edge labels", async (t
   });
   await installApiFixture(page);
   await page.goto(BASE_URL);
-  await page.getByRole("button", { name: /Open Semantica Explorer/ }).click();
+  await page.getByRole("button", { name: "打开知识探索" }).click();
 
   await page.locator("canvas").nth(0).waitFor({ state: "attached" });
   await page.waitForFunction(() => document.querySelectorAll("canvas").length >= 2);
@@ -97,7 +97,7 @@ test("real Explorer loading path hydrates and renders API edge labels", async (t
   }
   assert.ok(capturedLabels.includes("Alice"));
 
-  await page.getByRole("button", { name: "Zoom In" }).click();
+  await page.getByRole("button", { name: "放大" }).click();
   await page.waitForTimeout(250);
   const labelsAfterZoom = await page.evaluate(() => (window as Window & { __capturedCanvasText?: string[] }).__capturedCanvasText ?? []);
   for (const label of ["WORKS_AT", "KNOWS", "LOCATED_IN"]) {

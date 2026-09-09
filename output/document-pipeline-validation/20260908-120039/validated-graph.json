@@ -1,0 +1,625 @@
+{
+  "nodes": [
+    {
+      "id": "循上医疗集团",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗集团",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "循上医疗",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "卫星诊所",
+      "type": "设施类型",
+      "properties": {
+        "content": "卫星诊所",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "区域医疗中心",
+      "type": "设施类型",
+      "properties": {
+        "content": "区域医疗中心",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿主题综合医院",
+      "type": "设施类型",
+      "properties": {
+        "content": "长寿主题综合医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医院",
+      "type": "设施类型",
+      "properties": {
+        "content": "国际医院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "永生岛",
+      "type": "项目",
+      "properties": {
+        "content": "永生岛",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "长寿医学",
+      "type": "学科",
+      "properties": {
+        "content": "长寿医学",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "慢病逆转",
+      "type": "学科",
+      "properties": {
+        "content": "慢病逆转",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "肿瘤癌症",
+      "type": "学科",
+      "properties": {
+        "content": "肿瘤癌症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "疑难重症",
+      "type": "学科",
+      "properties": {
+        "content": "疑难重症",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "跨境救援",
+      "type": "学科",
+      "properties": {
+        "content": "跨境救援",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "伦敦大学玛丽女王学院",
+      "type": "机构",
+      "properties": {
+        "content": "伦敦大学玛丽女王学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "肿瘤医学和长寿医学硕士项目",
+      "type": "项目",
+      "properties": {
+        "content": "肿瘤医学和长寿医学硕士项目",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "英国皇家全科医师学院",
+      "type": "机构",
+      "properties": {
+        "content": "英国皇家全科医师学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "国际医学院",
+      "type": "机构",
+      "properties": {
+        "content": "国际医学院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "迪拜分院",
+      "type": "机构",
+      "properties": {
+        "content": "迪拜分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "南宁分院",
+      "type": "机构",
+      "properties": {
+        "content": "南宁分院",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "北京",
+      "type": "地点",
+      "properties": {
+        "content": "北京",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "上海",
+      "type": "地点",
+      "properties": {
+        "content": "上海",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "广州",
+      "type": "地点",
+      "properties": {
+        "content": "广州",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "成都",
+      "type": "地点",
+      "properties": {
+        "content": "成都",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "武汉",
+      "type": "地点",
+      "properties": {
+        "content": "武汉",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "海南",
+      "type": "地点",
+      "properties": {
+        "content": "海南",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    },
+    {
+      "id": "健康寿命提升至120岁",
+      "type": "目标",
+      "properties": {
+        "content": "健康寿命提升至120岁",
+        "source_document": "循上介介绍-无股东版.docx"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source_id": "循上医疗",
+      "target_id": "卫星诊所",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "计划在全国布局2000+家卫星诊所，确保客户在5公里范围内即可获取卫星诊所的基础医疗服务，形成高效便捷的初级全科诊疗网络。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "2000+家",
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          7
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "区域医疗中心",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "在直辖市及省会城市建设30+家区域医疗中心，每家机构面积2000-5000平方米，配置全专联合诊疗、免疫、生化及影像检查、日间手术等综合服务能力，辐射区域医疗需求，提升诊疗质量与效率。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "30+家",
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          9
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "长寿主题综合医院",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "6家",
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "国际医院",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": "2家",
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          13
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "国际医院",
+      "target_id": "迪拜分院",
+      "type": "包含机构",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+        "status": "已运营",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          13
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "国际医院",
+      "target_id": "南宁分院",
+      "type": "包含机构",
+      "properties": {
+        "evidence": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+        "status": "建设中",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          13
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "永生岛",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "规划“永生岛”项目，聚焦再生医学、生命科技等前沿领域，探索延长寿命但又同时提升生命质量的突破性解决方案，形成医疗科研与临床转化的创新高地。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          15
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "长寿医学",
+      "type": "重点发展",
+      "properties": {
+        "evidence": "长寿医学Longevity Medicine\n\nForever Fit 120 Years Young\n\n长寿医学助力健康活力120岁\n\n作为对基本医疗保障的重要补充，循上医疗更专注于78.3岁（平均寿命）至120岁人群的健康需求。通过前沿的综合抗衰老疗法、慢病系统管理等方式，延长健康寿命、助力实现“健康活力120岁”的核心目标。",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          19,
+          22
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "慢病逆转",
+      "type": "重点发展",
+      "properties": {
+        "evidence": "慢病逆转Precision Medicine\n\nTo Reveal The Root of Every Cause\n\n致力为所有医疗病症寻找源头\n\n慢病逆转不仅仅是延缓病程，更是基于前沿医学实现疾病状态真正改善的系统工程。慢病的发生总有原因，同一种症状可能根源于不同器官或系统的功能失衡。现阶段很多慢病找不到妥善的解决方案，很重要的原因是没有好的工具，循上医疗专注于通过精准医学、功能医学等国际前沿的医疗诊断方式，“循源而上、抽丝剥茧、釜底抽薪”，致力于为所有医疗病症寻找源头。",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          23,
+          26
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "肿瘤癌症",
+      "type": "重点发展",
+      "properties": {
+        "evidence": "肿瘤癌症Innovative Oncology\n\nA Better Future，Without Cancer\n\n创造一个无惧癌症的未来世界\n\n在寿命可延至120岁的新医学时代，许多在78.3岁平均寿命下的良性结节将有更高概率演变为癌症。循上医疗肿瘤癌症学科聚焦癌症极早期，对潜在高风险病灶实施前置化干预。对已确诊患者，整合全球先端医疗资源与多学科诊疗模式，涵盖微创精准手术、靶向与免疫疗法、细胞基因治疗及疼痛管理，力求在保全生命质量的同时，延长、更安全且更有尊严地管理生存周期。",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          27,
+          30
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "疑难重症",
+      "type": "重点发展",
+      "properties": {
+        "evidence": "疑难重症 Complex Diseases\n\nWhere Disciplines Converge, Miracles Emerge\n\n多学科联合诊疗破解疑难困局\n\n面向诊断困难、病程复杂、反复无效治疗的患者人群，循上医疗集结跨学科专家，联动全球医学资源，突破常规路径，致力于为「被放弃」「被误解」「未被确诊」的患者寻找解决方案。",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          31,
+          34
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "跨境救援",
+      "type": "重点发展",
+      "properties": {
+        "evidence": "跨境救援 Cross-border SOS\n\nBeyond Borders，Beyond Hope\n\n极速跨越边界守护生命希望线\n\n循上医疗搭建全球医疗调度与救援体系，专业处理海外重疾救援、空中转运、紧急就医安排，链接全球专家、机构、航空通道，保障诊疗不中断。",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          35,
+          38
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "伦敦大学玛丽女王学院",
+      "type": "合作",
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          41
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "肿瘤医学和长寿医学硕士项目",
+      "type": "开设项目",
+      "properties": {
+        "evidence": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          41
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "英国皇家全科医师学院",
+      "type": "合作",
+      "properties": {
+        "evidence": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+        "status": "文档陈述",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          42
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "国际医学院",
+      "type": "规划建设",
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": "2028年",
+        "evidence_paragraph_ids": [
+          43
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "长寿主题综合医院",
+      "target_id": "北京",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "长寿主题综合医院",
+      "target_id": "上海",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "长寿主题综合医院",
+      "target_id": "广州",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "长寿主题综合医院",
+      "target_id": "成都",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "长寿主题综合医院",
+      "target_id": "武汉",
+      "type": "位于",
+      "properties": {
+        "evidence": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          11
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "国际医学院",
+      "target_id": "海南",
+      "type": "位于",
+      "properties": {
+        "evidence": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+        "status": "规划",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          43
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    },
+    {
+      "source_id": "循上医疗",
+      "target_id": "健康寿命提升至120岁",
+      "type": "发展目标",
+      "properties": {
+        "evidence": "体系联动与目标：通过5级机构功能联动，建立“诊断-预防-保健-抗衰-延寿”全链条服务机制，实现客户从出生到终老的贴身式健康管理。依托尖端医疗技术，致力于将人类健康寿命提升至120岁，推动医疗健康服务向更高维度发展。",
+        "status": "目标",
+        "chunk": 1,
+        "source_document": "循上介介绍-无股东版.docx",
+        "quantity_text": null,
+        "year_text": null,
+        "evidence_paragraph_ids": [
+          16
+        ],
+        "template_version": "1.1.0",
+        "rules_version": "1.1.0"
+      }
+    }
+  ]
+}

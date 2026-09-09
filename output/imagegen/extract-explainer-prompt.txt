@@ -1,0 +1,55 @@
+Use case: infographic-diagram
+Create one polished Chinese enterprise product explanatory infographic about Semantica Extract, for customer presentations. Landscape 1536x1024 composition, clean white background, sharp Chinese sans-serif typography, dark navy title, thin colored section borders, blue/green/teal/purple/orange functional accents, restrained pale fills, simple professional line icons and clear directional arrows. Match the supplied knowledge-graph architecture reference's visual language but make this new diagram substantially less crowded. Do not reproduce the full architecture; zoom in on Extract. Ensure all Chinese text is readable and spelled correctly, all arrows are unambiguous, and nothing overlaps.
+
+Title: “智能信息提取：从文档到可用知识”
+Subtitle: “多策略识别 · 业务可配置 · 结果可检查 · 溯源可接入”
+
+Top narrow context ribbon: “解析 → 标准化 → 拆分 → 提取 Extract → 冲突检测 → 去重 → 知识图谱”. Highlight Extract in purple.
+
+Main flow, four numbered columns with arrows:
+1. “定义业务目标”
+   “实体类型：要找哪些对象”
+   “关系类型：关注哪些连接”
+   “方法与模型：匹配语言和领域”
+   Footer label: “配置驱动”
+2. “多策略提取”
+   “规则 / 正则：识别固定表达”
+   “NER 模型：定位实体与类型”
+   “LLM：结合上下文识别关系”
+   “按需扩展：指代、事件、时间”
+   Footer label: “按任务选用，支持回退”
+3. “结构化与检查”
+   “实体 + 关系 + 三元组”
+   “输出结构校验”
+   “置信度过滤与基础检查”
+   “可选接入来源追踪”
+   Footer label: “形成可检查的候选知识”
+4. “连接业务应用”
+   “冲突检测与去重”
+   “知识图谱构建”
+   “检索问答与关系分析”
+   “导出与 API 集成”
+   Footer label: “进入后续知识流水线”
+
+Middle full-width worked example band, heading “一段原文，如何变成知识”.
+Left document icon and exact source text: “2025年，张三加入甲公司，担任工程师。”
+Center colored entity chips: “张三｜人物”, “甲公司｜组织”, “2025年｜时间”.
+Right a small readable node-edge diagram: “张三” arrow labeled “任职于” to “甲公司”; below it “时间：2025年”.
+Small label: “示意结果，实际输出由提取配置与模型决定”.
+
+Bottom two horizontally adjacent unframed sections with clear separation:
+Left heading “已有能力：让提取可配置、可检查”
+Three icon-led compact statements:
+“适配业务：实体与关系类型可配置”
+“灵活接入：规则、NER 与 LLM 可选”
+“便于检查：结构化输出与可选溯源”
+Right heading “推荐增强：让准确性可验证”
+Use dashed border or dashed connectors to distinguish recommended additions from existing features.
+“严格业务约束：限定类型、方向与条件”
+“原文证据校验：检查否定、假设与时间”
+“人工审核与标注评测：衡量精确率和召回率”
+Draw a subtle dashed feedback arrow from this recommended section back to “定义业务目标”, labeled “反馈优化”.
+
+Footer, legible small text: “能力按配置启用；置信度不等于准确率。准确性需以业务样本评测，证据校验与人工审核需额外接入。”
+
+Truthfulness constraints: Do not claim guaranteed correctness, 100% accuracy, benchmark percentages, automatic factual verification, or mandatory human review already implemented. Do not present optional features as always enabled. Do not suggest multi-method fallback automatically provides consensus. Do not claim all outputs already have exact page-level evidence. The reference is a visual style reference, not evidence for unverified product claims. Keep the overall impression confident, clear, useful and customer-friendly rather than defensive.

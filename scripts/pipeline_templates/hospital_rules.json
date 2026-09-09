@@ -1,0 +1,12 @@
+{
+  "version": "1.1.0",
+  "reject_reverse_facility_containment": true,
+  "statuses": ["已运营", "建设中", "规划", "目标", "文档陈述"],
+  "relation_aliases": {"合作开设": "合作", "合作提供培训": "合作", "计划建设": "规划建设", "计划布局": "规划建设", "计划设立": "规划建设"},
+  "statement_relations": ["合作", "开设项目", "提供服务", "重点发展"],
+  "operational_markers": ["已投入运营", "已运营", "正式运营", "已开业"],
+  "construction_markers": ["建设中", "启动建设"],
+  "planning_markers": ["计划", "规划", "建设", "布局"],
+  "require_target_in_evidence": true,
+  "require_source_in_evidence": false
+}

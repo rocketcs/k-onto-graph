@@ -1,0 +1,3 @@
+{
+  "version":"1.0.0","statuses":["文档陈述"],"relation_aliases":{},"statement_relations":["任职","担任职务","擅长专业","擅长治疗","拥有认证","毕业于","曾就职","参与研究","发表成果","所属团队"],"require_target_in_evidence":true,"require_source_in_evidence":true,"review_isolated_entities":true,"required_mentions":[]
+}

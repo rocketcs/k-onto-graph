@@ -1,3 +1,5 @@
+import { errorText } from "../../i18n";
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { GitMerge, Loader2, Sparkles, Trash2 } from "lucide-react";
@@ -41,7 +43,7 @@ export function AlignmentsTab() {
   const [relation, setRelation] = useState<AlignmentRelation>("skos:exactMatch");
   const [confidence, setConfidence] = useState(0.86);
   const [provenance, setProvenance] = useState("");
-  const [source, setSource] = useState("Ontology Hub");
+  const [source, setSource] = useState(tr("Ontology Hub"));
   const [reviewer, setReviewer] = useState("");
   const [threshold, setThreshold] = useState(0.68);
   const [busy, setBusy] = useState(false);
@@ -60,12 +62,12 @@ export function AlignmentsTab() {
       setSourceOntology((current) => current || registryResult.value[0]?.uri || "");
       setTargetOntology((current) => current || registryResult.value[1]?.uri || registryResult.value[0]?.uri || "");
     } else {
-      errors.push(registryResult.reason instanceof Error ? registryResult.reason.message : "Failed to load ontology registry.");
+      errors.push(registryResult.reason instanceof Error ? registryResult.reason.message : tr("Failed to load ontology registry."));
     }
     if (alignmentResult.status === "fulfilled") {
       setAlignments(alignmentResult.value);
     } else {
-      errors.push(alignmentResult.reason instanceof Error ? alignmentResult.reason.message : "Failed to load alignments.");
+      errors.push(alignmentResult.reason instanceof Error ? alignmentResult.reason.message : tr("Failed to load alignments."));
     }
     if (errors.length) setError(errors.join(" "));
   }, []);
@@ -85,12 +87,12 @@ export function AlignmentsTab() {
         setSourceOntology((current) => current || registryResult.value[0]?.uri || "");
         setTargetOntology((current) => current || registryResult.value[1]?.uri || registryResult.value[0]?.uri || "");
       } else {
-        errors.push(registryResult.reason instanceof Error ? registryResult.reason.message : "Failed to load ontology registry.");
+        errors.push(registryResult.reason instanceof Error ? registryResult.reason.message : tr("Failed to load ontology registry."));
       }
       if (alignmentResult.status === "fulfilled") {
         setAlignments(alignmentResult.value);
       } else {
-        errors.push(alignmentResult.reason instanceof Error ? alignmentResult.reason.message : "Failed to load alignments.");
+        errors.push(alignmentResult.reason instanceof Error ? alignmentResult.reason.message : tr("Failed to load alignments."));
       }
       if (errors.length) setError(errors.join(" "));
     }
@@ -131,7 +133,7 @@ export function AlignmentsTab() {
 
   const handleSave = useCallback(async () => {
     if (!sourceUri.trim() || !targetUri.trim()) {
-      setError("Provide both source and target entity URIs.");
+      setError(tr("Provide both source and target entity URIs."));
       return;
     }
     setBusy(true);
@@ -150,7 +152,7 @@ export function AlignmentsTab() {
       setTargetUri("");
       await reload();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not save alignment.");
+      setError(err instanceof Error ? err.message : tr("Could not save alignment."));
     } finally {
       setBusy(false);
     }
@@ -168,7 +170,7 @@ export function AlignmentsTab() {
       });
       setSuggestions(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not suggest alignments.");
+      setError(err instanceof Error ? err.message : tr("Could not suggest alignments."));
     } finally {
       setBusy(false);
     }
@@ -189,7 +191,7 @@ export function AlignmentsTab() {
       await removeAlignment(id);
       await reload();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Could not remove alignment.");
+      setError(err instanceof Error ? err.message : tr("Could not remove alignment."));
     } finally {
       setBusy(false);
     }
@@ -199,30 +201,28 @@ export function AlignmentsTab() {
     <div style={pageStyle}>
       <section style={heroStyle}>
         <div>
-          <div style={kickerStyle}><GitMerge size={14} /> Alignment Matrix</div>
-          <h2 style={titleStyle}>Cross-ontology mappings</h2>
+          <div style={kickerStyle}><GitMerge size={14} /> {tr("Alignment Matrix")}</div>
+          <h2 style={titleStyle}>{tr("Cross-ontology mappings")}</h2>
           <p style={textStyle}>
-            Manage equivalence and SKOS match relations with confidence, provenance,
-            reviewer context, and label-based suggestions.
+            {tr("Manage equivalence and SKOS match relations with confidence, provenance, reviewer context, and label-based suggestions.")}
           </p>
         </div>
         <div style={summaryGridStyle}>
-          <Metric label="Mappings" value={alignments.length} />
-          <Metric label="Relations" value={relationCounts.size} />
-          <Metric label="Suggestions" value={suggestions.length} />
+          <Metric label={tr("Mappings")} value={alignments.length} />
+          <Metric label={tr("Relations")} value={relationCounts.size} />
+          <Metric label={tr("Suggestions")} value={suggestions.length} />
         </div>
       </section>
 
-      {error ? <div style={errorStyle}>{error}</div> : null}
+      {error ? <div style={errorStyle}>{errorText(String(error))}</div> : null}
 
       <div style={ephemeralBannerStyle}>
-        Alignments are stored in server memory and are not persisted across restarts.
-        Export your graph or ontology to preserve recorded mappings.
+        {tr("Alignments are stored in server memory and are not persisted across restarts. Export your graph or ontology to preserve recorded mappings.")}
       </div>
 
       {matrix.ontologies.length >= 2 ? (
         <section style={cardStyle}>
-          <h3 style={sectionTitleStyle}>Pairwise alignment matrix</h3>
+          <h3 style={sectionTitleStyle}>{tr("Pairwise alignment matrix")}</h3>
           <div style={{ overflowX: "auto" }}>
             <table style={matrixTableStyle}>
               <thead>
@@ -271,26 +271,26 @@ export function AlignmentsTab() {
               </tbody>
             </table>
           </div>
-          <p style={{ ...mutedStyle, marginTop: 10 }}>Click a relation badge to load it into the editor below.</p>
+          <p style={{ ...mutedStyle, marginTop: 10 }}>{tr("Click a relation badge to load it into the editor below.")}</p>
         </section>
       ) : null}
 
       <div style={gridStyle}>
         <section style={cardStyle}>
-          <h3 style={sectionTitleStyle}>Create or update alignment</h3>
-          <label style={labelStyle}>Source entity URI</label>
+          <h3 style={sectionTitleStyle}>{tr("Create or update alignment")}</h3>
+          <label style={labelStyle}>{tr("Source entity URI")}</label>
           <input style={inputStyle} value={sourceUri} onChange={(event) => setSourceUri(event.target.value)} />
-          <label style={labelStyle}>Target entity URI</label>
+          <label style={labelStyle}>{tr("Target entity URI")}</label>
           <input style={inputStyle} value={targetUri} onChange={(event) => setTargetUri(event.target.value)} />
           <div style={twoColStyle}>
             <div>
-              <label style={labelStyle}>Relation</label>
+              <label style={labelStyle}>{tr("Relation")}</label>
               <select style={inputStyle} value={relation} onChange={(event) => setRelation(event.target.value as AlignmentRelation)}>
                 {RELATIONS.map((item) => <option key={item}>{item}</option>)}
               </select>
             </div>
             <div>
-              <label style={labelStyle}>Confidence {confidence.toFixed(2)}</label>
+              <label style={labelStyle}>{tr("Confidence")} {confidence.toFixed(2)}</label>
               <input
                 type="range"
                 min="0"
@@ -302,43 +302,43 @@ export function AlignmentsTab() {
               />
             </div>
           </div>
-          <label style={labelStyle}>Provenance note</label>
+          <label style={labelStyle}>{tr("Provenance note")}</label>
           <textarea style={{ ...inputStyle, minHeight: 74, resize: "vertical" }} value={provenance} onChange={(event) => setProvenance(event.target.value)} />
           <div style={twoColStyle}>
             <div>
-              <label style={labelStyle}>Source</label>
+              <label style={labelStyle}>{tr("Origin")}</label>
               <input style={inputStyle} value={source} onChange={(event) => setSource(event.target.value)} />
             </div>
             <div>
-              <label style={labelStyle}>Reviewer</label>
+              <label style={labelStyle}>{tr("Reviewer")}</label>
               <input style={inputStyle} value={reviewer} onChange={(event) => setReviewer(event.target.value)} />
             </div>
           </div>
           <button style={primaryButtonStyle} disabled={busy} onClick={handleSave}>
             {busy ? <Loader2 size={14} className="ws-spin" /> : <GitMerge size={14} />}
-            Save alignment
+            {tr("Save alignment")}
           </button>
         </section>
 
         <section style={cardStyle}>
-          <h3 style={sectionTitleStyle}>Suggest alignments</h3>
+          <h3 style={sectionTitleStyle}>{tr("Suggest alignments")}</h3>
           <div style={twoColStyle}>
             <div>
-              <label style={labelStyle}>Source ontology</label>
+              <label style={labelStyle}>{tr("Source ontology")}</label>
               <select style={inputStyle} value={sourceOntology} onChange={(event) => setSourceOntology(event.target.value)}>
-                <option value="">Any ontology</option>
+                <option value="">{tr("Any ontology")}</option>
                 {registry.map((entry) => <option key={entry.uri} value={entry.uri}>{entry.name}</option>)}
               </select>
             </div>
             <div>
-              <label style={labelStyle}>Target ontology</label>
+              <label style={labelStyle}>{tr("Target ontology")}</label>
               <select style={inputStyle} value={targetOntology} onChange={(event) => setTargetOntology(event.target.value)}>
-                <option value="">Any ontology</option>
+                <option value="">{tr("Any ontology")}</option>
                 {registry.map((entry) => <option key={entry.uri} value={entry.uri}>{entry.name}</option>)}
               </select>
             </div>
           </div>
-          <label style={labelStyle}>Similarity threshold {threshold.toFixed(2)}</label>
+          <label style={labelStyle}>{tr("Similarity threshold")} {threshold.toFixed(2)}</label>
           <input
             type="range"
             min="0.25"
@@ -350,7 +350,7 @@ export function AlignmentsTab() {
           />
           <button style={secondaryButtonStyle} disabled={busy} onClick={handleSuggest}>
             <Sparkles size={14} />
-            Suggest alignments
+            {tr("Suggest alignments")}
           </button>
           <div style={suggestionListStyle}>
             {suggestions.map((item) => (
@@ -361,13 +361,13 @@ export function AlignmentsTab() {
                 <span style={{ color: "#8fa8c6" }}>{Math.round(item.score * 100)}%</span>
               </button>
             ))}
-            {!suggestions.length ? <p style={mutedStyle}>Run suggestions to review ranked candidate mappings.</p> : null}
+            {!suggestions.length ? <p style={mutedStyle}>{tr("Run suggestions to review ranked candidate mappings.")}</p> : null}
           </div>
         </section>
       </div>
 
       <section style={cardStyle}>
-        <h3 style={sectionTitleStyle}>Recorded alignments</h3>
+        <h3 style={sectionTitleStyle}>{tr("Recorded alignments")}</h3>
         <div style={tableStyle}>
           {alignments.map((item) => (
             <div key={item.id} style={rowStyle}>
@@ -383,12 +383,12 @@ export function AlignmentsTab() {
                 <div style={monoStyle}>{item.target_uri}</div>
               </div>
               <div style={confidenceStyle}>{Math.round(item.confidence * 100)}%</div>
-              <button style={iconButtonStyle} disabled={busy} onClick={() => handleRemove(item.id)} title="Remove alignment">
+              <button style={iconButtonStyle} disabled={busy} onClick={() => handleRemove(item.id)} title={tr("Remove alignment")}>
                 <Trash2 size={14} />
               </button>
             </div>
           ))}
-          {!alignments.length ? <p style={mutedStyle}>No alignments recorded yet.</p> : null}
+          {!alignments.length ? <p style={mutedStyle}>{tr("No alignments recorded yet.")}</p> : null}
         </div>
       </section>
     </div>

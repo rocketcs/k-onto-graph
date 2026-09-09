@@ -57,7 +57,7 @@ test("shows the Memories tab only when the host provides AgentMemory", () => {
       onSelect={() => undefined}
     />,
   );
-  assert.ok(availableView.getByRole("button", { name: "Memories" }));
+  assert.ok(availableView.getByRole("button", { name: "记忆" }));
   cleanup();
 
   const unavailableView = render(
@@ -68,7 +68,7 @@ test("shows the Memories tab only when the host provides AgentMemory", () => {
     />,
   );
   assert.equal(
-    unavailableView.queryByRole("button", { name: "Memories" }),
+    unavailableView.queryByRole("button", { name: "记忆" }),
     null,
   );
 });

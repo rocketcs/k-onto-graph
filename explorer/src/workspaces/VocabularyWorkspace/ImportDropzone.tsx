@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 /**
  * ImportDropzone.tsx
  *
@@ -65,29 +66,29 @@ export const ImportDropzone: React.FC = () => {
         {importMutation.isPending ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#8b949e' }}>
             <Loader2 className="animate-spin" size={20} style={{ marginBottom: 6 }} />
-            <span style={{ fontSize: 12 }}>Uploading {file?.name}…</span>
+            <span style={{ fontSize: 12 }}>{t("Uploading")} {file?.name}…</span>
           </div>
         ) : importResult ? (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#3fb950' }}>
             <CheckCircle2 size={20} style={{ marginBottom: 6 }} />
-            <span style={{ fontSize: 12, fontWeight: 500 }}>Import Successful!</span>
+            <span style={{ fontSize: 12, fontWeight: 500 }}>{t("Import Successful!")}</span>
             <span style={{ fontSize: 11, marginTop: 2, color: '#56d364' }}>
-              +{importResult.nodes_added} concepts · +{importResult.edges_added} links
+              +{importResult.nodes_added} {t("concepts · +")}{importResult.edges_added} {t("links")}
             </span>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', color: '#8b949e' }}>
             <UploadCloud size={20} style={{ marginBottom: 6, color: isDragActive ? '#58a6ff' : '#484f58' }} />
             <span style={{ fontSize: 12, fontWeight: 500, color: '#c9d1d9' }}>
-              {isDragActive ? "Drop here…" : "Import Vocabulary"}
+              {isDragActive ? t("Drop here…") : t("Import Vocabulary")}
             </span>
-            <span style={{ fontSize: 11, marginTop: 2 }}>.ttl or .rdf</span>
+            <span style={{ fontSize: 11, marginTop: 2 }}>{t(".ttl or .rdf")}</span>
           </div>
         )}
       </div>
       {importMutation.isError && (
         <p style={{ color: '#f85149', fontSize: 11, marginTop: 6, textAlign: 'center' }}>
-          Upload failed. Check console.
+          {t("Upload failed. Check console.")}
         </p>
       )}
     </div>

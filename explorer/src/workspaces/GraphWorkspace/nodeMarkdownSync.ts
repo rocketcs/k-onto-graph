@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 export interface NodeMarkdownAttributeUpdate {
   label: string;
   content: string;
@@ -60,12 +61,12 @@ export async function readNodeMarkdownAttributeUpdate(
     `/api/graph/node?node_id=${encodeURIComponent(nodeId)}`,
   );
   if (!response.ok) {
-    throw new Error(`Graph node refresh failed (${response.status}).`);
+    throw new Error(t("Graph node refresh failed (status {0}).", {0: response.status}));
   }
 
   const node = await response.json() as GraphNodeMarkdownSnapshot;
   if (node.id !== nodeId) {
-    throw new Error("Graph node refresh returned a different resource.");
+    throw new Error(t("Graph node refresh returned a different resource."));
   }
 
   return {

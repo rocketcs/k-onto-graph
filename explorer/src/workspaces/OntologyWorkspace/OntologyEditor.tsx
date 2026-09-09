@@ -1,3 +1,6 @@
+import { displayText } from "../../i18n";
+import { flowAriaLabels } from "../../flowLocale";
+import { t as tr } from "../../i18n";
 import { useCallback, useEffect, useState } from "react";
 import {
   ReactFlow,
@@ -47,8 +50,8 @@ const nodeTypes = {
   classNode: ({ data }: { data: OntologyNodeData }) => (
     <div style={classNodeStyle}>
       <Handle type="target" position={Position.Left} style={handleStyle} />
-      <div style={classNodeHeader}>{data.label}</div>
-      <div style={classNodeSub}>{data.type}</div>
+      <div style={classNodeHeader}>{displayText(String(data.label))}</div>
+      <div style={classNodeSub}>{displayText(String(data.type))}</div>
       <Handle type="source" position={Position.Right} style={handleStyle} />
     </div>
   ),
@@ -257,7 +260,7 @@ export function OntologyEditor() {
         setOntologyUri((current) => current || inferredOntology || entries[0]?.uri || "");
       })
       .catch((error) => {
-        console.error("Failed to load ontology registry:", error);
+        console.error(tr("Failed to load ontology registry:"), error);
       });
     return () => {
       cancelled = true;
@@ -288,7 +291,7 @@ export function OntologyEditor() {
         setNodes([]);
         setEdges([]);
         setSelectedElement(null);
-        setGraphError(error instanceof Error ? error.message : "Failed to load ontology graph");
+        setGraphError(error instanceof Error ? error.message : tr("Failed to load ontology graph"));
       })
       .finally(() => {
         if (!controller.signal.aborted) setIsLoadingGraph(false);
@@ -327,7 +330,7 @@ export function OntologyEditor() {
 
   const addProperty = useCallback(() => {
     if (nodes.length < 2) {
-      alert("Add at least two classes before creating a property edge.");
+      alert(tr("Add at least two classes before creating a property edge."));
       return;
     }
     const newId = `prop_${Date.now()}`;
@@ -389,7 +392,7 @@ export function OntologyEditor() {
 
   const saveDraft = useCallback(async () => {
     if (!ontologyUri) {
-      alert("Please select an ontology first");
+      alert(tr("Please select an ontology first"));
       return;
     }
     setIsSaving(true);
@@ -401,16 +404,16 @@ export function OntologyEditor() {
           ontology_uri: ontologyUri,
           diff: draftDiff,
           author: "user",
-          summary: "Visual editor changes",
+          summary: tr("Visual editor changes"),
         }),
       });
       if (response.ok) {
         const data = await response.json();
-        alert(`Draft saved: ${data.draft_id}`);
+        alert(tr("Draft saved: {0}", {0: data.draft_id}));
       }
     } catch (error) {
-      console.error("Failed to save draft:", error);
-      alert("Failed to save draft");
+      console.error(tr("Failed to save draft:"), error);
+      alert(tr("Failed to save draft"));
     } finally {
       setIsSaving(false);
     }
@@ -451,7 +454,7 @@ export function OntologyEditor() {
   const renameSelected = useCallback(() => {
     const target = showContext?.element ?? selectedElement;
     if (target && !("source" in target) && isEditableEntityType(target.data.entityType)) {
-      const newLabel = prompt("Enter new name:", String(target.data.label ?? ""));
+      const newLabel = prompt(tr("Enter new name:"), String(target.data.label ?? ""));
       if (newLabel) {
         setNodes((nds) =>
           nds.map((n) => (n.id === target.id ? { ...n, data: { ...n.data, label: newLabel } } : n))
@@ -549,7 +552,7 @@ export function OntologyEditor() {
       <style>{ontologyFlowThemeCss}</style>
       <div style={toolbarStyle}>
         <select
-          aria-label="Active ontology"
+          aria-label={tr("Active ontology")}
           value={ontologyUri}
           onChange={(event) => {
             setOntologyUri(event.target.value);
@@ -566,7 +569,7 @@ export function OntologyEditor() {
           }}
           style={selectStyle}
         >
-          <option value="">Select ontology...</option>
+          <option value="">{tr("Select ontology...")}</option>
           {registry.map((entry) => (
             <option key={entry.uri} value={entry.uri}>
               {entry.name || entry.uri}
@@ -575,38 +578,39 @@ export function OntologyEditor() {
         </select>
         <button style={toolbarButtonStyle} onClick={addClass}>
           <Plus size={14} />
-          Add Class
+          {tr("Add Class")}
         </button>
         <button style={toolbarButtonStyle} onClick={addProperty} disabled={nodes.length < 2}>
           <GitBranch size={14} />
-          Add Property
+          {tr("Add Property")}
         </button>
         <button style={toolbarButtonStyle} onClick={addIndividual}>
           <User size={14} />
-          Add Individual
+          {tr("Add Individual")}
         </button>
         <button style={toolbarButtonStyle} onClick={addRestriction}>
           <Shield size={14} />
-          Add Restriction
+          {tr("Add Restriction")}
         </button>
         <button style={toolbarButtonStyle} onClick={addAxiom}>
           <FileText size={14} />
-          Add Axiom
+          {tr("Add Axiom")}
         </button>
         <button style={toolbarButtonStyle} onClick={autoLayout}>
           <Layout size={14} />
-          Auto Layout
+          {tr("Auto Layout")}
         </button>
         <div style={{ flex: 1 }} />
         <button style={toolbarButtonStyle} onClick={saveDraft} disabled={isSaving}>
           <Send size={14} />
-          {isSaving ? "Saving..." : "Propose"}
+          {isSaving ? tr("Saving...") : tr("Propose")}
         </button>
       </div>
 
       <div style={{ display: "flex", flex: 1, minHeight: 0, minWidth: 0 }}>
         <div style={{ flex: 1, minHeight: 0, minWidth: 0, position: "relative" }}>
           <ReactFlow
+            ariaLabelConfig={flowAriaLabels}
             className="ontology-editor-flow"
             nodes={nodes}
             edges={edges}
@@ -628,13 +632,13 @@ export function OntologyEditor() {
           </ReactFlow>
 
           {isLoadingGraph && (
-            <div style={canvasMessageStyle}>Loading ontology structure…</div>
+            <div style={canvasMessageStyle}>{tr("Loading ontology structure…")}</div>
           )}
           {!isLoadingGraph && graphError && (
             <div style={{ ...canvasMessageStyle, color: "#ff9a8d" }}>{graphError}</div>
           )}
           {!isLoadingGraph && !graphError && ontologyUri && nodes.length === 0 && (
-            <div style={canvasMessageStyle}>This ontology has no editable classes or properties.</div>
+            <div style={canvasMessageStyle}>{tr("This ontology has no editable classes or properties.")}</div>
           )}
 
           {showContext && (
@@ -644,17 +648,17 @@ export function OntologyEditor() {
                   {!("source" in showContext.element) && (
                     <div style={contextItemStyle} onClick={renameSelected}>
                       <Pencil size={14} />
-                      Rename
+                      {tr("Rename")}
                     </div>
                   )}
                   <div style={contextItemStyle} onClick={deleteSelected}>
                     <Trash2 size={14} />
-                    Delete
+                    {tr("Delete")}
                   </div>
                 </>
               ) : (
                 <div style={{ ...contextItemStyle, cursor: "default", color: "#8fa8c6" }}>
-                  This term is read-only
+                  {tr("This term is read-only")}
                 </div>
               )}
             </div>
@@ -665,14 +669,14 @@ export function OntologyEditor() {
           <div style={detailPanelStyle}>
             <h3 style={{ margin: "0 0 16px", color: "#ebf3ff", fontSize: "16px" }}>
               {"source" in selectedElement
-                ? "Relationship Details"
+                ? tr("Relationship Details")
                 : selectedElement.data.entityType === "property"
-                  ? "Property Details"
+                  ? tr("Property Details")
                   : selectedElement.data.entityType === "ontology"
-                    ? "Ontology Details"
+                    ? tr("Ontology Details")
                     : selectedElement.data.entityType === "external"
-                      ? "External Term Details"
-                      : "Class Details"}
+                      ? tr("External Term Details")
+                      : tr("Class Details")}
             </h3>
             <div style={{ marginBottom: "12px" }}>
               <label style={{ display: "block", color: "#8fa8c6", fontSize: "12px", marginBottom: "4px" }}>
@@ -686,7 +690,7 @@ export function OntologyEditor() {
               <>
                 <div style={{ marginBottom: "12px" }}>
                   <label style={{ display: "block", color: "#8fa8c6", fontSize: "12px", marginBottom: "4px" }}>
-                    Label
+                    {tr("Label")}
                   </label>
                   <input
                     type="text"
@@ -731,7 +735,7 @@ export function OntologyEditor() {
                 </div>
                 <div style={{ marginBottom: "12px" }}>
                   <label style={{ display: "block", color: "#8fa8c6", fontSize: "12px", marginBottom: "4px" }}>
-                    Type
+                    {tr("Type")}
                   </label>
                   <div style={{ color: "#ebf3ff", fontSize: "13px" }}>
                     {selectedElement.data.type || "owl:Class"}

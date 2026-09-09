@@ -26,11 +26,13 @@ async function assertLegendMatchesGraph(page: Page, nodeIds?: string[]) {
   const result = await page.evaluate(async (includedNodeIds) => {
     const storePath = "/src/store/graphStore.ts";
     const { graph } = await import(storePath);
+    const localePath = "/src/exploreLocale.ts";
+    const { exploreTerm } = await import(localePath);
     const colors: Record<string, string> = {};
     graph.forEachNode((id: string, attrs: { semanticGroup: string; baseColor: string }) => {
       if (includedNodeIds && !includedNodeIds.includes(id)) return;
       const hex = attrs.baseColor.replace("#", "");
-      colors[attrs.semanticGroup] = `rgb(${[0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(", ")})`;
+      colors[exploreTerm(attrs.semanticGroup)] = `rgb(${[0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16)).join(", ")})`;
     });
     const items = [...document.querySelectorAll(".explore-color-legend-item")].map((item) => ({
       group: item.querySelector(".explore-color-legend-name")?.textContent,
@@ -79,34 +81,34 @@ test("visible legend follows loaded data, reloads, focused views, and distance m
     await route.fulfill({ json });
   });
   await page.goto(BASE_URL);
-  await page.getByRole("button", { name: "Open Semantica Explorer" }).click();
-  const legend = page.getByRole("group", { name: "Node colors" });
+  await page.getByRole("button", { name: "打开知识探索" }).click();
+  const legend = page.getByRole("group", { name: "节点颜色" });
   await legend.waitFor();
   await page.locator("canvas").first().waitFor({ state: "visible" });
   await assertLegendMatchesGraph(page);
-  assert.equal(await legend.getByText("Person", { exact: true }).count(), 1);
-  assert.equal(await legend.getByText("Biomolecule", { exact: true }).count(), 0);
+  assert.equal(await legend.getByText("人物", { exact: true }).count(), 1);
+  assert.equal(await legend.getByText("生物分子", { exact: true }).count(), 0);
 
   nodes = initialNodes.map((node) => ({ ...node, type: node.type === "Person" ? "Researcher" : node.type }));
-  await page.getByRole("button", { name: "Reload graph data" }).click();
+  await page.getByRole("button", { name: "重新加载图谱数据" }).click();
   await legend.getByText("Researcher", { exact: true }).waitFor();
-  assert.equal(await legend.getByText("Person", { exact: true }).count(), 0);
+  assert.equal(await legend.getByText("人物", { exact: true }).count(), 0);
   await assertLegendMatchesGraph(page);
 
-  await page.getByPlaceholder("Search command, node, or concept").fill("Alice");
+  await page.getByPlaceholder("搜索命令、节点或概念").fill("Alice");
   await page.getByRole("option").filter({ hasText: "Alice" }).click();
-  const heatmap = page.getByRole("button", { name: "Heatmap", exact: true });
+  const heatmap = page.getByRole("button", { name: "热力图", exact: true });
   await heatmap.click();
   await legend.waitFor({ state: "hidden" });
   await heatmap.click();
   await legend.waitFor();
   await assertLegendMatchesGraph(page);
-  await page.getByRole("button", { name: "Focused", exact: true }).click();
-  await legend.getByText("Document", { exact: true }).waitFor({ state: "hidden" });
+  await page.getByRole("button", { name: "聚焦视图", exact: true }).click();
+  await legend.getByText("文档", { exact: true }).waitFor({ state: "hidden" });
   await assertLegendMatchesGraph(page, ["alice", "acme", "research"]);
   assert.equal(await legend.getByText("Researcher", { exact: true }).count(), 1);
-  await page.getByRole("button", { name: "Full Graph", exact: true }).click();
-  await legend.getByText("Document", { exact: true }).waitFor();
+  await page.getByRole("button", { name: "完整图谱", exact: true }).click();
+  await legend.getByText("文档", { exact: true }).waitFor();
   await assertLegendMatchesGraph(page);
   assert.deepEqual(errors, []);
 });

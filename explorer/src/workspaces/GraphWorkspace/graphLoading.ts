@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import type { GraphLoadPhase, GraphLoadProgress, GraphLoadProgressKind, GraphLayoutSource, GraphLayoutState } from "./types";
 
 export const GRAPH_LOAD_STAGE_SEQUENCE: Exclude<GraphLoadPhase, "ready">[] = [
@@ -12,39 +13,39 @@ export const GRAPH_LOAD_STAGE_SEQUENCE: Exclude<GraphLoadPhase, "ready">[] = [
 export function getGraphLoadTitle(phase: GraphLoadPhase): string {
   switch (phase) {
     case "bootstrapping":
-      return "Preparing graph session";
+      return t("Preparing graph session");
     case "fetching_nodes":
-      return "Loading nodes";
+      return t("Loading nodes");
     case "fetching_edges":
-      return "Loading relationships";
+      return t("Loading relationships");
     case "computing_styling":
-      return "Computing node styling";
+      return t("Computing node styling");
     case "hydrating_scene":
-      return "Hydrating graph scene";
+      return t("Hydrating graph scene");
     case "stabilizing_layout":
-      return "Stabilizing layout";
+      return t("Stabilizing layout");
     case "ready":
     default:
-      return "Graph ready";
+      return t("Graph ready");
   }
 }
 
 export function getGraphLoadStageLabel(phase: Exclude<GraphLoadPhase, "ready">): string {
   switch (phase) {
     case "bootstrapping":
-      return "Prepare";
+      return t("Prepare");
     case "fetching_nodes":
-      return "Nodes";
+      return t("Nodes");
     case "fetching_edges":
-      return "Relations";
+      return t("Relations");
     case "computing_styling":
-      return "Styling";
+      return t("Styling");
     case "hydrating_scene":
-      return "Scene";
+      return t("Scene");
     case "stabilizing_layout":
-      return "Layout";
+      return t("Layout");
     default:
-      return "Stage";
+      return t("Stage");
   }
 }
 

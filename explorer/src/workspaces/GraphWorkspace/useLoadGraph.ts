@@ -1,4 +1,6 @@
+﻿import { t, locale } from "../../i18n";
 ﻿import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useCallback } from "react";
 import { batchMergeEdges, batchMergeNodes, clearGraph } from "../../store/graphStore";
 import type { EdgeAttributes, NodeAttributes } from "../../store/graphStore";
 import { curveGroupForPair, pairRegistryKey } from "../../store/edgePairKeys.js";
@@ -354,7 +356,7 @@ async function fetchAllNodes(
 
     const response = await fetch(url.toString(), { signal });
     if (!response.ok) {
-      throw new Error(`Fetch failed: ${response.status}${await fetchErrorDetail(response)}`);
+      throw new Error(t("Fetch failed: {0}{1}", {0: response.status, 1: await fetchErrorDetail(response)}));
     }
 
     const data: NodeListResponse = await response.json();
@@ -374,8 +376,8 @@ async function fetchAllNodes(
       edgesLoaded: 0,
       edgesTotal: null,
       message: total
-        ? `Loading nodes ${collected.length.toLocaleString()} of ${total.toLocaleString()}`
-        : `Loading nodes ${collected.length.toLocaleString()}`,
+        ? t("Loading nodes {0} / {1}", {0: collected.length.toLocaleString(locale), 1: total.toLocaleString(locale)})
+        : t("Loading nodes {0}", {0: collected.length.toLocaleString(locale)}),
     }));
 
     if (!data.next_cursor) {
@@ -409,7 +411,7 @@ async function fetchAllEdges(
 
     const response = await fetch(url.toString(), { signal });
     if (!response.ok) {
-      throw new Error(`Fetch failed: ${response.status}${await fetchErrorDetail(response)}`);
+      throw new Error(t("Fetch failed: {0}{1}", {0: response.status, 1: await fetchErrorDetail(response)}));
     }
 
     const data: EdgeListResponse = await response.json();
@@ -447,8 +449,8 @@ async function fetchAllEdges(
       edgesLoaded: safeLoaded,
       edgesTotal: total,
       message: total
-        ? `Loading edges ${safeLoaded.toLocaleString()} of ${total.toLocaleString()}`
-        : `Loading edges ${safeLoaded.toLocaleString()}`,
+        ? t("Loading relationships {0} / {1}", {0: safeLoaded.toLocaleString(locale), 1: total.toLocaleString(locale)})
+        : t("Loading relationships {0}", {0: safeLoaded.toLocaleString(locale)}),
     }));
 
     if (!data.next_cursor) {
@@ -491,7 +493,7 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
         nodesTotal: null,
         edgesLoaded: 0,
         edgesTotal: null,
-        message: "Preparing graph session",
+        message: t("Preparing graph session"),
       }));
 
       const fetchedNodes = await fetchAllNodes(signal, onProgress);
@@ -534,7 +536,7 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
         nodesTotal: fetchedNodes.length,
         edgesLoaded: fetchedEdges.length,
         edgesTotal: fetchedEdges.length,
-        message: "Applying semantic color, sizing, and structural styling",
+        message: t("Applying semantic color, sizing, and structural styling"),
       }));
 
       const colorAccessor = chooseColorAccessor(draftAttributes);
@@ -688,7 +690,7 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
         nodesTotal: nodesToMerge.length,
         edgesLoaded: edgesToMerge.length,
         edgesTotal: edgesToMerge.length,
-        message: "Preparing renderer and hydrating graph scene",
+        message: t("Preparing renderer and hydrating graph scene"),
       }));
 
       try {
@@ -728,7 +730,7 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
         nodesTotal: summary.nodeCount,
         edgesLoaded: summary.edgeCount,
         edgesTotal: summary.edgeCount,
-        message: summary.layoutReady ? "Graph ready" : "Settling runtime layout",
+        message: summary.layoutReady ? t("Graph ready") : t("Settling runtime layout"),
         showGraphBehind: !summary.layoutReady,
         layoutSource: summary.layoutSource,
         layoutState: summary.layoutReady ? "interactive" : "bootstrapping",
@@ -742,5 +744,5 @@ export function useLoadGraph(options: UseLoadGraphOptions = {}) {
 
 export function useReloadGraph() {
   const queryClient = useQueryClient();
-  return () => queryClient.invalidateQueries({ queryKey: ["graph", "full-load"] });
+  return useCallback(() => queryClient.invalidateQueries({ queryKey: ["graph", "full-load"] }), [queryClient]);
 }

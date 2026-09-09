@@ -1,0 +1,18 @@
+{
+  "finish_reason": "stop",
+  "usage": {
+    "completion_tokens": 1775,
+    "prompt_tokens": 1372,
+    "total_tokens": 3147,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": {
+      "audio_tokens": null,
+      "cache_write_tokens": null,
+      "cached_tokens": 0,
+      "image_tokens": null,
+      "text_tokens": null
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1372
+  }
+}

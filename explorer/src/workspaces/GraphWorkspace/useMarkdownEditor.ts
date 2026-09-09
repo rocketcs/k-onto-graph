@@ -1,3 +1,4 @@
+import { t, languageNavigationApproved } from "../../i18n";
 import {
   useCallback,
   useEffect,
@@ -44,7 +45,7 @@ function normalizeError(failure: unknown): MarkdownEditorError {
   if (failure instanceof MarkdownClientError) return failure;
   return {
     kind: "network",
-    message: "The Markdown service could not be reached. Your draft was kept.",
+    message: t("The Markdown service could not be reached. Your draft was kept."),
   };
 }
 
@@ -81,7 +82,7 @@ export function useMarkdownEditor({
   const error = activeSession?.error
     ?? (viewError?.resourceKey === resourceKey ? viewError.error : null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onDirtyChange?.(dirty);
     return () => {
       if (dirty) onDirtyChange?.(false);
@@ -91,6 +92,7 @@ export function useMarkdownEditor({
   useEffect(() => {
     if (!dirty) return;
     const protectDraft = (event: BeforeUnloadEvent) => {
+      if (languageNavigationApproved) return;
       event.preventDefault();
       event.returnValue = "";
     };
@@ -148,7 +150,7 @@ export function useMarkdownEditor({
     if (!resource || saving) return;
     if (
       dirty
-      && !window.confirm("Discard this draft and reload the latest applied version?")
+      && !window.confirm(t("Discard this draft and reload the latest applied version?"))
     ) return;
     await beginEdit();
   }, [beginEdit, dirty, resource, saving]);

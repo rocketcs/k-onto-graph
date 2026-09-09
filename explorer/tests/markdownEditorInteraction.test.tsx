@@ -77,12 +77,12 @@ test("Edit and Apply send canonical Markdown and publish the applied result", as
       onApplied={(result) => { appliedBody = result.body; }}
     />,
   );
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: { value: originalSource.replace("Original", "Updated") },
   });
-  fireEvent.click(view.getByRole("button", { name: "Apply" }));
+  fireEvent.click(view.getByRole("button", { name: "应用" }));
 
   await waitFor(() => assert.equal(appliedBody, "Updated"));
   assert.deepEqual(requests.map(({ init }) => init?.method ?? "GET"), ["GET", "PUT"]);
@@ -91,7 +91,7 @@ test("Edit and Apply send canonical Markdown and publish the applied result", as
     "sha256:original",
   );
   assert.equal(
-    view.getByRole("tab", { name: "Preview" }).getAttribute("aria-selected"),
+    view.getByRole("tab", { name: "预览" }).getAttribute("aria-selected"),
     "true",
   );
 });
@@ -110,17 +110,17 @@ test("Cancel restores the previous view and never sends a PUT", async () => {
   };
 
   const view = render(<MarkdownContentViewer content="Original" resource={resource} />);
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: { value: originalSource.replace("Original", "Draft") },
   });
-  fireEvent.click(view.getByRole("button", { name: "Cancel" }));
+  fireEvent.click(view.getByRole("button", { name: "取消" }));
 
   assert.deepEqual(methods, ["GET"]);
-  assert.equal(view.queryByRole("textbox", { name: "Markdown source" }), null);
+  assert.equal(view.queryByRole("textbox", { name: "Markdown 源码" }), null);
   assert.equal(
-    view.getByRole("tab", { name: "Preview" }).getAttribute("aria-selected"),
+    view.getByRole("tab", { name: "预览" }).getAttribute("aria-selected"),
     "true",
   );
 });
@@ -145,16 +145,16 @@ test("validation failures keep the draft visible for correction", async () => {
   };
 
   const view = render(<MarkdownContentViewer content="Original" resource={resource} />);
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   const invalidDraft = "---\nid: [\n---\n\nDraft";
   fireEvent.input(textarea, { target: { value: invalidDraft } });
-  fireEvent.click(view.getByRole("button", { name: "Apply" }));
+  fireEvent.click(view.getByRole("button", { name: "应用" }));
 
   const alert = await view.findByRole("alert");
-  assert.match(alert.textContent ?? "", /invalid YAML/);
+  assert.match(alert.textContent ?? "", /内容校验失败/);
   assert.equal(
-    (view.getByRole("textbox", { name: "Markdown source" }) as HTMLTextAreaElement)
+    (view.getByRole("textbox", { name: "Markdown 源码" }) as HTMLTextAreaElement)
       .value,
     invalidDraft,
   );
@@ -176,8 +176,8 @@ test("resource changes discard the previous editor session", async () => {
   const view = render(
     <MarkdownContentViewer content="node-1" resource={resource} />,
   );
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: { value: `${(textarea as HTMLTextAreaElement).value}\nDraft` },
   });
@@ -189,7 +189,7 @@ test("resource changes discard the previous editor session", async () => {
     />,
   );
   await waitFor(() => assert.equal(
-    view.queryByRole("textbox", { name: "Markdown source" }),
+    view.queryByRole("textbox", { name: "Markdown 源码" }),
     null,
   ));
 
@@ -197,10 +197,10 @@ test("resource changes discard the previous editor session", async () => {
     <MarkdownContentViewer content="node-1" resource={resource} />,
   );
   await waitFor(() => assert.equal(
-    view.queryByRole("textbox", { name: "Markdown source" }),
+    view.queryByRole("textbox", { name: "Markdown 源码" }),
     null,
   ));
-  assert.ok(view.getByRole("button", { name: "Edit" }));
+  assert.ok(view.getByRole("button", { name: "编辑" }));
 });
 
 
@@ -221,8 +221,8 @@ test("unmounting a dirty editor clears the parent dirty guard", async () => {
       onDirtyChange={(dirty) => dirtyStates.push(dirty)}
     />,
   );
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: { value: originalSource.replace("Original", "Draft") },
   });
@@ -260,9 +260,9 @@ test("MemoryWorkspace protects a dirty memory draft when selection changes", asy
   };
 
   const view = render(<MemoryWorkspace />);
-  await view.findByText("Selected memory");
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  await view.findByText("已选记忆");
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: { value: `${(textarea as HTMLTextAreaElement).value}\nDraft` },
   });
@@ -317,12 +317,12 @@ test("MemoryWorkspace loads memories beyond the first server page", async () => 
   };
 
   const view = render(<MemoryWorkspace />);
-  await view.findByText("Selected memory");
-  fireEvent.click(view.getByRole("button", { name: "Load more memories" }));
+  await view.findByText("已选记忆");
+  fireEvent.click(view.getByRole("button", { name: "加载更多记忆" }));
 
   await view.findByRole("button", { name: /mem-101/ });
   assert.ok(requestedUrls.includes("/api/memories?skip=100&limit=100"));
-  assert.equal(view.getByText("101 of 101 loaded").textContent, "101 of 101 loaded");
+  assert.equal(view.getByText("101 / 101 条已加载").textContent, "101 / 101 条已加载");
 });
 
 
@@ -362,7 +362,7 @@ test("MemoryWorkspace ignores stale selection responses", async () => {
   };
 
   const view = render(<MemoryWorkspace />);
-  await view.findByText("Selected memory");
+  await view.findByText("已选记忆");
   fireEvent.click(view.getByRole("button", { name: /mem-2/ }));
   fireEvent.click(view.getByRole("button", { name: /mem-3/ }));
 
@@ -438,9 +438,9 @@ test("MemoryWorkspace refreshes frontmatter summaries after apply", async () => 
   };
 
   const view = render(<MemoryWorkspace />);
-  await view.findByText("Selected memory");
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  await view.findByText("已选记忆");
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   fireEvent.input(textarea, {
     target: {
       value: (textarea as HTMLTextAreaElement).value
@@ -448,7 +448,7 @@ test("MemoryWorkspace refreshes frontmatter summaries after apply", async () => 
         .replace("Original memory", "Updated memory"),
     },
   });
-  fireEvent.click(view.getByRole("button", { name: "Apply" }));
+  fireEvent.click(view.getByRole("button", { name: "应用" }));
 
   await view.findByText("decision");
   assert.equal(listRequests, 2);
@@ -492,28 +492,28 @@ test("HTTP 409 conflict preserves draft and shows conflict error with reload opt
   const view = render(<MarkdownContentViewer content="Original" resource={resource} />);
 
   // Enter edit mode
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
   const draftValue = originalSource.replace("Original", "My draft");
   fireEvent.input(textarea, { target: { value: draftValue } });
 
   // Apply → receives 409
-  fireEvent.click(view.getByRole("button", { name: "Apply" }));
+  fireEvent.click(view.getByRole("button", { name: "应用" }));
 
   // Conflict error must appear
   const alert = await view.findByRole("alert");
   assert.match(
     alert.textContent ?? "",
-    /changed after editing|Reload/i,
+    /内容已被其他操作更新|重新加载/,
     "conflict error message must be shown",
   );
 
   // Draft must be preserved in the textarea
-  const textareaAfterConflict = view.getByRole("textbox", { name: "Markdown source" }) as HTMLTextAreaElement;
+  const textareaAfterConflict = view.getByRole("textbox", { name: "Markdown 源码" }) as HTMLTextAreaElement;
   assert.equal(textareaAfterConflict.value, draftValue, "draft must be preserved after 409");
 
   // A reload / recovery action must be available
-  const reloadButton = view.queryByRole("button", { name: /reload latest/i });
+  const reloadButton = view.queryByRole("button", { name: /重新加载最新版本/ });
   assert.ok(reloadButton !== null, "a 'Reload latest' recovery button must be shown");
 
   // Click reload — should re-fetch the latest canonical document
@@ -523,7 +523,7 @@ test("HTTP 409 conflict preserves draft and shows conflict error with reload opt
 
   // After reload the editor is re-initialized with the server's canonical source
   await waitFor(() => {
-    const refreshedTextarea = view.queryByRole("textbox", { name: "Markdown source" });
+    const refreshedTextarea = view.queryByRole("textbox", { name: "Markdown 源码" });
     assert.ok(refreshedTextarea !== null, "editor must still be open after reload");
     assert.equal(
       (refreshedTextarea as HTMLTextAreaElement).value,
@@ -587,31 +587,31 @@ test("successful retry after 422 uses the original revision and persists changes
   );
 
   // Enter edit mode
-  fireEvent.click(view.getByRole("button", { name: "Edit" }));
-  const textarea = await view.findByRole("textbox", { name: "Markdown source" });
+  fireEvent.click(view.getByRole("button", { name: "编辑" }));
+  const textarea = await view.findByRole("textbox", { name: "Markdown 源码" });
 
   // First attempt: create an invalid draft
   const invalidDraft = "---\nid: [\n---\n\nInvalid body";
   fireEvent.input(textarea, { target: { value: invalidDraft } });
-  fireEvent.click(view.getByRole("button", { name: "Apply" }));
+  fireEvent.click(view.getByRole("button", { name: "应用" }));
 
   // 422 error appears, draft is preserved
   const alert = await view.findByRole("alert");
-  assert.match(alert.textContent ?? "", /invalid YAML/i);
+  assert.match(alert.textContent ?? "", /内容校验失败/);
   assert.equal(
-    (view.getByRole("textbox", { name: "Markdown source" }) as HTMLTextAreaElement).value,
+    (view.getByRole("textbox", { name: "Markdown 源码" }) as HTMLTextAreaElement).value,
     invalidDraft,
     "invalid draft must be preserved after 422",
   );
 
   // Correct the draft
   const correctedDraft = originalSource.replace("Original", "Corrected");
-  fireEvent.input(view.getByRole("textbox", { name: "Markdown source" }), {
+  fireEvent.input(view.getByRole("textbox", { name: "Markdown 源码" }), {
     target: { value: correctedDraft },
   });
 
   // Apply is re-enabled (still dirty)
-  const applyButton = view.getByRole("button", { name: "Apply" });
+  const applyButton = view.getByRole("button", { name: "应用" });
   assert.equal(
     (applyButton as HTMLButtonElement).disabled,
     false,
@@ -626,7 +626,7 @@ test("successful retry after 422 uses the original revision and persists changes
 
   // Editor returns to preview mode after successful save
   assert.equal(
-    view.getByRole("tab", { name: "Preview" }).getAttribute("aria-selected"),
+    view.getByRole("tab", { name: "预览" }).getAttribute("aria-selected"),
     "true",
     "editor must return to preview after successful retry",
   );

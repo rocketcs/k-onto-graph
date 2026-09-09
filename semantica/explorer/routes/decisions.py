@@ -35,21 +35,20 @@ async def list_decisions(
     limit: int = Query(50, ge=1, le=500),
     session: GraphSession = Depends(get_session),
 ):
-    nodes, _ = await asyncio.to_thread(
-        session.get_nodes,
-        node_type="decision",
-        skip=0,
-        limit=999_999,
-    )
-
-    if category:
-        nodes = [
-            node
-            for node in nodes
-            if str(node.get("properties", {}).get("category", "")).lower() == category.lower()
-        ]
-
-    return [_node_to_decision(node) for node in nodes[skip : skip + limit]]
+    # Stream nodes instead of requesting an effectively unbounded page.  The
+    # latter normalizes the complete graph and can exhaust memory on large
+    # graphs, surfacing to the UI as an intermittent 500.
+    def collect():
+        matched = []
+        for node in session.iter_nodes(node_type="decision"):
+            if category and str(node.get("properties", {}).get("category", "")).lower() != category.lower():
+                continue
+            matched.append(node)
+            if len(matched) >= skip + limit:
+                break
+        return matched[skip : skip + limit]
+    nodes = await asyncio.to_thread(collect)
+    return [_node_to_decision(node) for node in nodes]
 
 
 @router.get("/causal-distance", response_model=CausalDistanceReport)
@@ -117,12 +116,7 @@ async def get_precedents(
     category = str(properties.get("category", ""))
     scenario_words = set(str(properties.get("scenario", "")).lower().split())
 
-    all_decisions, _ = await asyncio.to_thread(
-        session.get_nodes,
-        node_type="decision",
-        skip=0,
-        limit=999_999,
-    )
+    all_decisions = await asyncio.to_thread(lambda: list(session.iter_nodes(node_type="decision")))
 
     scored = []
     for decision in all_decisions:

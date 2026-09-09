@@ -1,0 +1,37 @@
+{
+  "success": false,
+  "output": null,
+  "errors": [
+    "OpenAI.copy() got an unexpected keyword argument 'extra_body'"
+  ],
+  "metrics": {},
+  "model": "deepseek-v4-flash",
+  "source": "/Users/rocket/kingsware/医药问数数据/循上医院知识库文档/介绍医院的文档/文档库/循上介介绍-无股东版.docx",
+  "sha256": "d7a371d266d91db95381ff28b49dd929bdd6e1c6c08e92ecbd1f9900582d5ffa",
+  "steps": {
+    "parse": {
+      "status": "completed",
+      "error": null
+    },
+    "split": {
+      "status": "completed",
+      "error": null
+    },
+    "extract": {
+      "status": "failed",
+      "error": "OpenAI.copy() got an unexpected keyword argument 'extra_body'"
+    },
+    "merge": {
+      "status": "pending",
+      "error": null
+    },
+    "validate": {
+      "status": "pending",
+      "error": null
+    },
+    "store": {
+      "status": "pending",
+      "error": null
+    }
+  }
+}

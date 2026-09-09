@@ -1,0 +1,11 @@
+[
+  {
+    "chunk": 1,
+    "source": "循上医疗",
+    "target": "国际医院",
+    "rule": "planned_capacity_is_not_existing_capacity",
+    "field": "status",
+    "before": "已运营",
+    "after": "规划"
+  }
+]

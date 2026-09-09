@@ -8,7 +8,7 @@ import json
 import logging
 import re
 
-from fastapi import APIRouter, Depends, File, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, Request
 from fastapi.responses import Response
 
 from ..dependencies import get_session
@@ -62,8 +62,18 @@ def _import_response(nodes_added: int, edges_added: int, message: str = "Import 
     )
 
 
+def _store_import(request, session, nodes, edges):
+    writer = getattr(request.app.state, 'persist_graph_import', None)
+    with session._lock:
+        session.validate_skos_hierarchy(edges)
+        if writer:
+            writer(nodes, edges)
+        return session.add_nodes_and_edges(nodes, edges)
+
+
 @router.post("/api/import", response_model=ImportResponse)
 async def import_file(
+    request: Request,
     file: UploadFile = File(...),
     session: GraphSession = Depends(get_session),
 ):
@@ -148,7 +158,7 @@ async def import_file(
             )
 
         try:
-            nodes_added, edges_added = session.add_nodes_and_edges(nodes, edges)
+            nodes_added, edges_added = _store_import(request, session, nodes, edges)
         except ValueError as exc:
             raise HTTPException(status_code=422, detail=str(exc)) from exc
         return _import_response(nodes_added, edges_added)
@@ -222,7 +232,7 @@ async def import_file(
             )
 
         try:
-            nodes_added, edges_added = session.add_nodes_and_edges(nodes, edges)
+            nodes_added, edges_added = _store_import(request, session, nodes, edges)
         except ValueError as exc:
             raise HTTPException(status_code=422, detail=str(exc)) from exc
         return _import_response(nodes_added, edges_added)

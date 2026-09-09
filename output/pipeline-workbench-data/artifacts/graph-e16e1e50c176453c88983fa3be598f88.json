@@ -1,0 +1,952 @@
+{
+  "graph_id": "641ff5b7-d673-464f-8ae2-2db37fb32c7e",
+  "nodes": [
+    {
+      "id": "entity_8eb40ebaf1a856ea1857d307",
+      "type": "机构",
+      "properties": {
+        "content": "循上医疗",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_b9f3028eb9302f00a378d108",
+      "type": "设施类型",
+      "properties": {
+        "content": "卫星诊所",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_71699742e06ddad234a681e1",
+      "type": "设施类型",
+      "properties": {
+        "content": "区域医疗中心",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_98126505dddb6a0aa7d133e4",
+      "type": "设施类型",
+      "properties": {
+        "content": "长寿主题综合医院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_11eb2fcc66ecdabdd33dde68",
+      "type": "设施类型",
+      "properties": {
+        "content": "国际医院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_0a9bc2f561fb51e7e55f3a82",
+      "type": "项目",
+      "properties": {
+        "content": "永生岛",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_b47b0cf6866ae9c38fb9132f",
+      "type": "学科",
+      "properties": {
+        "content": "长寿医学",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_130a893d67018381bb5fb66c",
+      "type": "学科",
+      "properties": {
+        "content": "慢病逆转",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_50d6c5fd666f6b27d0ff7d1a",
+      "type": "学科",
+      "properties": {
+        "content": "肿瘤癌症",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_ef85ebc186a85b3d2a2606f4",
+      "type": "学科",
+      "properties": {
+        "content": "疑难重症",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_9c80832ad599ed03ded44a2a",
+      "type": "学科",
+      "properties": {
+        "content": "跨境救援",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_2048ba53dfae31089ceb3bc7",
+      "type": "机构",
+      "properties": {
+        "content": "伦敦大学玛丽女王学院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_bec2d83cf3ade6a8724c474e",
+      "type": "项目",
+      "properties": {
+        "content": "肿瘤医学和长寿医学硕士项目",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_9a6a65c4816539cb4099c081",
+      "type": "机构",
+      "properties": {
+        "content": "英国皇家全科医师学院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_a217a123f8fc77ec266a3392",
+      "type": "项目",
+      "properties": {
+        "content": "全科医师培训",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_a63d05e906cb27d274966457",
+      "type": "机构",
+      "properties": {
+        "content": "国际医学院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_7a1214de07a2ac0f62169c35",
+      "type": "地点",
+      "properties": {
+        "content": "海南",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_a252ac65d52f9735514616f9",
+      "type": "地点",
+      "properties": {
+        "content": "北京",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_e81910311eb52c0791c28171",
+      "type": "地点",
+      "properties": {
+        "content": "上海",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_3db76c68750a06ae2ec3d1f3",
+      "type": "地点",
+      "properties": {
+        "content": "广州",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_a01297b593624a0ab70e5e07",
+      "type": "地点",
+      "properties": {
+        "content": "成都",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_28bd9b825c2f8bd163cd6146",
+      "type": "地点",
+      "properties": {
+        "content": "武汉",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_000878bbdd595fec059b1b2a",
+      "type": "机构",
+      "properties": {
+        "content": "迪拜分院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_d788e99aee79a9c5a7f7be76",
+      "type": "机构",
+      "properties": {
+        "content": "南宁分院",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    },
+    {
+      "id": "entity_1f350f47c34d23ac252d7543",
+      "type": "目标",
+      "properties": {
+        "content": "健康寿命提升至120岁",
+        "source_document": "循上介介绍-无股东版.docx",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576",
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "relation_bbf7e6eb3861388e386c843e",
+      "familyId": "relation_bbf7e6eb3861388e386c843e",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_b9f3028eb9302f00a378d108",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": {
+          "raw": "2000+家",
+          "value": 2000.0,
+          "unit": "家",
+          "comparator": "plus_unspecified"
+        },
+        "time": null,
+        "evidence": [
+          {
+            "id": "p7",
+            "text": "计划在全国布局2000+家卫星诊所，确保客户在5公里范围内即可获取卫星诊所的基础医疗服务，形成高效便捷的初级全科诊疗网络。",
+            "page": null,
+            "start": 218,
+            "end": 279
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_0bc5c1bcc7ff27113ef635b5",
+      "familyId": "relation_0bc5c1bcc7ff27113ef635b5",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_71699742e06ddad234a681e1",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": {
+          "raw": "30+家",
+          "value": 30.0,
+          "unit": "家",
+          "comparator": "plus_unspecified"
+        },
+        "time": null,
+        "evidence": [
+          {
+            "id": "p9",
+            "text": "在直辖市及省会城市建设30+家区域医疗中心，每家机构面积2000-5000平方米，配置全专联合诊疗、免疫、生化及影像检查、日间手术等综合服务能力，辐射区域医疗需求，提升诊疗质量与效率。",
+            "page": null,
+            "start": 290,
+            "end": 382
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_8b9b9356379d7329e614ab2b",
+      "familyId": "relation_8b9b9356379d7329e614ab2b",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_98126505dddb6a0aa7d133e4",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": {
+          "raw": "6家",
+          "value": 6.0,
+          "unit": "家",
+          "comparator": "eq"
+        },
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_69f928875031e7a2c80e04c1",
+      "familyId": "relation_69f928875031e7a2c80e04c1",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_11eb2fcc66ecdabdd33dde68",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": {
+          "raw": "2家",
+          "value": 2.0,
+          "unit": "家",
+          "comparator": "eq"
+        },
+        "time": null,
+        "evidence": [
+          {
+            "id": "p13",
+            "text": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+            "page": null,
+            "start": 504,
+            "end": 582
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_9c0341041e01902c113dc68d",
+      "familyId": "relation_9c0341041e01902c113dc68d",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_0a9bc2f561fb51e7e55f3a82",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p15",
+            "text": "规划“永生岛”项目，聚焦再生医学、生命科技等前沿领域，探索延长寿命但又同时提升生命质量的突破性解决方案，形成医疗科研与临床转化的创新高地。",
+            "page": null,
+            "start": 593,
+            "end": 662
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_541e667529890fa55a70578c",
+      "familyId": "relation_541e667529890fa55a70578c",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_b47b0cf6866ae9c38fb9132f",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p18",
+            "text": "循上医疗重点发展5大前沿领域",
+            "page": null,
+            "start": 783,
+            "end": 797
+          },
+          {
+            "id": "p19",
+            "text": "长寿医学Longevity Medicine",
+            "page": null,
+            "start": 799,
+            "end": 821
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_8330253d8051f2a1d70cd15a",
+      "familyId": "relation_8330253d8051f2a1d70cd15a",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_130a893d67018381bb5fb66c",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p18",
+            "text": "循上医疗重点发展5大前沿领域",
+            "page": null,
+            "start": 783,
+            "end": 797
+          },
+          {
+            "id": "p23",
+            "text": "慢病逆转Precision Medicine",
+            "page": null,
+            "start": 967,
+            "end": 989
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_2581598d4a5904ea8813241e",
+      "familyId": "relation_2581598d4a5904ea8813241e",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_50d6c5fd666f6b27d0ff7d1a",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p18",
+            "text": "循上医疗重点发展5大前沿领域",
+            "page": null,
+            "start": 783,
+            "end": 797
+          },
+          {
+            "id": "p27",
+            "text": "肿瘤癌症Innovative Oncology",
+            "page": null,
+            "start": 1208,
+            "end": 1231
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_0cdff8664d4ae107ba122f48",
+      "familyId": "relation_0cdff8664d4ae107ba122f48",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_ef85ebc186a85b3d2a2606f4",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p18",
+            "text": "循上医疗重点发展5大前沿领域",
+            "page": null,
+            "start": 783,
+            "end": 797
+          },
+          {
+            "id": "p31",
+            "text": "疑难重症 Complex Diseases",
+            "page": null,
+            "start": 1450,
+            "end": 1471
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_35c59a1af70f854fb1464eb7",
+      "familyId": "relation_35c59a1af70f854fb1464eb7",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_9c80832ad599ed03ded44a2a",
+      "type": "重点发展",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p18",
+            "text": "循上医疗重点发展5大前沿领域",
+            "page": null,
+            "start": 783,
+            "end": 797
+          },
+          {
+            "id": "p35",
+            "text": "跨境救援 Cross-border SOS",
+            "page": null,
+            "start": 1617,
+            "end": 1638
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_5bb876beac2d8e4b19636dd5",
+      "familyId": "relation_5bb876beac2d8e4b19636dd5",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_2048ba53dfae31089ceb3bc7",
+      "type": "合作",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p41",
+            "text": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+            "page": null,
+            "start": 1787,
+            "end": 1815
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_cfa45f180f9d0f289aeb011f",
+      "familyId": "relation_cfa45f180f9d0f289aeb011f",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_bec2d83cf3ade6a8724c474e",
+      "type": "开设项目",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p41",
+            "text": "与伦敦大学玛丽女王学院联合开设肿瘤医学和长寿医学硕士项目",
+            "page": null,
+            "start": 1787,
+            "end": 1815
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_0d4cd52957cbc705ac9747d7",
+      "familyId": "relation_0d4cd52957cbc705ac9747d7",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_9a6a65c4816539cb4099c081",
+      "type": "合作",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p42",
+            "text": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+            "page": null,
+            "start": 1817,
+            "end": 1848
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_75ee8d0b5231f3e762a53d7e",
+      "familyId": "relation_75ee8d0b5231f3e762a53d7e",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_a217a123f8fc77ec266a3392",
+      "type": "开设项目",
+      "weight": 1.0,
+      "properties": {
+        "status": "文档陈述",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p42",
+            "text": "携手英国皇家全科医师学院（RCGP）提供国际认证的全科医师培训",
+            "page": null,
+            "start": 1817,
+            "end": 1848
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_80227922d158e7c6de0fe978",
+      "familyId": "relation_80227922d158e7c6de0fe978",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_a63d05e906cb27d274966457",
+      "type": "规划建设",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": {
+          "raw": "2028年",
+          "year": 2028,
+          "precision": "year",
+          "role": "规划"
+        },
+        "evidence": [
+          {
+            "id": "p43",
+            "text": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+            "page": null,
+            "start": 1850,
+            "end": 1883
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_8dc51a35064ab6a5ccfb576b",
+      "familyId": "relation_8dc51a35064ab6a5ccfb576b",
+      "source_id": "entity_a63d05e906cb27d274966457",
+      "target_id": "entity_7a1214de07a2ac0f62169c35",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": {
+          "raw": "2028年",
+          "year": 2028,
+          "precision": "year",
+          "role": "规划"
+        },
+        "evidence": [
+          {
+            "id": "p43",
+            "text": "计划于2028年在海南设立国际医学院打造全球领先的创新医学教育基地",
+            "page": null,
+            "start": 1850,
+            "end": 1883
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_72278f1d7d29222f2a436a8a",
+      "familyId": "relation_72278f1d7d29222f2a436a8a",
+      "source_id": "entity_98126505dddb6a0aa7d133e4",
+      "target_id": "entity_a252ac65d52f9735514616f9",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_889ad1b3c5eef6b1eb4e5b8b",
+      "familyId": "relation_889ad1b3c5eef6b1eb4e5b8b",
+      "source_id": "entity_98126505dddb6a0aa7d133e4",
+      "target_id": "entity_e81910311eb52c0791c28171",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_fac95eac8077188e3b47b323",
+      "familyId": "relation_fac95eac8077188e3b47b323",
+      "source_id": "entity_98126505dddb6a0aa7d133e4",
+      "target_id": "entity_3db76c68750a06ae2ec3d1f3",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_1b33e6c3e4e31a1d787720ae",
+      "familyId": "relation_1b33e6c3e4e31a1d787720ae",
+      "source_id": "entity_98126505dddb6a0aa7d133e4",
+      "target_id": "entity_a01297b593624a0ab70e5e07",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_375068f2696491d45f3ba8ff",
+      "familyId": "relation_375068f2696491d45f3ba8ff",
+      "source_id": "entity_98126505dddb6a0aa7d133e4",
+      "target_id": "entity_28bd9b825c2f8bd163cd6146",
+      "type": "位于",
+      "weight": 1.0,
+      "properties": {
+        "status": "规划",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p11",
+            "text": "在北京、上海、广州、成都、武汉五大核心城市，建设6家长寿主题综合医院，单体建筑面积5万-10万平方米，打造以长寿医学、慢病逆转、肿瘤癌症、疑难重症及跨境救援为五大主力学科的综合性医院。",
+            "page": null,
+            "start": 396,
+            "end": 488
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_dce70a0e380af8d81cebc34f",
+      "familyId": "relation_dce70a0e380af8d81cebc34f",
+      "source_id": "entity_11eb2fcc66ecdabdd33dde68",
+      "target_id": "entity_000878bbdd595fec059b1b2a",
+      "type": "包含机构",
+      "weight": 1.0,
+      "properties": {
+        "status": "已运营",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p13",
+            "text": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+            "page": null,
+            "start": 504,
+            "end": 582
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_f19bacb7a0b92182945a63f0",
+      "familyId": "relation_f19bacb7a0b92182945a63f0",
+      "source_id": "entity_11eb2fcc66ecdabdd33dde68",
+      "target_id": "entity_d788e99aee79a9c5a7f7be76",
+      "type": "包含机构",
+      "weight": 1.0,
+      "properties": {
+        "status": "建设中",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p13",
+            "text": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+            "page": null,
+            "start": 504,
+            "end": 582
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_763b5a1d0c77c6d96ab01498",
+      "familyId": "relation_763b5a1d0c77c6d96ab01498",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_000878bbdd595fec059b1b2a",
+      "type": "包含机构",
+      "weight": 1.0,
+      "properties": {
+        "status": "已运营",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p13",
+            "text": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+            "page": null,
+            "start": 504,
+            "end": 582
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_d264098f468cb96311809838",
+      "familyId": "relation_d264098f468cb96311809838",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_d788e99aee79a9c5a7f7be76",
+      "type": "包含机构",
+      "weight": 1.0,
+      "properties": {
+        "status": "建设中",
+        "quantity": null,
+        "time": null,
+        "evidence": [
+          {
+            "id": "p13",
+            "text": "布局2家国际医院，其中迪拜分院已投入运营，南宁分院项目启动建设中。利用当地的政策优势，让全球已经批准的药物和器械在循上的国际医院实际落地，增加重病身还机会。",
+            "page": null,
+            "start": 504,
+            "end": 582
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    },
+    {
+      "id": "relation_31407de09d2ca15af88d7957",
+      "familyId": "relation_31407de09d2ca15af88d7957",
+      "source_id": "entity_8eb40ebaf1a856ea1857d307",
+      "target_id": "entity_1f350f47c34d23ac252d7543",
+      "type": "发展目标",
+      "weight": 1.0,
+      "properties": {
+        "status": "目标",
+        "quantity": {
+          "raw": "120岁",
+          "value": 120.0,
+          "unit": "岁",
+          "comparator": "eq"
+        },
+        "time": null,
+        "evidence": [
+          {
+            "id": "p16",
+            "text": "体系联动与目标：通过5级机构功能联动，建立“诊断-预防-保健-抗衰-延寿”全链条服务机制，实现客户从出生到终老的贴身式健康管理。依托尖端医疗技术，致力于将人类健康寿命提升至120岁，推动医疗健康服务向更高维度发展。",
+            "page": null,
+            "start": 664,
+            "end": 771
+          }
+        ],
+        "run_id": "ef5cc7e678cd46b6ba3a8328dca03fb3",
+        "document_id": "59e33a3ee405402a97fa4f1cecec4576"
+      }
+    }
+  ],
+  "links": []
+}

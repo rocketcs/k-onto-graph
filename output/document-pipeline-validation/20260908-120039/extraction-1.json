@@ -1,0 +1,364 @@
+{
+  "entities": [
+    {
+      "name": "循上医疗集团",
+      "type": "机构"
+    },
+    {
+      "name": "循上医疗",
+      "type": "机构"
+    },
+    {
+      "name": "卫星诊所",
+      "type": "设施类型"
+    },
+    {
+      "name": "区域医疗中心",
+      "type": "设施类型"
+    },
+    {
+      "name": "长寿主题综合医院",
+      "type": "设施类型"
+    },
+    {
+      "name": "国际医院",
+      "type": "设施类型"
+    },
+    {
+      "name": "永生岛",
+      "type": "项目"
+    },
+    {
+      "name": "长寿医学",
+      "type": "学科"
+    },
+    {
+      "name": "慢病逆转",
+      "type": "学科"
+    },
+    {
+      "name": "肿瘤癌症",
+      "type": "学科"
+    },
+    {
+      "name": "疑难重症",
+      "type": "学科"
+    },
+    {
+      "name": "跨境救援",
+      "type": "学科"
+    },
+    {
+      "name": "伦敦大学玛丽女王学院",
+      "type": "机构"
+    },
+    {
+      "name": "肿瘤医学和长寿医学硕士项目",
+      "type": "项目"
+    },
+    {
+      "name": "英国皇家全科医师学院",
+      "type": "机构"
+    },
+    {
+      "name": "国际医学院",
+      "type": "机构"
+    },
+    {
+      "name": "迪拜分院",
+      "type": "机构"
+    },
+    {
+      "name": "南宁分院",
+      "type": "机构"
+    },
+    {
+      "name": "北京",
+      "type": "地点"
+    },
+    {
+      "name": "上海",
+      "type": "地点"
+    },
+    {
+      "name": "广州",
+      "type": "地点"
+    },
+    {
+      "name": "成都",
+      "type": "地点"
+    },
+    {
+      "name": "武汉",
+      "type": "地点"
+    },
+    {
+      "name": "海南",
+      "type": "地点"
+    },
+    {
+      "name": "健康寿命提升至120岁",
+      "type": "目标"
+    }
+  ],
+  "relationships": [
+    {
+      "source": "循上医疗",
+      "target": "卫星诊所",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        7
+      ],
+      "status": "规划",
+      "quantity_text": "2000+家",
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "区域医疗中心",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        9
+      ],
+      "status": "规划",
+      "quantity_text": "30+家",
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "长寿主题综合医院",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": "6家",
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "国际医院",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        13
+      ],
+      "status": "已运营",
+      "quantity_text": "2家",
+      "year_text": null
+    },
+    {
+      "source": "国际医院",
+      "target": "迪拜分院",
+      "type": "包含机构",
+      "evidence_paragraph_ids": [
+        13
+      ],
+      "status": "已运营",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "国际医院",
+      "target": "南宁分院",
+      "type": "包含机构",
+      "evidence_paragraph_ids": [
+        13
+      ],
+      "status": "建设中",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "永生岛",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        15
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "长寿医学",
+      "type": "重点发展",
+      "evidence_paragraph_ids": [
+        19,
+        22
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "慢病逆转",
+      "type": "重点发展",
+      "evidence_paragraph_ids": [
+        23,
+        26
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "肿瘤癌症",
+      "type": "重点发展",
+      "evidence_paragraph_ids": [
+        27,
+        30
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "疑难重症",
+      "type": "重点发展",
+      "evidence_paragraph_ids": [
+        31,
+        34
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "跨境救援",
+      "type": "重点发展",
+      "evidence_paragraph_ids": [
+        35,
+        38
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "伦敦大学玛丽女王学院",
+      "type": "合作",
+      "evidence_paragraph_ids": [
+        41
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "肿瘤医学和长寿医学硕士项目",
+      "type": "开设项目",
+      "evidence_paragraph_ids": [
+        41
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "英国皇家全科医师学院",
+      "type": "合作",
+      "evidence_paragraph_ids": [
+        42
+      ],
+      "status": "文档陈述",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "国际医学院",
+      "type": "规划建设",
+      "evidence_paragraph_ids": [
+        43
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": "2028年"
+    },
+    {
+      "source": "长寿主题综合医院",
+      "target": "北京",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "长寿主题综合医院",
+      "target": "上海",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "长寿主题综合医院",
+      "target": "广州",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "长寿主题综合医院",
+      "target": "成都",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "长寿主题综合医院",
+      "target": "武汉",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        11
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "国际医学院",
+      "target": "海南",
+      "type": "位于",
+      "evidence_paragraph_ids": [
+        43
+      ],
+      "status": "规划",
+      "quantity_text": null,
+      "year_text": null
+    },
+    {
+      "source": "循上医疗",
+      "target": "健康寿命提升至120岁",
+      "type": "发展目标",
+      "evidence_paragraph_ids": [
+        16
+      ],
+      "status": "目标",
+      "quantity_text": null,
+      "year_text": null
+    }
+  ]
+}

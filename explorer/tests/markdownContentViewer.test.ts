@@ -48,9 +48,9 @@ test("renders Preview mode with formatted Markdown elements and tabs", () => {
   const html = renderToString(React.createElement(MarkdownContentViewer, { content: markdown, defaultMode: "preview" }));
 
   // Tab buttons are present
-  assert.equal(html.includes("Preview"), true);
-  assert.equal(html.includes("Source"), true);
-  assert.equal(html.includes("Copy"), true);
+  assert.equal(html.includes("预览"), true);
+  assert.equal(html.includes("源码"), true);
+  assert.equal(html.includes("复制"), true);
 
   // Formatted preview elements
   assert.equal(html.includes("Main Title"), true);
@@ -69,8 +69,8 @@ test("stays read-only without a resource and exposes Edit for canonical resource
     resource: { kind: "context-node", id: "node-1" },
   }));
 
-  assert.equal(readOnly.includes(">Edit</button>"), false);
-  assert.equal(editable.includes(">Edit</button>"), true);
+  assert.equal(readOnly.includes(">编辑</button>"), false);
+  assert.equal(editable.includes(">编辑</button>"), true);
 });
 
 test("empty canonical resources still expose Edit", () => {
@@ -79,8 +79,8 @@ test("empty canonical resources still expose Edit", () => {
     resource: { kind: "context-node", id: "empty-node" },
   }));
 
-  assert.equal(html.includes("No content available for this node."), true);
-  assert.equal(html.includes(">Edit</button>"), true);
+  assert.equal(html.includes("此节点暂无内容。"), true);
+  assert.equal(html.includes(">编辑</button>"), true);
 });
 
 test("renders Source mode with exact unmodified text inside pre/code", () => {
@@ -204,7 +204,7 @@ test("GFM footnote links preserve generated id, aria, and class attributes", () 
 
   // Footnote backlink must retain its aria-label for screen-reader accessibility.
   assert.equal(
-    html.includes('aria-label="Back to reference 1"'),
+    html.includes('aria-label="返回引用"'),
     true,
     "footnote backlink must retain aria-label for accessibility",
   );
@@ -240,16 +240,16 @@ test("renders remote images as safe placeholder badges instead of <img> tags", (
   // No <img> tag rendered
   assert.equal(html.includes("<img"), false);
   // Image placeholder badge rendered
-  assert.equal(html.includes("Image:"), true);
+  assert.equal(html.includes("图片："), true);
   assert.equal(html.includes("System Diagram"), true);
 });
 
 test("renders clear empty-state message when content is empty or null", () => {
   const emptyHtml = renderToString(React.createElement(MarkdownContentViewer, { content: "" }));
-  assert.equal(emptyHtml.includes("No content available for this node."), true);
+  assert.equal(emptyHtml.includes("此节点暂无内容。"), true);
 
   const nullHtml = renderToString(React.createElement(MarkdownContentViewer, { content: null }));
-  assert.equal(nullHtml.includes("No content available for this node."), true);
+  assert.equal(nullHtml.includes("此节点暂无内容。"), true);
 });
 
 test("renders plain text cleanly without requiring Markdown formatting", () => {
@@ -283,8 +283,8 @@ test("copy button always starts in un-copied state on initial render", () => {
   }));
 
   // Initial render must show 'Copy', never 'Copied'
-  assert.equal(html.includes("Copy"), true, "Copy button must be present on initial render");
-  assert.equal(html.includes("Copied"), false, "Copied indicator must NOT be present on initial render");
+  assert.equal(html.includes("复制"), true, "Copy button must be present on initial render");
+  assert.equal(html.includes("已复制"), false, "Copied indicator must NOT be present on initial render");
 });
 
 // ─── #1117: complete ARIA tab/tabpanel relationship ─────────────────────────
@@ -345,7 +345,7 @@ test("panel labelling follows the active tab in source mode", () => {
 // content branches, aria-controls would dangle for empty nodes.
 test("tabpanel is still rendered, and aria-controls still resolves, when empty", () => {
   const html = renderToString(React.createElement(MarkdownContentViewer, { content: "" }));
-  assert.equal(html.includes("No content available for this node."), true);
+  assert.equal(html.includes("此节点暂无内容。"), true);
   const panelId = attrOf(html, 'role="tabpanel"', "id");
   assert.ok(panelId, "empty state must still render the tabpanel");
   const controls = [...html.matchAll(/aria-controls="([^"]*)"/g)].map((m) => m[1]);

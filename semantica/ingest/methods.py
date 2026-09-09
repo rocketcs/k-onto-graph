@@ -275,7 +275,7 @@ def ingest_file(
         if method == "file" and source_path and source_path.is_file():
             return ingestor.ingest_file(source_path, **kwargs)
         elif method == "directory" or (source_path and source_path.is_dir()):
-            recursive = kwargs.get("recursive", ingest_config.get("recursive", True))
+            recursive = kwargs.pop("recursive", ingest_config.get("recursive", True))
             return ingestor.ingest_directory(
                 source_path or source, recursive=recursive, **kwargs
             )
@@ -1083,7 +1083,7 @@ def ingest_ontology(
                 return [ingestor.ingest_ontology(str(s), **kwargs) for s in source]
             return ingestor.ingest_ontology(source_path, **kwargs)
         elif method == "directory" and source_path:
-            recursive = kwargs.get("recursive", ingest_config.get("recursive", True))
+            recursive = kwargs.pop("recursive", ingest_config.get("recursive", True))
             return ingestor.ingest_directory(source_path, recursive=recursive, **kwargs)
         else:
             # Default: try as file

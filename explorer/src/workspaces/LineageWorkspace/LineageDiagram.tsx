@@ -1,3 +1,5 @@
+import { errorText } from "../../i18n";
+import { t as tr } from "../../i18n";
 /**
  * src/workspaces/LineageWorkspace/LineageDiagram.tsx
  */
@@ -82,12 +84,12 @@ export function LineageDiagram() {
 
         const contentType = res.headers.get("content-type");
         if (!contentType || !contentType.includes("application/json")) {
-          throw new Error("Backend returned non-JSON response (likely an HTML fallback).");
+          throw new Error(tr("Backend returned non-JSON response (likely an HTML fallback)."));
         }
 
         const data = await res.json();
         if (res.status === 207) {
-          setError(data.message || "Warning: Partial success loading lineage.");
+          setError(data.message || tr("Warning: Partial success loading lineage."));
         }
 
         const counters: Record<string, number> = { "group_agent": 0, "group_activity": 0, "group_entity": 0 };
@@ -119,7 +121,7 @@ export function LineageDiagram() {
           setEdges(mappedEdges);
         }
       } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load lineage.");
+        setError(err instanceof Error ? err.message : tr("Failed to load lineage."));
       }
     };
     void fetchLineage();
@@ -132,31 +134,31 @@ export function LineageDiagram() {
 
       {/* Toolbar */}
       <div style={{ position: "absolute", top: 14, left: 14, right: 14, zIndex: 10, display: "flex", gap: 8, alignItems: "center", background: "rgba(4,10,18,0.88)", backdropFilter: "blur(14px)", padding: "8px 12px", borderRadius: 12, border: "1px solid rgba(74,163,255,0.16)", boxShadow: "0 4px 20px rgba(0,0,0,0.4)" }}>
-        <span className="ws-eyebrow" style={{ color: "var(--ws-accent, #4aa3ff)", marginRight: 4 }}>PROV-O Lineage</span>
+        <span className="ws-eyebrow" style={{ color: "var(--ws-accent, #4aa3ff)", marginRight: 4 }}>{tr("PROV-O Lineage")}</span>
         <input
           className="ws-input"
           type="text"
-          placeholder="Enter Node ID…"
+          placeholder={tr("Enter Node ID…")}
           value={searchId}
           onChange={(e) => setSearchId(e.target.value)}
           onKeyDown={(e) => { if (e.key === "Enter") setActiveId(searchId); }}
           style={{ width: 200, padding: "6px 10px", fontSize: 12 }}
         />
         <button className="ws-btn ws-btn--primary" style={{ padding: "6px 12px" }} onClick={() => setActiveId(searchId)}>
-          Trace
+          {tr("Trace")}
         </button>
         <div style={{ flex: 1 }} />
         <button className="ws-btn ws-btn--ghost" style={{ padding: "6px 12px", fontSize: 11 }} disabled={!activeId} onClick={() => void downloadReport("json")}>
-          Export JSON
+          {tr("Export JSON")}
         </button>
         <button className="ws-btn ws-btn--ghost" style={{ padding: "6px 12px", fontSize: 11 }} disabled={!activeId} onClick={() => void downloadReport("markdown")}>
-          Export MD
+          {tr("Export MD")}
         </button>
       </div>
 
       {error ? (
         <div style={{ position: "absolute", top: 60, left: 14, right: 14, zIndex: 10, padding: 12, borderRadius: 14, color: "#ffb4c2", background: "rgba(255,157,175,0.1)", border: "1px solid rgba(255,157,175,0.18)" }}>
-          {error}
+          {errorText(String(error))}
         </div>
       ) : null}
 
@@ -168,8 +170,8 @@ export function LineageDiagram() {
       ) : (
         <div className="ws-empty" style={{ height: "100%", paddingTop: 72 }}>
           <div className="ws-empty-icon"><Link2 size={36} color="var(--ws-accent)" /></div>
-          <div className="ws-empty-title">PROV-O Lineage Viewer</div>
-          <div className="ws-empty-body">Enter a Node ID in the toolbar above and click Trace to view its W3C PROV-O lineage diagram.</div>
+          <div className="ws-empty-title">{tr("PROV-O Lineage Viewer")}</div>
+          <div className="ws-empty-body">{tr("Enter a Node ID in the toolbar above and click Trace to view its W3C PROV-O lineage diagram.")}</div>
         </div>
       )}
     </div>

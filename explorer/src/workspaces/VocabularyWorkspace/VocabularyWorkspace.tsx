@@ -39,6 +39,12 @@ const THEME_CSS = `
     border-radius: 14px;
     height: 100%;
   }
+  @media (max-width: 640px) {
+    .vocab-workspace { flex-direction: column; overflow-y: auto; }
+    .vocab-sidebar { width: 100% !important; min-height: 340px; flex-shrink: 0; }
+    .vocab-main { min-height: 320px; flex-shrink: 0; }
+    .vocab-main-content { padding: 12px !important; }
+  }
 `;
 
 export function VocabularyWorkspace() {
