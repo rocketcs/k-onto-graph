@@ -123,5 +123,8 @@ semantica/static/
 demo_out/
 .kiro/
 
+# Locally generated medical graphs and vector indexes
+/medical_import_output/
+
 # Worktrees
 .worktrees/
