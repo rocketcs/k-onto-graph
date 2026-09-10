@@ -54,5 +54,5 @@ export function saveLocale(next: Locale): void {
 
 if (typeof document !== "undefined") {
   document.documentElement.lang = locale;
-  document.title = locale === "zh-CN" ? "Semantica 知识探索" : "Semantica Knowledge Explorer";
+  document.title = locale === "zh-CN" ? "K-Onto Graph 知识探索" : "K-Onto Graph Knowledge Explorer";
 }

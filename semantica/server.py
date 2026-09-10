@@ -92,8 +92,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="Semantica API",
-    description="REST API for the Semantica Framework",
+    title="K-Onto Graph API",
+    description="REST API for K-Onto Graph",
     version=__version__,
     lifespan=lifespan,
 )
@@ -157,7 +157,7 @@ class BuildRequest(BaseModel):
 async def root():
     """Root endpoint returning framework info."""
     return {
-        "name": "Semantica API",
+        "name": "K-Onto Graph API",
         "version": __version__,
         "status": "active",
         "capabilities": explorer_capabilities(
@@ -240,9 +240,9 @@ async def serve_spa(full_path: str):
         if index_file.is_file():
             return FileResponse(index_file)
         return JSONResponse({
-            "name": "Semantica Knowledge Explorer",
+            "name": "K-Onto Graph Knowledge Explorer",
             "version": __version__,
-            "message": "Welcome to Semantica. The frontend is not built yet — run `npm run build` inside the explorer/ directory, or open the Vite dev server at http://localhost:5173.",
+            "message": "Welcome to K-Onto Graph. The frontend is not built yet — run `npm run build` inside the explorer/ directory, or open the Vite dev server at http://localhost:5173.",
             "docs": "/docs",
             "health": "/health",
         })
@@ -277,7 +277,7 @@ async def serve_spa(full_path: str):
 
     raise HTTPException(
         status_code=404,
-        detail="Frontend not built. Run `npm run build` in semantica-explorer/ first."
+        detail="Frontend not built. Run `npm run build` in explorer/ first."
     )
 
 def main():

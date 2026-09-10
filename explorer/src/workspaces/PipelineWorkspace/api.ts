@@ -1,4 +1,4 @@
-import { t as tr } from "../../i18n";
+import { displayText, t as tr } from "../../i18n";
 export type Config = Record<string, unknown>;
 export type Version = {
   id: string;
@@ -128,12 +128,12 @@ export async function api<T>(
   });
   if (!response.ok) {
     const value = await response.json().catch(() => ({}));
-    throw new Error(
+    throw new Error(displayText(
       typeof value.detail === "string"
         ? value.detail
         : value.detail?.message ||
             tr("Request failed (HTTP {0}).", { 0: response.status }),
-    );
+    ));
   }
   return response.json();
 }

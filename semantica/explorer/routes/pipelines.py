@@ -14,7 +14,7 @@ router = APIRouter(tags=['pipelines'])
 def service(request):
     value = getattr(request.app.state, 'pipeline_service', None)
     if value is None:
-        raise HTTPException(503, detail={'code': 'PIPELINE_DISABLED', 'message': 'Set SEMANTICA_PIPELINE_ENABLED=true and configure a writable data directory'})
+        raise HTTPException(503, detail={'code': 'PIPELINE_DISABLED', 'message': 'Document pipelines are unavailable. Ask an administrator to enable the service.'})
     return value
 
 

@@ -118,8 +118,8 @@ def create_app(
             await stop_pipeline_service(app)
 
     app = FastAPI(
-        title="Semantica Knowledge Explorer",
-        description="Interactive dashboard API for exploring Semantica knowledge graphs.",
+        title="K-Onto Graph Knowledge Explorer",
+        description="Interactive dashboard API for exploring knowledge graphs.",
         version=__version__,
         lifespan=lifespan,
     )
@@ -206,14 +206,13 @@ def create_app(
         )
         return HTMLResponse(
             '<!doctype html><html lang="en"><head><meta charset="UTF-8">'
-            '<title>Semantica Knowledge Explorer</title>'
+            '<title>K-Onto Graph Knowledge Explorer</title>'
             '<style>body{font-family:sans-serif;padding:2rem;max-width:600px;margin:auto}'
             'code{background:#f4f4f4;padding:2px 6px;border-radius:3px}</style></head>'
             "<body><h2>Explorer UI not available</h2>"
             "<p>The frontend bundle was not found. This usually means the package was "
             "installed from source without building the frontend first.</p>"
-            "<p><strong>To fix:</strong> reinstall via "
-            "<code>pip install semantica[explorer]</code>, or build from source with "
+            "<p><strong>To fix:</strong> build the frontend from source with "
             "<code>cd explorer &amp;&amp; npm ci &amp;&amp; npm run build</code> "
             "then restart the server.</p>"
             '<p>The REST API is still fully available at <a href="/docs">/docs</a>.</p>'
@@ -228,7 +227,7 @@ def create_app(
     @app.get("/api/info")
     async def info():
         return {
-            "name": "Semantica Knowledge Explorer",
+            "name": "K-Onto Graph Knowledge Explorer",
             "version": __version__,
             "status": "active",
             "capabilities": explorer_capabilities(agent_memory),

@@ -2905,7 +2905,7 @@ async def validate_shacl(
             message=(
                 f"SHACL Turtle size ({len(_shacl_bytes)} bytes) "
                 f"exceeds maximum allowed size ({_MAX_SHACL_TURTLE_BYTES} bytes); "
-                f"set SEMANTICA_MAX_SHACL_TURTLE_BYTES to raise the limit."
+                "Ask an administrator to raise the Turtle size limit."
             ),
             violations=[],
         )
@@ -2923,7 +2923,7 @@ async def validate_shacl(
                 message=(
                     f"SHACL graph triple count ({len(g)}) "
                     f"exceeds maximum allowed limit ({_MAX_SHACL_TRIPLES}); "
-                    f"set SEMANTICA_MAX_SHACL_TRIPLES to raise the limit."
+                    "Ask an administrator to raise the triple limit."
                 ),
                 violations=[],
             )
@@ -2975,7 +2975,7 @@ async def validate_shacl(
             status="error",
             message=(
                 f"SHACL validation timed out after {_MAX_SHACL_TIMEOUT_SECONDS} seconds; "
-                f"set SEMANTICA_MAX_SHACL_TIMEOUT to raise the timeout."
+                "Ask an administrator to raise the validation timeout."
             ),
             violations=[],
         )

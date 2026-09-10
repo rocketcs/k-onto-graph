@@ -15,7 +15,7 @@ export function ExploreWorkspaceTabs({
   return (
     <>
       <button className="workspace-tab" data-active={activeView === 'graph'} onClick={() => onSelect('graph')}>
-        {t("Semantica Knowledge Explorer")}
+        {t("K-Onto Graph Knowledge Explorer")}
       </button>
       {agentMemoryAvailable ? (
         <button className="workspace-tab" data-active={activeView === 'memories'} onClick={() => onSelect('memories')}>

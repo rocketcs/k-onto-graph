@@ -59,12 +59,12 @@ export function ImportExportWorkspace() {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `semantica_export.${exportFormat}`;
+      a.download = `k_onto_graph_export.${exportFormat}`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast("success", tr("Export ready — semantica_export.{0}", {0: exportFormat}));
+      showToast("success", tr("Export ready — k_onto_graph_export.{0}", {0: exportFormat}));
       logEvent("export", tr("Exported graph as {0}", {0: exportFormat.toUpperCase()}), { format: exportFormat });
     } catch (e: unknown) {
       showToast("error", e instanceof Error ? e.message : tr("Export failed"));

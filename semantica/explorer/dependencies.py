@@ -61,10 +61,8 @@ def require_auth(api_key: Optional[str] = Security(_api_key_header)) -> None:
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail=(
-                "Server is not configured for authentication. Set the "
-                "SEMANTICA_API_KEY environment variable, or explicitly opt "
-                "into unauthenticated access (development only) with "
-                "SEMANTICA_ALLOW_ANONYMOUS=true."
+                "Server is not configured for authentication. "
+                "Ask an administrator to configure access."
             ),
         )
     if not api_key or not hmac.compare_digest(api_key, expected):

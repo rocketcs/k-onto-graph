@@ -381,7 +381,7 @@ async def export_graph(
     return Response(
         content=content,
         media_type=media_type,
-        headers={"Content-Disposition": f'attachment; filename="semantica_export.{extension}"'},
+        headers={"Content-Disposition": f'attachment; filename="k_onto_graph_export.{extension}"'},
     )
 
 
