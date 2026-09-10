@@ -2817,7 +2817,7 @@ export function GraphWorkspace({ externalFocusNodeId, externalFocusToken, onDirt
       },
       {
         id: "view-focused",
-        label: t("Focused"),
+        label: t("Focus"),
         title: canActivateFocusedMode
           ? t("Inspect the selected node in a focused local graph")
           : (focusedSelectionResolution.reason ?? t("Focused mode is unavailable for the current selection")),

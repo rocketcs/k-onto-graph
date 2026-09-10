@@ -20,6 +20,7 @@ import {
 import { ErrorBoundary } from './ErrorBoundary';
 import { ExploreWorkspaceTabs, type ExploreView } from './ExploreWorkspaceTabs';
 import { fetchAgentMemoryAvailability } from './explorerCapabilities';
+import { hasOntologyUrlState } from './workspaces/OntologyWorkspace/ontologyUrlState';
 
 const DecisionWorkspace = lazy(() => import('./workspaces/DecisionWorkspace/DecisionWorkspace').then((module) => ({ default: module.DecisionWorkspace })));
 const DiffMergeWorkspace = lazy(() => import('./workspaces/DiffMergeWorkspace/DiffMergeWorkspace').then((module) => ({ default: module.DiffMergeWorkspace })));
@@ -112,7 +113,7 @@ function readInitialWorkspace(): WorkspaceId {
     if (params.has('pipeline_run') || (params.get('workspace') === 'enrich' && params.get('view') === 'pipeline')) {
       return 'enrich';
     }
-    if (params.has("ontologyTab") || params.has("ontologyEntity")) {
+    if (hasOntologyUrlState()) {
       return "ontology-hub";
     }
   } catch {

@@ -14,6 +14,7 @@ import { OntologyManager } from "./OntologyManager";
 import { OntologyEditor } from "./OntologyEditor";
 import { ShaclStudio } from "./ShaclStudio";
 import { VersionsTab } from "./VersionsTab";
+import { readOntologyUrlState, writeEntitySelection, writeTab } from "./ontologyUrlState";
 
 export type OntologyHubTab =
   | "registry"
@@ -22,8 +23,6 @@ export type OntologyHubTab =
   | "alignments"
   | "health"
   | "shacl";
-
-const TAB_PARAM = "ontologyTab";
 
 const TABS: { id: OntologyHubTab; label: string; icon: typeof GitMerge }[] = [
   { id: "registry", label: tr("Registry"), icon: BookMarked },
@@ -34,26 +33,12 @@ const TABS: { id: OntologyHubTab; label: string; icon: typeof GitMerge }[] = [
   { id: "shacl", label: "SHACL", icon: Shield },
 ];
 
-function readTabParam(): OntologyHubTab {
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const raw = params.get(TAB_PARAM);
-    if (raw && TABS.some((t) => t.id === raw)) return raw as OntologyHubTab;
-    if (params.get("ontologyEntity")) return "editor";
-  } catch {
-    // ignore
-  }
+function readInitialTab(): OntologyHubTab {
+  const { tab, entityUri } = readOntologyUrlState();
+  const requested = TABS.find((candidate) => candidate.id === tab);
+  if (requested) return requested.id;
+  if (entityUri) return "editor";
   return "registry";
-}
-
-function writeTabParam(tab: OntologyHubTab) {
-  try {
-    const params = new URLSearchParams(window.location.search);
-    params.set(TAB_PARAM, tab);
-    window.history.replaceState(null, "", `?${params.toString()}`);
-  } catch {
-    // ignore
-  }
 }
 
 interface OntologyWorkspaceProps {
@@ -61,10 +46,10 @@ interface OntologyWorkspaceProps {
 }
 
 export function OntologyWorkspace({ onJumpToGraphNode }: OntologyWorkspaceProps) {
-  const [activeTab, setActiveTab] = useState<OntologyHubTab>(readTabParam);
+  const [activeTab, setActiveTab] = useState<OntologyHubTab>(readInitialTab);
 
   useEffect(() => {
-    writeTabParam(activeTab);
+    writeTab(activeTab);
   }, [activeTab]);
 
   const handleTabChange = useCallback((tab: OntologyHubTab) => {
@@ -72,10 +57,7 @@ export function OntologyWorkspace({ onJumpToGraphNode }: OntologyWorkspaceProps)
   }, []);
 
   const handleFixInEditor = useCallback((entityUri: string) => {
-    const params = new URLSearchParams(window.location.search);
-    params.set(TAB_PARAM, "editor");
-    params.set("ontologyEntity", entityUri);
-    window.history.replaceState(null, "", `?${params.toString()}`);
+    writeEntitySelection(entityUri);
     setActiveTab("editor");
   }, []);
 
